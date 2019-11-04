@@ -13,16 +13,24 @@
 #include <boost/algorithm/string_regex.hpp>
 
 #include "http/HttpParser.h"
-#include "http/HttpRequest.h"
 
-#define SERVER_PORT 1235
 #define QUEUE_SIZE 3
 
 std::string executable_name;
 
+/*!
+ * @brief A tcp threaded server. Creates a thread for each client communciating with the server.
+ * The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user
+ * during the initialization.
+ */
 class Threaded_tcp_server
 {
 public:
+    /*!
+     * @brief Initializes a threaded tcp server.
+     * @param port port to open the service at
+     * @param queue_size maximum number of opened sessions.
+     */
     Threaded_tcp_server(int port, int queue_size = 3) : server_port(server_port), queue_size(queue_size)
     {
         char reuse_addr_val = 1;
@@ -39,6 +47,9 @@ public:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
+    /*!
+     * @brief Performs server's tasks in an endless loop.
+     */
     void loop()
     {
         while (1)
@@ -56,26 +67,35 @@ public:
 
 private:
 
+    /*!
+     * @brief Initializes the server adress. Uses member variable server_port as the service's port.
+     */
     void init_server_adress()
     {
         memset(&server_address, 0, sizeof(struct sockaddr));
         server_address.sin_family = AF_INET;
         server_address.sin_addr.s_addr = htonl(INADDR_ANY);
-        server_address.sin_port = htons(SERVER_PORT);
+        server_address.sin_port = htons(server_port);
     }
 
-    void init_socket_descriptor_with_error_check(char &reuse_addr_val)
+    /*!
+     * @brief Creates a server socket descriptor. Stops the program on failure.
+     * @param reuse_addr_val If set on true, server will be able to reopen on the same port more frequently.
+     */    void init_socket_descriptor_with_error_check(char &reuse_addr_val)
     {
         server_socket_descriptor = socket(AF_INET, SOCK_STREAM, 0);
         if (server_socket_descriptor < 0)
         {
             std::cerr << executable_name << ": Błąd przy próbie utworzenia gniazda..\n";
-            //    exit(1);
+            exit(1);
         }
         setsockopt(server_socket_descriptor, SOL_SOCKET, SO_REUSEADDR, (char *) &reuse_addr_val,
                    sizeof(reuse_addr_val));
     }
 
+    /*!
+     * @brief Assigns an adress (often refered to as a 'name') to a socket.
+     */
     void bind_with_error_check() const
     {
         int bind_result = bind(server_socket_descriptor, (struct sockaddr *) &server_address, sizeof(struct sockaddr));
@@ -86,6 +106,12 @@ private:
         }
     }
 
+
+    /*!
+     * @brief marks the socket referred to by sockfd as a passive socket,
+     * that is, as a socket that will be used to accept incoming connection.
+     * Stops the program on failure.
+     */
     void listen_with_error_check() const
     {
         int listen_result = listen(server_socket_descriptor, QUEUE_SIZE);
@@ -96,6 +122,10 @@ private:
         }
     }
 
+    /*!
+     * @brief Accepts connections, creates sockets for them. Creates a new thread designated to communicate with the client,
+     * detaches it and immediatelly returns control to the caller.
+     */
     void handleConnection()
     {
         int connection_socket_descriptor = accept(server_socket_descriptor, NULL, NULL);
@@ -105,26 +135,18 @@ private:
             exit(1);
         }
 
-        pthread_mutex_lock(&mutex);
-        for (int i = 0; i < QUEUE_SIZE; i++)
-        {
-            if (connection_socket_descriptors[i] == 0)
-            {
-                connection_socket_descriptors[i] = connection_socket_descriptor;
-                break;
-            }
-        }
-        pthread_mutex_unlock(&mutex);
-
-        std::thread th(ThreadBehavior, connection_socket_descriptor, connection_socket_descriptors);
+        std::thread th(ThreadBehavior, connection_socket_descriptor);
         th.detach();
-
     }
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
-    static void *ThreadBehavior(int connection_socket_descriptor, int *all_connection_socket_descriptors)
+    /*!
+     * @brief Handles communication with the client.
+     * @param connection_socket_descriptor Client's socket descriptor.
+     */
+    static void *ThreadBehavior(int connection_socket_descriptor)
     {
         std::__cxx11::string message;
         char buf[101];
@@ -134,7 +156,7 @@ private:
         ssize_t n;
         while (true)
         {
-            n = read(connection_socket_descriptor, buf, sizeof(buf)-1);
+            n = read(connection_socket_descriptor, buf, sizeof(buf) - 1);
             buf[n] = 0;
 
             message += buf;
@@ -159,7 +181,6 @@ private:
     struct sockaddr_in server_address;
     const int server_port;
     const int queue_size;
-    int connection_socket_descriptors[3] = {0, 0, 0};
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 };
 
