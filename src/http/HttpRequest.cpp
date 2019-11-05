@@ -1,8 +1,8 @@
 //
 // Created by dominik on 04.11.19.
 //
+#include <http-server/http/HttpRequest.h>
 
-#include "HttpRequest.h"
 /*!
  * @return type of http request eg GET, PUT ...
  */

@@ -2,8 +2,8 @@
 // Created by dominik on 04.11.19.
 //
 
-#include "HttpRequest.h"
-#include "HttpParser.h"
+#include <http-server/http/HttpRequest.h>
+#include <http-server/http/HttpParser.h>
 
 /*!
  * @brief Translates a http request from a string to a HttpRequest.
