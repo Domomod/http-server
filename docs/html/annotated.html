@@ -22,9 +22,8 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">http_server
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
-   <div id="projectbrief">A simple http server</div>
   </td>
  </tr>
  </tbody>
@@ -66,9 +65,11 @@ $(function() {
 <div class="contents">
 <div class="textblock">Here are the classes, structs, unions and interfaces with brief descriptions:</div><div class="directory">
 <table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classHttpParser.html" target="_self">HttpParser</a></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classHttpRequest.html" target="_self">HttpRequest</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classThreaded__tcp__server.html" target="_self">Threaded_tcp_server</a></td><td class="desc">A tcp threaded server. Creates a thread for each client communicating with the server. The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user during the initialization </td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classHttpParser.html" target="_self">HttpParser</a></td><td class="desc">Simple and naive parser of http requets, relies on data being separated by single spaces. Can produce a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> class from a string </td></tr>
+<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classHttpRequest.html" target="_self">HttpRequest</a></td><td class="desc">Http request representation </td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classThreaded__tcp__server.html" target="_self">Threaded_tcp_server</a></td><td class="desc">A tcp threaded server. Creates a thread for each client communicating with the server.<br />
+The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user<br />
+during the initialization </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->

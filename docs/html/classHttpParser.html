@@ -22,9 +22,8 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">http_server
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
-   <div id="projectbrief">A simple http server</div>
   </td>
  </tr>
  </tbody>
@@ -68,14 +67,43 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Simple and naive parser of http requets, relies on data being separated by single spaces. Can produce a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> class from a string.  
+ <a href="classHttpParser.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="HttpParser_8h_source.html">HttpParser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6078893819035e50f49cf30fc759ac74"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classHttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpParser.html#a6078893819035e50f49cf30fc759ac74">parse_message</a> (const std::__cxx11::string &amp;message)</td></tr>
+<tr class="memdesc:a6078893819035e50f49cf30fc759ac74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates a http request from a string to a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a>.  <a href="#a6078893819035e50f49cf30fc759ac74">More...</a><br /></td></tr>
 <tr class="separator:a6078893819035e50f49cf30fc759ac74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Simple and naive parser of http requets, relies on data being separated by single spaces. Can produce a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> class from a string. </p>
+<ul>
+<li>
+A static class. </li>
+<li>
+Creating a class instance is forbidden. </li>
+<li>
+Does not remember any state, and can be used by multiple threads at the same time. </li>
+<li>
+Works as a factory of <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> objects. </li>
+<li>
+Parsed request string: <ul>
+<li>
+must contain only one http request, with the end indicating CR LF CR LF trimmed. </li>
+<li>
+use only single spaces as word's separators. </li>
+<li>
+use CR LF as line's separators. </li>
+<li>
+can't contain the body section. </li>
+</ul>
+</li>
+</ul>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6078893819035e50f49cf30fc759ac74"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6078893819035e50f49cf30fc759ac74">&#9670;&nbsp;</a></span>parse_message()</h2>
 
@@ -100,10 +128,30 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Translates a http request from a string to a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a>. </p>
+<p>Constraints on the string containing the http request: </p><ul>
+<li>
+must contain only one http request, with the end indicating CR LF CR LF trimmed. </li>
+<li>
+use only single spaces as word's separators. </li>
+<li>
+use CR LF as line's separators. </li>
+<li>
+can't contain the body section. </li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Message to be parsed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Message as <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/dominik/Projekty/C/http-server/include/http-server/http/<a class="el" href="HttpParser_8h_source.html">HttpParser.h</a></li>
+<li>include/http-server/http/<a class="el" href="HttpParser_8h_source.html">HttpParser.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

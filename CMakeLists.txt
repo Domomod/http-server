@@ -2,13 +2,18 @@
 
 cmake_minimum_required(VERSION 3.13)
 project(http_server
-        VERSION 0.1
         DESCRIPTION "A simple http server"
         LANGUAGES CXX)
 
 
 # Only do these if this is the main project, and not if it is included through add_subdirectory
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+    # The project version number.
+    set(VERSION_MAJOR   0   CACHE STRING "Project major version number.")
+    set(VERSION_MINOR   0   CACHE STRING "Project minor version number.")
+    set(VERSION_PATCH   1   CACHE STRING "Project patch version number.")
+    mark_as_advanced(VERSION_MAJOR VERSION_MINOR VERSION_PATCH)
 
     # Set c++ standard to c++11
     set(CMAKE_CXX_STANDARD 11)

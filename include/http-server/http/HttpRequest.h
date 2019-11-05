@@ -15,34 +15,53 @@
 
 class HttpRequest;
 
+
+/*!
+ * @brief Http request representation.
+ * @details This class allows for represenation of a http/1.1 request.\n
+ *          Because the header keys may vary from request to request, this class stores header keys and\n
+ *          vectors of coresponding values in a dictionary. Both values and keys are stored as strings.\n
+ *          Conversion of those values is left to the class user.\n
+ */
 class HttpRequest
 {
 public:
+
+    /*!
+     * @brief Simple getter.
+     * @return Request type aka. GET,PUT,etc...
+     */
     const std::string &getRequest_type() const;
 
+
+    /*!
+     * @brief Simple getter.
+     * @return Path to the requested file
+     */
     const std::string &getPath() const;
 
+
+    /*!
+     * @brief Simple getter.
+     * @return Http protocol version
+     */
     const std::string &getHttp_version() const;
 
+     /*!
+      * @brief Simple getter.
+      * @return Http request body
+      */
     const std::string &getBody() const;
 
+    /*!
+     * @brief Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.\n
+     * If wrong key was given returns only one string "Wrong key".
+     * @param field_name Header key to be extracted
+     * @return A vector of header values corresponding to given header key.
+     */
     const std::vector<std::string> getFieldValue(const std::string &field_name);
 
-    void print() const
-    {
-        std::cout << "Type:\t" << request_type
-                  << "\nPath:\t" << path
-                  << "\nHttp version:\t" << http_version << "\n";
-        for (auto elem :header_info)
-        {
-            std::cout << elem.first << ":";
-            for (auto val : elem.second)
-            {
-                std::cout << "\n\t" << val;
-            }
-            std::cout << "\n";
-        }
-    }
+    void print() const;
 
 private:
     HttpRequest()

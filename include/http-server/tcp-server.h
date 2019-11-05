@@ -17,8 +17,8 @@
 #define QUEUE_SIZE 3
 
 /*!
- * @brief A tcp threaded server. Creates a thread for each client communicating with the server.
- * The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user
+ * @brief A tcp threaded server. Creates a thread for each client communicating with the server.\n
+ * The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user\n
  * during the initialization.
  */
 class Threaded_tcp_server

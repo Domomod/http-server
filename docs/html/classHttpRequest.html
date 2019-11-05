@@ -22,9 +22,8 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">http_server
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.0.1</span>
    </div>
-   <div id="projectbrief">A simple http server</div>
   </td>
  </tr>
  </tbody>
@@ -69,29 +68,47 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Http request representation.  
+ <a href="classHttpRequest.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="HttpRequest_8h_source.html">HttpRequest.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ea53b74de3737f6e4d7a1e9f75b11e5"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a4ea53b74de3737f6e4d7a1e9f75b11e5">getRequest_type</a> () const</td></tr>
+<tr class="memdesc:a4ea53b74de3737f6e4d7a1e9f75b11e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#a4ea53b74de3737f6e4d7a1e9f75b11e5">More...</a><br /></td></tr>
 <tr class="separator:a4ea53b74de3737f6e4d7a1e9f75b11e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#ae3d5e46a5f9f7bbb348231cc705146ea">getPath</a> () const</td></tr>
+<tr class="memdesc:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#ae3d5e46a5f9f7bbb348231cc705146ea">More...</a><br /></td></tr>
 <tr class="separator:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dd411a29ff38450ee53eb6596cc2901"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a1dd411a29ff38450ee53eb6596cc2901">getHttp_version</a> () const</td></tr>
+<tr class="memdesc:a1dd411a29ff38450ee53eb6596cc2901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#a1dd411a29ff38450ee53eb6596cc2901">More...</a><br /></td></tr>
 <tr class="separator:a1dd411a29ff38450ee53eb6596cc2901"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a89c9d2f9173fcfb83cb02da38d5cce1a">getBody</a> () const</td></tr>
+<tr class="memdesc:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#a89c9d2f9173fcfb83cb02da38d5cce1a">More...</a><br /></td></tr>
 <tr class="separator:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a5c69ab186ca82849b4aa8d85dd70d3ea">getFieldValue</a> (const std::string &amp;field_name)</td></tr>
+<tr class="memdesc:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.<br />
+If wrong key was given returns only one string "Wrong key".  <a href="#a5c69ab186ca82849b4aa8d85dd70d3ea">More...</a><br /></td></tr>
 <tr class="separator:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f5bcd7acebbb79eef65fce79967ab6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a40f5bcd7acebbb79eef65fce79967ab6">print</a> () const</td></tr>
+<tr class="memitem:a40f5bcd7acebbb79eef65fce79967ab6"><td class="memItemLeft" align="right" valign="top"><a id="a40f5bcd7acebbb79eef65fce79967ab6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const</td></tr>
 <tr class="separator:a40f5bcd7acebbb79eef65fce79967ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a3773cc521cf15f9420e7256db44bc48c"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a3773cc521cf15f9420e7256db44bc48c">HttpParser</a></td></tr>
+<tr class="memitem:a3773cc521cf15f9420e7256db44bc48c"><td class="memItemLeft" align="right" valign="top"><a id="a3773cc521cf15f9420e7256db44bc48c"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpParser</b></td></tr>
 <tr class="separator:a3773cc521cf15f9420e7256db44bc48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Http request representation. </p>
+<p>This class allows for represenation of a http/1.1 request.<br />
+ Because the header keys may vary from request to request, this class stores header keys and<br />
+ vectors of coresponding values in a dictionary. Both values and keys are stored as strings.<br />
+ Conversion of those values is left to the class user.<br />
+</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a89c9d2f9173fcfb83cb02da38d5cce1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89c9d2f9173fcfb83cb02da38d5cce1a">&#9670;&nbsp;</a></span>getBody()</h2>
 
@@ -106,6 +123,9 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Simple getter. </p>
+<dl class="section return"><dt>Returns</dt><dd>Http request body </dd></dl>
 
 </div>
 </div>
@@ -125,6 +145,16 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.<br />
+If wrong key was given returns only one string "Wrong key". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field_name</td><td>Header key to be extracted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of header values corresponding to given header key. </dd></dl>
+
 </div>
 </div>
 <a id="a1dd411a29ff38450ee53eb6596cc2901"></a>
@@ -141,6 +171,9 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Simple getter. </p>
+<dl class="section return"><dt>Returns</dt><dd>Http protocol version </dd></dl>
 
 </div>
 </div>
@@ -159,6 +192,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Simple getter. </p>
+<dl class="section return"><dt>Returns</dt><dd>Path to the requested file </dd></dl>
+
 </div>
 </div>
 <a id="a4ea53b74de3737f6e4d7a1e9f75b11e5"></a>
@@ -176,58 +212,13 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a40f5bcd7acebbb79eef65fce79967ab6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40f5bcd7acebbb79eef65fce79967ab6">&#9670;&nbsp;</a></span>print()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void HttpRequest::print </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a3773cc521cf15f9420e7256db44bc48c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3773cc521cf15f9420e7256db44bc48c">&#9670;&nbsp;</a></span>HttpParser</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="classHttpParser.html">HttpParser</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Simple getter. </p>
+<dl class="section return"><dt>Returns</dt><dd>Request type aka. GET,PUT,etc... </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/dominik/Projekty/C/http-server/include/http-server/http/<a class="el" href="HttpRequest_8h_source.html">HttpRequest.h</a></li>
+<li>include/http-server/http/<a class="el" href="HttpRequest_8h_source.html">HttpRequest.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
