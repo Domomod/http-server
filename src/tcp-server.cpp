@@ -3,7 +3,8 @@
 //
 
 #include <http-server/tcp-server.h>
-
+#include <http-server/http/HttpRequestReader.h>
+#include <http-server/bsd/BsdSocket_HttpRequestReader.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
@@ -76,31 +77,15 @@ void Threaded_tcp_server::handleConnection()
 
 void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
 {
-    std::__cxx11::string message;
-    char buf[101];
-    std::__cxx11::string end_of_request = "\r\n\r\n";
+    HttpRequestReader* httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
 
-
-    ssize_t n;
-    while (true)
+    while(true)
     {
-        n = read(connection_socket_descriptor, buf, sizeof(buf) - 1);
-        buf[n] = 0;
-
-        message += buf;
-        std::size_t found = message.find(end_of_request);
-        if (found != std::string::npos)
-        {
-            std::vector<std::string> message_substrings;
-            boost::iter_split(message_substrings, message, boost::first_finder(end_of_request));
-
-            auto http_message = HttpParser::parse_message(message_substrings[0]);
-            http_message.print();
-            std::cout << "INCOMING REQUEST:\n" << message_substrings[0];
-            message = message_substrings[1];
-        }
-
+        HttpRequest request = httpRequestReader->getRequest();
+        request.print();
     }
+
+    delete httpRequestReader;
 }
 
 void Threaded_tcp_server::init_socket_descriptor_with_error_check(char &reuse_addr_val)
