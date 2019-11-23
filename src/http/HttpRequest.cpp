@@ -3,6 +3,7 @@
 //
 #include <http-server/http/HttpRequest.h>
 
+const std::string HttpRequest::NO_SUCH_KEY = "No such key";
 
 const std::string &HttpRequest::getRequest_type() const
 {
@@ -36,7 +37,7 @@ const std::vector<std::string> HttpRequest::getFieldValue(const std::string &fie
     }
     else
     {
-        return std::vector<std::string>({"Wrong key"});
+        return std::vector<std::string>({"No such header"});
     }
 }
 
@@ -54,5 +55,6 @@ void HttpRequest::print() const
         }
         std::cout << "\n";
     }
+    std::cout << body << "\n";
 }
 

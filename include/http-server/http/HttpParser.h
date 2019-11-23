@@ -29,35 +29,58 @@
 class HttpParser
 {
 public:
+    HttpParser();
+
     /*!
-     * @brief Translates a http request from a string to a HttpRequest.
-     * @details Constraints on the string containing the http request:
-     *          <ul>
-     *              <li> must contain only one http request, with the end indicating CR LF CR LF trimmed.
-     *              <li> use only single spaces as word's separators.
-     *              <li> use CR LF as line's separators.
-     *              <li> can't contain the body section.
-     *          </ul>
-     * @param message Message to be parsed.
-     * @return Message as HttpRequest
+     * @brief Parses a single line of httpRequest. Returns parsed object on the last line.
+     * @param line line to be parsed.
+     * @return  HttpRequest pointer if full request parsed, nullptr otherwise.
      * @see HttpRequest
      */
-    HttpRequest static parse_message(const std::__cxx11::string &message);
+    void parse_line(const std::__cxx11::string &line);
 
+    HttpRequest get_request();
+    void discard();
+
+    enum class State;
+    bool isInState(const State& state) const;;
+
+    unsigned long  how_much_msg_body_left();
+
+    enum class State
+    {
+        PARSING_HTTP_REQUEST_LINE,
+        PARSING_HTTP_HEADER_FIELDS,
+        PARSING_HTTP_MESSAGE_BODY,
+        HTTP_REQUEST_READY
+    };
 private:
+    enum class LineType;
+
     /*!
-     * @brief Translates the first line of http request which contains the request type, file, params and http protocol version.
-     * @param httpRequest The http request in which the translated data will be stored.
+     * @brief Parses the request line.
      * @param line Line such as GET|PUT|POST|ect. /<filename>?<params> HTTP<digit>+.<digit>+
      */
-    static void parse_request_type(HttpRequest &httpRequest, std::__cxx11::string &line);
+    void parse_request_line(const std::string &line);
 
     /*!
-     * @brief Translates a line of header key and values to a multi-dictionary (one key  can hold multiple values).
-     * @param httpRequest The http request in which the translated data will be stored.
+     * @brief Parses a line containig header field.
      * @param line line of header key and values separated by single spaces
      */
-    static void parse_keys_and_values(HttpRequest &httpRequest, std::__cxx11::string &line);
+    void parse_header_field(const std::string &line);
+
+    /*!
+     * @brief Parses a line of the message body.
+     * @param line any string
+     */
+    void parse_body_line(const std::string &line);
+
+    void resetState();
+
+    void check_if_request_has_body();
+
+    HttpRequest* httpRequest;
+    State currentState;
 };
 
 #include <string>

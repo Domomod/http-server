@@ -55,14 +55,14 @@ public:
 
     /*!
      * @brief Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.\n
-     * If wrong key was given returns only one string "Wrong key".
+     * If wrong key was given returns vector containing only one string "No such header".
      * @param field_name Header key to be extracted
      * @return A vector of header values corresponding to given header key.
      */
     const std::vector<std::string> getFieldValue(const std::string &field_name);
 
     void print() const;
-
+    static const std::string NO_SUCH_KEY;
 private:
     HttpRequest()
     {
