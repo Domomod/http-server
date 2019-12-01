@@ -5,10 +5,14 @@
 #include <http-server/tcp-server.h>
 #include <http-server/http/HttpRequestReader.h>
 #include <http-server/bsd/BsdSocket_HttpRequestReader.h>
+#include <http-server/http/HttpResponse.h>
+#include <http-server/http/HttpResponseBuilder.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-Threaded_tcp_server::Threaded_tcp_server(uint16_t server_port, int queue_size) : server_port(server_port), queue_size(queue_size)
+
+Threaded_tcp_server::Threaded_tcp_server(uint16_t server_port, int queue_size) : server_port(server_port),
+                                                                                 queue_size(queue_size)
 {
     char reuse_addr_val = 1;
 
@@ -77,12 +81,30 @@ void Threaded_tcp_server::handleConnection()
 
 void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
 {
-    HttpRequestReader* httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
+    HttpRequestReader *httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
+    HttpResponseBuilder httpResponseBuilder;
 
-    while(true)
+    while (true)
     {
         HttpRequest request = httpRequestReader->getRequest();
         request.print();
+
+        HttpResponse httpResponse = httpResponseBuilder
+                .setStatusCode(StatusCode::OK)
+                .setHeaderInfo({
+                                       {"Server",       {"Test"}},
+                                       {"Connection",   {"close"}},
+                                       {"Content-Type", {"text/xml"}}
+                               })
+                .setBody("<xml=1.1>\n"
+                         "<init>\n"
+                         "\t<dana>Siema</dana>\n"
+                         "</init>")
+                .getResponse();
+
+        std::string strResponse = httpResponse.toSendableString();
+        std::cout << "\n\n" << strResponse << "\n\n";
+        write(connection_socket_descriptor, strResponse.c_str(), strResponse.size());
     }
 
     delete httpRequestReader;

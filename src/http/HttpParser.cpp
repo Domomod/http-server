@@ -78,7 +78,8 @@ void HttpParser::parse_body_line(const std::string &line)
 
 HttpParser::HttpParser()
 {
-    resetState();
+    httpRequest = new HttpRequest();
+    currentState = State::PARSING_HTTP_REQUEST_LINE;
 }
 
 void HttpParser::check_if_request_has_body()
@@ -119,7 +120,6 @@ HttpRequest HttpParser::get_request()
     if (isInState(State::HTTP_REQUEST_READY))
     {
         HttpRequest request = *httpRequest;
-        delete  httpRequest;
         resetState();
         return request;
     }
@@ -142,6 +142,7 @@ void HttpParser::discard()
 
 void HttpParser::resetState()
 {
+    delete  httpRequest;
     httpRequest = new HttpRequest();
     currentState = State::PARSING_HTTP_REQUEST_LINE;
 }

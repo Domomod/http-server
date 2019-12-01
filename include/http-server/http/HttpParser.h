@@ -5,7 +5,9 @@
 #ifndef HTTP_SERVER_HTTTPPARSER_H
 #define HTTP_SERVER_HTTTPPARSER_H
 
+#include <http-server/http/HttpRequest.h>
 #include "HttpRequest.h"
+
 
 /*!
 * @brief Simple and naive parser of http requets, relies on data being separated by single spaces.
@@ -75,13 +77,20 @@ private:
      */
     void parse_body_line(const std::string &line);
 
+    /*!
+     * @brief Resets HttpParser to the state after it's construction.
+     */
     void resetState();
 
+    /*!
+     * @brief Checks if request has body, aka if it has "Content-Length" header field.
+     */
     void check_if_request_has_body();
 
     HttpRequest* httpRequest;
     State currentState;
 };
+
 
 #include <string>
 #include <map>
