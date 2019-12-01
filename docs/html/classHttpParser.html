@@ -60,7 +60,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classHttpParser-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HttpParser Class Reference</div>  </div>
@@ -72,11 +73,32 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="HttpParser_8h_source.html">HttpParser.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6078893819035e50f49cf30fc759ac74"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classHttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpParser.html#a6078893819035e50f49cf30fc759ac74">parse_line</a> (const std::__cxx11::string &amp;message)</td></tr>
-<tr class="memdesc:a6078893819035e50f49cf30fc759ac74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates a http request from a string to a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a>.  <a href="#a6078893819035e50f49cf30fc759ac74">More...</a><br /></td></tr>
-<tr class="separator:a6078893819035e50f49cf30fc759ac74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab792303702e9b4189459427092d2ae3c"><td class="memItemLeft" align="right" valign="top"><a id="ab792303702e9b4189459427092d2ae3c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> { <b>PARSING_HTTP_REQUEST_LINE</b>, 
+<b>PARSING_HTTP_HEADER_FIELDS</b>, 
+<b>PARSING_HTTP_MESSAGE_BODY</b>, 
+<b>HTTP_REQUEST_READY</b>
+ }</td></tr>
+<tr class="separator:ab792303702e9b4189459427092d2ae3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3ff162cfde38242a6db39d2736d4df94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpParser.html#a3ff162cfde38242a6db39d2736d4df94">parse_line</a> (const std::__cxx11::string &amp;line)</td></tr>
+<tr class="memdesc:a3ff162cfde38242a6db39d2736d4df94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a single line of httpRequest. Returns parsed object on the last line.  <a href="#a3ff162cfde38242a6db39d2736d4df94">More...</a><br /></td></tr>
+<tr class="separator:a3ff162cfde38242a6db39d2736d4df94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6732f321eda18444530ee79a222344a9"><td class="memItemLeft" align="right" valign="top"><a id="a6732f321eda18444530ee79a222344a9"></a>
+<a class="el" href="classHttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_request</b> ()</td></tr>
+<tr class="separator:a6732f321eda18444530ee79a222344a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a6a452d114b08e895a5f79ee064b98f"><td class="memItemLeft" align="right" valign="top"><a id="a6a6a452d114b08e895a5f79ee064b98f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>discard</b> ()</td></tr>
+<tr class="separator:a6a6a452d114b08e895a5f79ee064b98f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0aa6818bf9a5878a1a76db97fe0e85a"><td class="memItemLeft" align="right" valign="top"><a id="ac0aa6818bf9a5878a1a76db97fe0e85a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInState</b> (const State &amp;state) const</td></tr>
+<tr class="separator:ac0aa6818bf9a5878a1a76db97fe0e85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52e708f5701626ac846ed89e743670a5"><td class="memItemLeft" align="right" valign="top"><a id="a52e708f5701626ac846ed89e743670a5"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>how_much_msg_body_left</b> ()</td></tr>
+<tr class="separator:a52e708f5701626ac846ed89e743670a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple and naive parser of http requets, relies on data being separated by single spaces. Can produce a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> class from a string. </p>
@@ -104,48 +126,30 @@ can't contain the body section. </li>
 </ul>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6078893819035e50f49cf30fc759ac74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6078893819035e50f49cf30fc759ac74">&#9670;&nbsp;</a></span>parse_line()</h2>
+<a id="a3ff162cfde38242a6db39d2736d4df94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff162cfde38242a6db39d2736d4df94">&#9670;&nbsp;</a></span>parse_line()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classHttpRequest.html">HttpRequest</a> HttpParser::parse_line </td>
+          <td class="memname">void HttpParser::parse_line </td>
           <td>(</td>
           <td class="paramtype">const std::__cxx11::string &amp;&#160;</td>
-          <td class="paramname"><em>message</em></td><td>)</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Translates a http request from a string to a <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a>. </p>
-<p>Constraints on the string containing the http request: </p><ul>
-<li>
-must contain only one http request, with the end indicating CR LF CR LF trimmed. </li>
-<li>
-use only single spaces as word's separators. </li>
-<li>
-use CR LF as line's separators. </li>
-<li>
-can't contain the body section. </li>
-</ul>
+<p>Parses a single line of httpRequest. Returns parsed object on the last line. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>Message to be parsed. </td></tr>
+    <tr><td class="paramname">line</td><td>line to be parsed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Message as <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> pointer if full request parsed, nullptr otherwise. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> </dd></dl>
 
 </div>

@@ -72,6 +72,18 @@ $(function() {
  <a href="classHttpRequest.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="HttpRequest_8h_source.html">HttpRequest.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for HttpRequest:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHttpRequest__inherit__graph.png" border="0" usemap="#HttpRequest_inherit__map" alt="Inheritance graph"/></div>
+<!-- MAP 0 -->
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for HttpRequest:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHttpRequest__coll__graph.png" border="0" usemap="#HttpRequest_coll__map" alt="Collaboration graph"/></div>
+<!-- MAP 1 -->
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -81,25 +93,62 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#ae3d5e46a5f9f7bbb348231cc705146ea">getPath</a> () const</td></tr>
 <tr class="memdesc:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#ae3d5e46a5f9f7bbb348231cc705146ea">More...</a><br /></td></tr>
 <tr class="separator:ae3d5e46a5f9f7bbb348231cc705146ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dd411a29ff38450ee53eb6596cc2901"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a1dd411a29ff38450ee53eb6596cc2901">getHttp_version</a> () const</td></tr>
-<tr class="memdesc:a1dd411a29ff38450ee53eb6596cc2901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#a1dd411a29ff38450ee53eb6596cc2901">More...</a><br /></td></tr>
-<tr class="separator:a1dd411a29ff38450ee53eb6596cc2901"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a89c9d2f9173fcfb83cb02da38d5cce1a">getBody</a> () const</td></tr>
-<tr class="memdesc:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="#a89c9d2f9173fcfb83cb02da38d5cce1a">More...</a><br /></td></tr>
-<tr class="separator:a89c9d2f9173fcfb83cb02da38d5cce1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a5c69ab186ca82849b4aa8d85dd70d3ea">getFieldValue</a> (const std::string &amp;field_name)</td></tr>
-<tr class="memdesc:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.<br />
-If wrong key was given returns only one string "Wrong key".  <a href="#a5c69ab186ca82849b4aa8d85dd70d3ea">More...</a><br /></td></tr>
-<tr class="separator:a5c69ab186ca82849b4aa8d85dd70d3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f5bcd7acebbb79eef65fce79967ab6"><td class="memItemLeft" align="right" valign="top"><a id="a40f5bcd7acebbb79eef65fce79967ab6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const</td></tr>
-<tr class="separator:a40f5bcd7acebbb79eef65fce79967ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af14015794135c514d0d38d89e955bd"><td class="memItemLeft" align="right" valign="top"><a id="a7af14015794135c514d0d38d89e955bd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a7af14015794135c514d0d38d89e955bd">print</a> () const override</td></tr>
+<tr class="memdesc:a7af14015794135c514d0d38d89e955bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints object on the standard output. <br /></td></tr>
+<tr class="separator:a7af14015794135c514d0d38d89e955bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a656f91e2fba92f4fc01e20fc9f88153b"><td class="memItemLeft" align="right" valign="top"><a id="a656f91e2fba92f4fc01e20fc9f88153b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequest.html#a656f91e2fba92f4fc01e20fc9f88153b">print</a> (std::ostream &amp;ss) const override</td></tr>
+<tr class="memdesc:a656f91e2fba92f4fc01e20fc9f88153b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the request in human readable way on the standard output;. <br /></td></tr>
+<tr class="separator:a656f91e2fba92f4fc01e20fc9f88153b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="memitem:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a11a6f43a8ce43302ce61c36ef45c17d0">getHttp_version</a> () const</td></tr>
+<tr class="memdesc:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="classHttpMessage.html#a11a6f43a8ce43302ce61c36ef45c17d0">More...</a><br /></td></tr>
+<tr class="separator:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdda84aeaa4166a6fe277aae056eea09 inherit pub_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#acdda84aeaa4166a6fe277aae056eea09">getBody</a> () const</td></tr>
+<tr class="memdesc:acdda84aeaa4166a6fe277aae056eea09 inherit pub_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="classHttpMessage.html#acdda84aeaa4166a6fe277aae056eea09">More...</a><br /></td></tr>
+<tr class="separator:acdda84aeaa4166a6fe277aae056eea09 inherit pub_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed35437ffa842011d637b91fc3114f87 inherit pub_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#aed35437ffa842011d637b91fc3114f87">getFieldValue</a> (const std::string &amp;field_name)</td></tr>
+<tr class="memdesc:aed35437ffa842011d637b91fc3114f87 inherit pub_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.<br />
+If wrong key was given returns vector containing only NO_SUCH_KEY, which is a string defined inside this class..  <a href="classHttpMessage.html#aed35437ffa842011d637b91fc3114f87">More...</a><br /></td></tr>
+<tr class="separator:aed35437ffa842011d637b91fc3114f87 inherit pub_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8775cbdc666b9500b97cc84c6e4fe3 inherit pub_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="a1c8775cbdc666b9500b97cc84c6e4fe3"></a>
+std::__cxx11::string&#160;</td><td class="memItemRight" valign="bottom"><b>toSendableString</b> ()</td></tr>
+<tr class="separator:a1c8775cbdc666b9500b97cc84c6e4fe3 inherit pub_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a3773cc521cf15f9420e7256db44bc48c"><td class="memItemLeft" align="right" valign="top"><a id="a3773cc521cf15f9420e7256db44bc48c"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpParser</b></td></tr>
 <tr class="separator:a3773cc521cf15f9420e7256db44bc48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="memitem:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="ae15d854b7cfbabe2fde8101e9d444850"></a>
+static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#ae15d854b7cfbabe2fde8101e9d444850">NO_SUCH_KEY</a></td></tr>
+<tr class="memdesc:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value returned when getFieldValue does not find a field with given name. <br /></td></tr>
+<tr class="separator:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="memitem:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a0c4093f5c313400d3c837c08aaab8499">printHeader</a> (std::ostream &amp;os=std::cout) const</td></tr>
+<tr class="memdesc:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the header, in format specfied by RFC2616, on given output stream.  <a href="classHttpMessage.html#a0c4093f5c313400d3c837c08aaab8499">More...</a><br /></td></tr>
+<tr class="separator:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98a9a6cb8f34674e2db6ca1c61ea4eb4 inherit pro_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a98a9a6cb8f34674e2db6ca1c61ea4eb4">printBody</a> (std::ostream &amp;os=std::cout) const</td></tr>
+<tr class="memdesc:a98a9a6cb8f34674e2db6ca1c61ea4eb4 inherit pro_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the Body, in format specfied by RFC2616, on given output stream.  <a href="classHttpMessage.html#a98a9a6cb8f34674e2db6ca1c61ea4eb4">More...</a><br /></td></tr>
+<tr class="separator:a98a9a6cb8f34674e2db6ca1c61ea4eb4 inherit pro_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a58b877f7261992457304b78c6a090b0e">addFieldValue</a> (const std::string field_name, const std::vector&lt; std::string &gt; &amp;values)</td></tr>
+<tr class="memdesc:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds or assigns given value to the header dictionary.  <a href="classHttpMessage.html#a58b877f7261992457304b78c6a090b0e">More...</a><br /></td></tr>
+<tr class="separator:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="memitem:ad8809614b1bde4f1c5e741912752d180 inherit pro_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="ad8809614b1bde4f1c5e741912752d180"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>http_version</b></td></tr>
+<tr class="separator:ad8809614b1bde4f1c5e741912752d180 inherit pro_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bdd97d6af2839304355794bab64ccee inherit pro_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="a0bdd97d6af2839304355794bab64ccee"></a>
+std::map&lt; std::string, std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>header_info</b></td></tr>
+<tr class="separator:a0bdd97d6af2839304355794bab64ccee inherit pro_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77e309c1e93bbe44a38245c08d125003 inherit pro_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="a77e309c1e93bbe44a38245c08d125003"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>body</b></td></tr>
+<tr class="separator:a77e309c1e93bbe44a38245c08d125003 inherit pro_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Http request representation. </p>
@@ -109,74 +158,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpParser</b></td><
  Conversion of those values is left to the class user.<br />
 </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a89c9d2f9173fcfb83cb02da38d5cce1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89c9d2f9173fcfb83cb02da38d5cce1a">&#9670;&nbsp;</a></span>getBody()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::string&amp; HttpRequest::getBody </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Simple getter. </p>
-<dl class="section return"><dt>Returns</dt><dd>Http request body </dd></dl>
-
-</div>
-</div>
-<a id="a5c69ab186ca82849b4aa8d85dd70d3ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c69ab186ca82849b4aa8d85dd70d3ea">&#9670;&nbsp;</a></span>getFieldValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::vector&lt;std::string&gt; HttpRequest::getFieldValue </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>field_name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.<br />
-If wrong key was given returns only one string "Wrong key". </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field_name</td><td>Header key to be extracted </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A vector of header values corresponding to given header key. </dd></dl>
-
-</div>
-</div>
-<a id="a1dd411a29ff38450ee53eb6596cc2901"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dd411a29ff38450ee53eb6596cc2901">&#9670;&nbsp;</a></span>getHttp_version()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::string&amp; HttpRequest::getHttp_version </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Simple getter. </p>
-<dl class="section return"><dt>Returns</dt><dd>Http protocol version </dd></dl>
-
-</div>
-</div>
 <a id="ae3d5e46a5f9f7bbb348231cc705146ea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae3d5e46a5f9f7bbb348231cc705146ea">&#9670;&nbsp;</a></span>getPath()</h2>
 
