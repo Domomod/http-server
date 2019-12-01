@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['threaded_5ftcp_5fserver',['Threaded_tcp_server',['../classThreaded__tcp__server.html',1,'Threaded_tcp_server'],['../classThreaded__tcp__server.html#a6d8e646c8f8702c54d074065f3cc3703',1,'Threaded_tcp_server::Threaded_tcp_server()']]]
+  ['init',['init',['../classHttpResponseBuilder.html#a6ab170b46445fc6949faf4784cf3db88',1,'HttpResponseBuilder']]]
 ];

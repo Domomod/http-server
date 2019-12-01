@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Catch::AssertionResult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCatch_1_1AssertionResult.html"];
+  Node0 [label="HttpResponseBuilder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpResponseBuilder.html",tooltip="A fancier version of a builder pattern, allowing for cascade calls of it&#39;s methods. Build a HttpResponse. Absoulte minimum to create a HttpResponse is to set it&#39;s StatusCode. Does not remember values of HttpRequest after returning it to the user. "];
 }

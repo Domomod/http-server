@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['httpparser',['HttpParser',['../classHttpParser.html',1,'']]],
-  ['httprequest',['HttpRequest',['../classHttpRequest.html',1,'']]]
+  ['bsdsocket_5fhttprequestreader',['BsdSocket_HttpRequestReader',['../classBsdSocket__HttpRequestReader.html',1,'']]]
 ];
