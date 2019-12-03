@@ -2,7 +2,7 @@
 // Created by Julia on 2019-12-02.
 //
 
-#include "../../include/http-server/building/BuildingFactory.h"
+#include "http-server/building/WorkingFactory.h"
 
 BuildingFactory::BuildingFactory(std::string name) {
     constructedComponent=new BuildingComposite(idx, name);
@@ -24,7 +24,7 @@ void BuildingFactory::AddRoom(String name, float surface, int lampWattage, float
         Floor.AddChild(new Room(idx, name, surface, lampWattage, cubature));
     }
     else{
-        System.out.println("Room not created: A building without floors, cant have any rooms.");
+        System.out.println("Worker not created: A worker without floors, cant have any rooms.");
     }
 }
 

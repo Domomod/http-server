@@ -6,8 +6,8 @@
 #define HTTP_SERVER_BUILDINGFACTORY_H
 
 #include <string>
-#include "BuildingComposite.h"
-#include "BuildingComponent.h"
+#include "WorkerComposite.h"
+#include "WorkerComponent.h"
 
 class BuildingFactory {
 private:

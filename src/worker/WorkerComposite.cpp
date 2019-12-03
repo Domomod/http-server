@@ -2,7 +2,7 @@
 // Created by Julia on 2019-12-02.
 //
 
-#include "../../include/http-server/building/BuildingComposite.h"
+#include "http-server/building/WorkerComposite.h"
 
 BuildingComposite::BuildingComposite(int idx, String name):BuildingComponent(idx, name) {
     pass;
