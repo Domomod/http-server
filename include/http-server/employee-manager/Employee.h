@@ -7,6 +7,8 @@
 
 #include <shared_mutex>
 #include <list>
+#include <string>
+
 
 class Employee
 {
@@ -23,14 +25,21 @@ public:
     Employee(const unsigned long long personalIdentityNumber, Position position, const std::string &firstName,
              const std::string &lastName, float salary);
 
+    void setBoss(std::shared_ptr<Employee> _boss);
     const unsigned long long personalIdentityNumber;
+    bool isEmployeeHere(unsigned long long id);
+    friend class Hierarchy;
+
+    float getSalary() const;
+    float getSalaryWithSuboridantes();
+    Position getPosition() const;
 private:
     std::shared_ptr<Employee> boss;
     std::list<std::shared_ptr<Employee>> suboridantes;
 
-
     mutable Position position;
     mutable std::string firstName;
+
     mutable std::string lastName;
     mutable float salary;
 };

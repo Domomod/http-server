@@ -6,8 +6,9 @@
 #define HTTP_SERVER_HIERARCHY_H
 
 #include <unordered_map>
-#include <http-server/employee-manager/Employee.h>
+#include "Employee.h"
 #include <shared_mutex>
+#include <vector>
 class Hierarchy
 {
 public:
@@ -27,23 +28,18 @@ public:
             return employee_iter->second;
     }
 
-    void removeEmployee(unsigned long long personalId)
-    {
-        std::unique_lock lock(map_mutex);
-        employees.erase(personalId);
-    }
+    void removeEmployee(unsigned long long personalId);
 
     void grantPromotion(unsigned long long promotedID,
-                        unsigned long long promotedNewBossID,
-                        unsigned long long subordinatesNewBossID)
-    {
-        
-    }
+                        unsigned long long promotedNewBossID);
 private:
     std::shared_mutex map_mutex;
     // For my colegues: It's equivalent of a Hash Set in Java :)
     std::unordered_map<unsigned long long, std::shared_ptr<Employee>> employees;
+    std::shared_ptr<Employee> boss;
+    std::vector<std::shared_ptr<Employee>> employessWithNoBoss;
 };
+
 
 
 #endif //HTTP_SERVER_HIERARCHY_H
