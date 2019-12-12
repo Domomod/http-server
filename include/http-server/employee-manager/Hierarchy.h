@@ -40,6 +40,10 @@ private:
     std::vector<std::shared_ptr<Employee>> employessWithNoBoss;
 };
 
+const std::shared_ptr<Employee> &Employee::getBoss() const
+{
+    return boss;
+}
 
 
 #endif //HTTP_SERVER_HIERARCHY_H

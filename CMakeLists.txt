@@ -15,8 +15,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     set(VERSION_PATCH   1   CACHE STRING "Project patch version number.")
     mark_as_advanced(VERSION_MAJOR VERSION_MINOR VERSION_PATCH)
 
-    # Set c++ standard to c++20
-    set(CMAKE_CXX_STANDARD 20)
+    # Set c++ standard to c++17
+    set(CMAKE_CXX_STANDARD 17)
 
     # Let's ensure -std=c++xx instead of -std=g++xx
     set(CMAKE_CXX_EXTENSIONS OFF)

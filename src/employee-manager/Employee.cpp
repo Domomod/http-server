@@ -2,7 +2,7 @@
 // Created by dominik on 04.12.19.
 //
 
-#include "Employee.h"
+#include <http-server/employee-manager/Employee.h>
 
 Employee::Employee(const unsigned long long personalIdentityNumber, Employee::Position position,
                    const std::basic_string<char> &firstName, const std::basic_string<char> &lastName,
