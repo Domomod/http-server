@@ -220,7 +220,7 @@ When executing `GET /buildings/10/floors/3/rooms`:
         "href": "http::<server-adress>/buildings/10/floors/3/rooms",
         "rel": "self"
     },
-    "links": [
+    "rooms": [
         {
             "href": "http::<server-adress>/buildings/10/floors/3/rooms/1",
             "rel": "self"
