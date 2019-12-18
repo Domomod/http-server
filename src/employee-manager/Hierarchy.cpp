@@ -33,7 +33,7 @@ void Hierarchy::grantPromotion(unsigned long long promoted_id,
         { // Current employee is two positions above promoted_employee, which means it will be his new boss
             new_boss = current_employee;
         }
-        previous_employee=current_employee
+        previous_employee=current_employee;
     }
 
     /* Check if current head (previous_employee) is the actual boss, if not it means

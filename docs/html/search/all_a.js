@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['lazyexpression',['LazyExpression',['../classCatch_1_1LazyExpression.html',1,'Catch']]],
-  ['lazystat',['LazyStat',['../structCatch_1_1LazyStat.html',1,'Catch']]],
-  ['leakdetector',['LeakDetector',['../structCatch_1_1LeakDetector.html',1,'Catch']]],
-  ['listeningreporter',['ListeningReporter',['../classCatch_1_1ListeningReporter.html',1,'Catch']]],
-  ['loop',['loop',['../classThreaded__tcp__server.html#a18e6003a6382883ad45c9b4c3272d64a',1,'Threaded_tcp_server']]]
+  ['setbody',['setBody',['../classHttpResponseBuilder.html#a73c1de936f1a385bb4820b3486776e37',1,'HttpResponseBuilder']]],
+  ['setheaderinfo',['setHeaderInfo',['../classHttpResponseBuilder.html#a2c5beb053a7e872acc4b86c6b44d8b6a',1,'HttpResponseBuilder']]]
 ];
