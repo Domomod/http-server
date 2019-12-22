@@ -16,12 +16,12 @@ private:
     BuildingComposite constructedComponent;
     int idx=0;
 public:
-    void Reset(std::string name);
-    void AddFloor(std::string name);
-    void AddRoom(std::string name, float surface, int lampWattage,float cubature);
-    BuildingComponent GetResult();
-    static BuildingComponent GetExamplaryBuilding();
-    BuildingFactory(std::string name);
+    void Reset(std::string name){};
+    void AddFloor(std::string name){};
+    void AddRoom(std::string name, float surface, int lampWattage,float cubature){};
+    BuildingComponent GetResult(){};
+    static BuildingComponent GetExamplaryBuilding(){};
+    //BuildingFactory(std::string name);
 };
 
 

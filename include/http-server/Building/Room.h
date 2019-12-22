@@ -7,21 +7,17 @@
 
 
 #include "BuildingComponent.h"
+#include "Equipment.h"
+#include <vector>
 class Room : BuildingComponent{
 private:
-    float surface;
-    int lampWattage;
-    float cubature;
-    float heating;
+
+    std::vector<std::shared_ptr<Equipment>> equipment;
 public:
-    Room(int idx, std::string name, float surface, int lampWattage, float cubature);
-    float GetSurface();
-    int GetLampWattage();
-    float GetCubature();
-    float GetHeating();
-    float LampPerMeter2();
-    float HeatPerMeter3();
-    std::string GetInfo();
+    Room(int idx, std::string name);
+    void addEquipment(std::shared_ptr<Equipment> eq);
+    std::shared_ptr<Equipment> getEquipment(int idx);
+    void deleteEquipment(int idx);
 };
 
 

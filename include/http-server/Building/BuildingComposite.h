@@ -19,13 +19,7 @@ public:
     int GetChildCount();
     std::shared_ptr<BuildingComponent> GetLastChild();
     void AddChild(std::shared_ptr<BuildingComponent> buildingComponent);
-    float GetSurface();
-    int GetLampWattage();
-    float GetCubature();
-    float GetHeating();
-    float LampPerMeter2();
-    float HeatPerMeter3();
-    std::string UsesMoreHeatThan(float maxLevel);
+
 
 };
 

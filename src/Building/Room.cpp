@@ -3,37 +3,22 @@
 //
 
 #include "../../include/http-server/Building/Room.h"
-Room::Room(int idx, std::string name, float _surface, int _lampWattage, float _cubature) :BuildingComponent(idx, name){
-    surface = _surface;
-    lampWattage = _lampWattage;
-    cubature = _cubature;
-    heating=0;
-}
+Room::Room(int idx, std::string name) :BuildingComponent(idx, name){
 
-float Room::GetSurface() {
-    return surface;
 }
-
-int Room::GetLampWattage(){
-    return lampWattage;
+void Room::addEquipment(std::shared_ptr<Equipment> eq){
+    equipment.push_back(eq);
 }
-
-float Room::GetCubature(){
-    return cubature;
+std::shared_ptr<Equipment> Room::getEquipment(int idx){
+    for (auto eq : equipment){
+        if (eq->getId()==idx)
+            return eq;
+    }
+    return nullptr;
 }
-
-float Room::GetHeating(){
-    return heating;
-}
-
-float Room::LampPerMeter2(){
-    return lampWattage/surface;
-}
-
-float Room::HeatPerMeter3(){
-    return heating/cubature;
-}
-
-std::string  Room::GetInfo(){
-    return "This will be implemented later";
+void Room::deleteEquipment(int idx){
+    for (int i=0; i<equipment.size();i++){
+        if (equipment[i]->getId()==idx)
+                equipment.erase(equipment.begin()+i); //Not sure if it will work properly
+    }
 }
