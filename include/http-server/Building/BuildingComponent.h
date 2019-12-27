@@ -19,6 +19,8 @@ public:
      std::string getName();
      void printInfo();
      virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId){};
+    virtual void deleteEquipment(int eqId, int roomId, int floorId){};
+    virtual std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId){};
 };
 
 

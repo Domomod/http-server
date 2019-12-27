@@ -22,7 +22,8 @@ public:
     std::shared_ptr<BuildingComponent> GetLastChild();
     void AddChild(std::shared_ptr<BuildingComponent> buildingComponent);
     void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
-
+    void deleteEquipment(int eqId, int roomId, int floorId);
+    std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId);
 };
 
 

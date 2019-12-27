@@ -20,6 +20,8 @@ public:
     std::shared_ptr<Equipment> getEquipment(int idx);
     void deleteEquipment(int idx);
     void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
+    void deleteEquipment(int eqId, int roomId, int floorId);
+    std::shared_ptr<Equipment> getEquipment(int idx,int roomId, int floorId );
 };
 
 

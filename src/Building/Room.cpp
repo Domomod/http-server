@@ -24,3 +24,11 @@ void Room::deleteEquipment(int idx){
 
 void Room::addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId) {
 addEquipment(eq);}
+
+void Room::deleteEquipment(int eqId, int roomId, int floorId) {
+    deleteEquipment(eqId);
+}
+
+std::shared_ptr<Equipment> Room::getEquipment(int idx,int roomId, int floorId ) {
+    return getEquipment(idx);
+}

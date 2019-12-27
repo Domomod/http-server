@@ -49,3 +49,36 @@ void BuildingComposite::addEquipment(std::shared_ptr<Equipment> eq, int roomId, 
          }
      }
 }
+
+void BuildingComposite::deleteEquipment(int eqId, int roomId, int floorId){
+    if (street==""){  //It means that this is floor
+        for (auto room : buildingComponents){
+            if (room->getIdx()==roomId){
+                room->deleteEquipment(eqId,roomId,floorId)
+                return;
+            }
+        }
+    } else //Full building
+        for (auto floor : buildingComponents){
+            if (floor->getIdx()==floorId){
+                floor->deleteEquipment(eqId,roomId,floorId);
+                return;
+            }
+        }
+}
+
+std::shared_ptr<Equipment> BuildingComposite::getEquipment(int idx, int roomId, int floorId){
+    if (street==""){  //It means that this is floor
+        for (auto room : buildingComponents){
+            if (room->getIdx()==roomId){
+                return room->getEquipment(idx,roomId,floorId);
+            }
+        }
+    } else //Full building
+        for (auto floor : buildingComponents){
+            if (floor->getIdx()==floorId){
+                return floor->getEquipment(idx,roomId,floorId);
+            }
+        }
+    return nullptr;
+}
