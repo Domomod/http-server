@@ -40,8 +40,7 @@ void HttpParser::parse_request_line(const std::string &line)
 {
     std::vector<std::__cxx11::string> words;
     iter_split(words, line, boost::algorithm::first_finder(" "));
-    httpRequest->request_type = words[0];
-    httpRequest->path = words[1];
+    httpRequest->request = words[0] + " " + words[1];
     httpRequest->http_version = words[2];
     currentState = State::PARSING_HTTP_HEADER_FIELDS;
 }

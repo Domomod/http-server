@@ -28,15 +28,9 @@ class HttpRequest : public HttpMessage
 public:
     /*!
      * @brief Simple getter.
-     * @return Request type aka. GET,PUT,etc...
+     * @return Request type and path ex. GET /buildings
      */
-    const std::string &getRequest_type() const;
-
-    /*!
-     * @brief Simple getter.
-     * @return Path to the requested file
-     */
-    const std::string &getPath() const;
+    const std::string &getRequest() const;
 
     void print() const override;
 
@@ -50,8 +44,7 @@ private:
     HttpRequest()
     = default;
 
-    std::string request_type;
-    std::string path;
+    std::string request;
 
     friend class HttpParser;
 };
