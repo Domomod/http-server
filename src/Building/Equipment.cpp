@@ -4,8 +4,8 @@
 
 #include "../../include/http-server/Building/Equipment.h"
 
-Equipment::Equipment(int id, std::string _name, enum Type enumType){
-    index=id;
+Equipment::Equipment(std::string _name, enum Type enumType){
+    index=++counter;
     name=_name;
     type=enumType;
 }

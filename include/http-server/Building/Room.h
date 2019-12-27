@@ -13,7 +13,6 @@
 
 class Room : BuildingComponent{
 private:
-
     std::map<int,std::shared_ptr<Equipment>> equipment;
 public:
     Room(int idx, std::string name);
@@ -21,7 +20,6 @@ public:
     std::shared_ptr<Equipment> getEquipment(int idx);
     void deleteEquipment(int idx);
 };
-
 
 
 

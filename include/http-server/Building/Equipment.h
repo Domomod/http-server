@@ -14,9 +14,11 @@ private:
     int index;
     std::string name;
 public:
-    Equipment(int id, std::string _name, enum Type enumType);
+    static int counter;
+    Equipment(std::string _name, enum Type enumType);
     int getId();
 };
 
+int Equipment::counter=0;
 
 #endif //HTTP_SERVER_OBJECT_H
