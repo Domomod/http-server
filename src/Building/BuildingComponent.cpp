@@ -4,6 +4,8 @@
 
 #include <http-server/Building/Room.h>
 #include <iostream>
+#include <http-server/Building/BuildingComponent.h>
+
 #include "../../include/http-server/Building/BuildingComponent.h"
 #include "../../include/http-server/Building/BuildingComposite.h"
 
@@ -20,9 +22,7 @@ std::string BuildingComponent::getName() {
     return name;
 }
 
-
-
 void BuildingComponent::printInfo(){
     std::cout<<"Name: "<<getName();
-
 }
+

@@ -8,6 +8,7 @@
 #include<vector>
 #include "BuildingComponent.h"
 #include <memory>
+#include "Equipment.h"
 
 class BuildingComposite : BuildingComponent{
 private:
@@ -20,7 +21,7 @@ public:
     int GetChildCount();
     std::shared_ptr<BuildingComponent> GetLastChild();
     void AddChild(std::shared_ptr<BuildingComponent> buildingComponent);
-
+    void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
 
 };
 

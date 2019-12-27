@@ -7,8 +7,9 @@
 
 
 #include <string>
+#include "Equipment.h"
 
- class BuildingComponent {
+class BuildingComponent {
 protected:
     int idx;
     std::string name;
@@ -17,6 +18,7 @@ public:
      int getIdx();
      std::string getName();
      void printInfo();
+     virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId){};
 };
 
 

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "../../include/http-server/Building/BuildingComposite.h"
 BuildingComposite::BuildingComposite(int idx, std::string name):BuildingComponent(idx, name) {
+    street="";
     ;
 }
 
@@ -30,4 +31,21 @@ std::shared_ptr<BuildingComponent> BuildingComposite::GetLastChild() {
 
 void BuildingComposite::AddChild(std::shared_ptr<BuildingComponent> buildingComponent){
     buildingComponents.push_back(buildingComponent);
+}
+
+void BuildingComposite::addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId){
+ if (street==""){  //It means that this is floor
+     for (auto room : buildingComponents){
+         if (room->getIdx()==roomId){
+             room->addEquipment(eq,roomId,floorId);
+             return;
+         }
+     }
+ } else //Full building
+     for (auto floor : buildingComponents){
+         if (floor->getIdx()==floorId){
+             floor->addEquipment(eq,roomId,floorId);
+             return;
+         }
+     }
 }
