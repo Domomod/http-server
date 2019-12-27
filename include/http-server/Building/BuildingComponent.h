@@ -13,7 +13,6 @@ protected:
     int idx;
     std::string name;
 public:
-
      BuildingComponent(int _idx, std::string _name);
      int getIdx();
      std::string getName();

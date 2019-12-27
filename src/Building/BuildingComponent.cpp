@@ -24,8 +24,5 @@ std::string BuildingComponent::getName() {
 
 void BuildingComponent::printInfo(){
     std::cout<<"Name: "<<getName();
-    std::cout<<"Surface: "<<GetSurface();
-    std::cout<<"Cubature: "<<GetCubature();
-    std::cout<<"Lamp per m^2: "<<LampPerMeter2();
-    std::cout<<"Heat per m^3: "<<HeatPerMeter3();
+
 }

@@ -8,6 +8,10 @@ BuildingComposite::BuildingComposite(int idx, std::string name):BuildingComponen
     ;
 }
 
+BuildingComposite::BuildingComposite(int idx, std::string name, std::string _street):BuildingComponent(idx,name){
+    street=_street;
+}
+
 std::shared_ptr<BuildingComponent> BuildingComposite::getComponentById(int id){
     for(std::shared_ptr<BuildingComponent> component : buildingComponents){
         if(component->getIdx() == id){

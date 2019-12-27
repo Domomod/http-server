@@ -12,9 +12,10 @@
 class BuildingComposite : BuildingComponent{
 private:
     std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
-
+    std::string street;
 public:
     BuildingComposite(int idx, std::string name);
+    BuildingComposite(int idx, std::string name, std::string _street);
     std::shared_ptr<BuildingComponent> getComponentById(int id);
     int GetChildCount();
     std::shared_ptr<BuildingComponent> GetLastChild();

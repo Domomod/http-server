@@ -9,10 +9,12 @@
 #include "BuildingComponent.h"
 #include "Equipment.h"
 #include <vector>
+#include <map>
+
 class Room : BuildingComponent{
 private:
 
-    std::vector<std::shared_ptr<Equipment>> equipment;
+    std::map<int,std::shared_ptr<Equipment>> equipment;
 public:
     Room(int idx, std::string name);
     void addEquipment(std::shared_ptr<Equipment> eq);

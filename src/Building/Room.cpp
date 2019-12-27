@@ -7,18 +7,15 @@ Room::Room(int idx, std::string name) :BuildingComponent(idx, name){
 
 }
 void Room::addEquipment(std::shared_ptr<Equipment> eq){
-    equipment.push_back(eq);
+    equipment.insert({eq->getId(),eq});
 }
 std::shared_ptr<Equipment> Room::getEquipment(int idx){
-    for (auto eq : equipment){
-        if (eq->getId()==idx)
-            return eq;
+    try {
+        return equipment.at(idx);
     }
-    return nullptr;
+    catch (...){
+        return nullptr;}
 }
 void Room::deleteEquipment(int idx){
-    for (int i=0; i<equipment.size();i++){
-        if (equipment[i]->getId()==idx)
-                equipment.erase(equipment.begin()+i); //Not sure if it will work properly
-    }
+    equipment.erase(idx);
 }
