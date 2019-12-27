@@ -66,7 +66,7 @@ When executing `GET /buildings`:
 
         "href": "http::<server-adress>/buildings/",
         "rel": "self"
-    }
+    },
     "buildings": [
         {
             "href": "http::<server-adress>/buildings//1",
