@@ -88,22 +88,75 @@ std::string BuildingAdmin::allBuildingsInfo(){
 
 }
 std::string BuildingAdmin::buildingInfo_eq(int id){
-
+    try {
+        auto building= buildings.at(id);
+        return building->showMyInfo();
+    }
+catch (...){
+    std::string message="building doesn't exist\n";
+    throw message;
+    }
 }
-std::string BuildingAdmin::buildingInfo_floor(int id){
 
+std::string BuildingAdmin::buildingInfo_floor(int id){
+    try {
+        auto building= buildings.at(id);
+        return building->showMyEq();
+    }
+    catch (...){
+        std::string message="building doesn't exist\n";
+        throw message;
+    }
 }
 std::string BuildingAdmin::floorInfo_rooms(int buildingId, int floorId ){
-
+    try {
+        auto building= buildings.at(buildingId);
+        return building->showFloorInfo(floorId);
+    }
+    catch (...){
+        std::string message="building doesn't exist\n";
+        throw message;
+    }
 }
-std::string BuildingAdmin::floorInfo_eq(int buildingId, int floorId){
 
+std::string BuildingAdmin::floorInfo_eq(int buildingId, int floorId){
+    try {
+        auto building= buildings.at(buildingId);
+        return building->showFloorEq(floorId);
+    }
+    catch (...){
+        std::string message="building doesn't exist\n";
+        throw message;
+    }
 }
 std::string BuildingAdmin::roomInfo(int buildingId, int floorId, int roomId){
-
+    try {
+        auto building= buildings.at(buildingId);
+        return building->showRoomInfo(floorId,roomId);
+    }
+    catch (...){
+        std::string message="building doesn't exist\n";
+        throw message;
+    }
 }
-std::string BuildingAdmin::allEquipmentInfo(){
 
+std::string BuildingAdmin::roomEq(int buildingId, int floorId, int roomId){
+    try {
+        auto building= buildings.at(buildingId);
+        return building->showRoomEq(floorId,roomId);
+    }
+    catch (...){
+        std::string message="building doesn't exist\n";
+        throw message;
+    }
+}
+
+std::string BuildingAdmin::allEquipmentInfo(){
+    std::string message="All Equipment\n";
+    std::map<int, std::shared_ptr<BuildingComponent>>::iterator iter;
+    for (iter=buildings.begin();iter!=buildings.end();iter++)
+        message+=iter->second->showMyEq();
+    return message;
 }
 std::string BuildingAdmin::EquipemntInfo(int id){
 

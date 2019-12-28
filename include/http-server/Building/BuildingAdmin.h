@@ -30,6 +30,7 @@ public:
     std::string floorInfo_rooms(int buildingId, int floorId );//get
     std::string floorInfo_eq(int buildingId, int floorId);//get
     std::string roomInfo(int buildingId, int floorId, int roomId);//get
+    std::string roomEq(int buildingId, int floorId, int roomId);//get
     std::string allEquipmentInfo();//get
     std::string EquipemntInfo(int id); //get
 };
