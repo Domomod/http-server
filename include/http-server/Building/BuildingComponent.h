@@ -21,8 +21,10 @@ public:
      virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId){};
     virtual void deleteEquipment(int eqId, int roomId, int floorId){};
     virtual std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId){};
-    virtual void addFloor(std::string name, int idx);
-    virtual void addRoom(int floorId,std::string name, int idx);
+    virtual void addFloor(std::shared_ptr<BuildingComponent> floor);
+    virtual void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
+    virtual void deleteFloor(int floorId);
+    virtual void deleteRoom(int floorId, int roomId);
 };
 
 

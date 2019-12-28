@@ -55,7 +55,7 @@ void BuildingComposite::deleteEquipment(int eqId, int roomId, int floorId){
     if (street==""){  //It means that this is floor
         for (auto room : buildingComponents){
             if (room->getIdx()==roomId){
-                room->deleteEquipment(eqId,roomId,floorId)
+                room->deleteEquipment(eqId,roomId,floorId);
                 return;
             }
         }
@@ -84,24 +84,44 @@ std::shared_ptr<Equipment> BuildingComposite::getEquipment(int idx, int roomId, 
     return nullptr;
 }
 
-void BuildingComposite::addFloor(std::string name, int idx){
-    std::shared_ptr<BuildingComposite> floor = std::make_shared<BuildingComposite>(idx, name);
-    buildingComponents.push_back(dynamic_cast<std::shared_ptr<BuildingComponent>>(floor));
+
+void BuildingComposite::addFloor(std::shared_ptr<BuildingComponent> floor){
+    buildingComponents.push_back(floor);
+}
+void BuildingComposite::addRoom(int floorId, std::shared_ptr<BuildingComponent> room){
+    if (street==""){
+        buildingComponents.push_back(room);
+    } else{
+        for (auto floor : buildingComponents)
+            if (floor->getIdx()==floorId){
+                addRoom(floorId,room);
+                return;
+            }
+    }
 
 }
-void BuildingComposite::addRoom(int floorId, std::string name, int idx){
-    if (street==""){  //It means that this is floor
-        auto room = std::make_shared<Room>(idx,name);
-        buildingComponents.push_back(room);
+void BuildingComposite::deleteFloor(int floorId){
+    for (int i=0; i<buildingComponents.size(); i++){
+        if (buildingComponents[i]->getIdx()==floorId){
+            buildingComponents.erase(buildingComponents.begin()+i);
+            return;
+        }
+    }
 
-    } else //Full building
-        for (auto floor : buildingComponents){
-            if (floor->getIdx()==floorId){
-                addRoom(floorId,name,idx);
+}
+void BuildingComposite::deleteRoom(int floorId, int roomId){
+    if (street==""){
+        for (int i=0; i<buildingComponents.size(); i++){
+            if (buildingComponents[i]->getIdx()==roomId){
+                buildingComponents.erase(buildingComponents.begin()+i);
                 return;
             }
         }
-        std::string message="Floor doesn't exist, you can't add a room without a floor/n";
-        throw message;
-
+    } else{
+        for (auto floor : buildingComponents)
+            if (floor->getIdx()==floorId){
+                deleteRoom(floorId,roomId);
+                return;
+            }
+    }
 }
