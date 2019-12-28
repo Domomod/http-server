@@ -32,3 +32,17 @@ void Room::deleteEquipment(int eqId, int roomId, int floorId) {
 std::shared_ptr<Equipment> Room::getEquipment(int idx,int roomId, int floorId ) {
     return getEquipment(idx);
 }
+
+std::string Room::showMyInfo(){
+    std::string message="Room number: "+std::to_string(idx)+", "+name+"\n";
+    message+"Number of items inside: "+std::to_string(equipment.size())+"\n";
+    return message;
+}
+std::string Room::showMyEq(){
+    std::string message="Room number: "+std::to_string(idx)+" inventory list\n";
+    std::map<int, std::shared_ptr<Equipment>>::iterator iter;
+    for (iter=equipment.begin(); iter!=equipment.end();iter++){
+        message+=iter->second->showInfo();
+    }
+    return message;
+}

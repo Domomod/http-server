@@ -17,6 +17,7 @@ public:
     static int counter;
     Equipment(std::string _name, enum Type enumType);
     int getId();
+    std::string showInfo();
 };
 
 int Equipment::counter=0;

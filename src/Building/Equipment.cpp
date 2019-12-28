@@ -13,3 +13,7 @@ Equipment::Equipment(std::string _name, enum Type enumType){
 int Equipment::getId() {
     return index;
 }
+std::string Equipment::showInfo(){
+    std::string message= std::to_string(index)+": "+name+"\n";
+    return message;
+}

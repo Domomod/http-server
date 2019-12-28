@@ -7,6 +7,7 @@
 
 #include <map>
 #include <memory>
+#include <string>
 #include "BuildingComponent.h"
 #include "Equipment.h"
 

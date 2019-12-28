@@ -28,6 +28,12 @@ public:
      void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
      void deleteFloor(int floorId);
     void deleteRoom(int floorId, int roomId);
+    std::string showMyInfo();
+    std::string showMyEq();
+    std::string showFloorInfo(int floorId);
+    std::string showFloorEq(int floorId);
+    std::string showRoomInfo(int floorId, int roomId);
+    std::string showRoomEq(int floorId, int roomId);
 };
 
 

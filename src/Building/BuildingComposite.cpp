@@ -125,3 +125,47 @@ void BuildingComposite::deleteRoom(int floorId, int roomId){
             }
     }
 }
+
+std::string BuildingComposite::showMyInfo(){
+    std::string message="";
+    if (street!=""){
+        message+="Street "+street+"\n";
+    }
+    message+=name+" "+std::to_string(idx)+"\n";
+    if (street=="")
+        message+="This floor has "+std::to_string(buildingComponents.size())+" rooms\n";
+    else
+        message+="This building has "+std::to_string(buildingComponents.size())+" floors\n";
+    return message;
+}
+
+std::string BuildingComposite::showMyEq(){
+std::string message="Equipment \n";
+for (int i=0; i<buildingComponents.size();i++)
+    message+=showMyEq();
+return message;
+}
+std::string BuildingComposite::showFloorInfo(int floorId){
+if (street!="")
+    return buildingComponents.at(floorId)->showFloorInfo(floorId);
+std::string message="Floor "+std::to_string(idx)+", "+name+"\n";
+message+="has "+std::to_string(buildingComponents.size())+" rooms\n";
+}
+std::string BuildingComposite::showFloorEq(int floorId){
+    if (street!="")
+        return buildingComponents.at(floorId)->showFloorEq(floorId);
+    std::string message="Floor "+std::to_string(idx)+"\n";
+    for (int i=0; i<buildingComponents.size();i++)
+        message+=buildingComponents.at(i)->showMyEq();
+}
+std::string BuildingComposite::showRoomInfo(int floorId, int roomId){
+    if (street!="")
+        return buildingComponents.at(floorId)->showRoomInfo(floorId,roomId);
+    return buildingComponents.at(roomId)->showMyInfo();
+
+}
+std::string BuildingComposite::showRoomEq(int floorId, int roomId){
+    if (street!="")
+        return buildingComponents.at(floorId)->showRoomEq(floorId,roomId);
+    return buildingComponents.at(roomId)->showMyEq();
+}

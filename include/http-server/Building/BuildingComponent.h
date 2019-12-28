@@ -25,6 +25,13 @@ public:
     virtual void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
     virtual void deleteFloor(int floorId);
     virtual void deleteRoom(int floorId, int roomId);
+    virtual std::string showMyInfo();
+    virtual std::string showMyEq();
+    virtual std::string showFloorInfo(int floorId);
+    virtual std::string showFloorEq(int floorId);
+    virtual std::string showRoomInfo(int floorId, int roomId);
+    virtual std::string showRoomEq(int floorId, int roomId);
+
 };
 
 
