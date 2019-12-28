@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "../../include/http-server/Building/BuildingComposite.h"
+#include "../../include/http-server/Building/Room.h"
 BuildingComposite::BuildingComposite(int idx, std::string name):BuildingComponent(idx, name) {
     street="";
     ;
@@ -81,4 +82,26 @@ std::shared_ptr<Equipment> BuildingComposite::getEquipment(int idx, int roomId, 
             }
         }
     return nullptr;
+}
+
+void BuildingComposite::addFloor(std::string name, int idx){
+    std::shared_ptr<BuildingComposite> floor = std::make_shared<BuildingComposite>(idx, name);
+    buildingComponents.push_back(dynamic_cast<std::shared_ptr<BuildingComponent>>(floor));
+
+}
+void BuildingComposite::addRoom(int floorId, std::string name, int idx){
+    if (street==""){  //It means that this is floor
+        auto room = std::make_shared<Room>(idx,name);
+        buildingComponents.push_back(room);
+
+    } else //Full building
+        for (auto floor : buildingComponents){
+            if (floor->getIdx()==floorId){
+                addRoom(floorId,name,idx);
+                return;
+            }
+        }
+        std::string message="Floor doesn't exist, you can't add a room without a floor/n";
+        throw message;
+
 }
