@@ -146,26 +146,57 @@ for (int i=0; i<buildingComponents.size();i++)
 return message;
 }
 std::string BuildingComposite::showFloorInfo(int floorId){
-if (street!="")
-    return buildingComponents.at(floorId)->showFloorInfo(floorId);
-std::string message="Floor "+std::to_string(idx)+", "+name+"\n";
-message+="has "+std::to_string(buildingComponents.size())+" rooms\n";
+    if (street=="")
+    {
+        std::string message="Floor "+std::to_string(idx)+", "+name+"\n";
+        message+="has "+std::to_string(buildingComponents.size())+" rooms\n";
+        return message;
+    }
+    else {
+        for (int i = 0; i < buildingComponents.size(); i++) {
+            if (buildingComponents.at(i)->getIdx() == floorId){
+                return buildingComponents.at(i)->showFloorInfo(floorId);
+        }
+     }
+        return "Floor doesn't exist";
+    }
+
 }
 std::string BuildingComposite::showFloorEq(int floorId){
-    if (street!="")
-        return buildingComponents.at(floorId)->showFloorEq(floorId);
+    if (street!=""){
+        for (int i=0; i< buildingComponents.size(); i++)
+            if (buildingComponents.at(i)->getIdx()==floorId)
+                return buildingComponents.at(i)->showFloorEq(floorId);
+        return "Floor doesn't exist";
+    }
+
     std::string message="Floor "+std::to_string(idx)+"\n";
     for (int i=0; i<buildingComponents.size();i++)
         message+=buildingComponents.at(i)->showMyEq();
 }
+
 std::string BuildingComposite::showRoomInfo(int floorId, int roomId){
     if (street!="")
-        return buildingComponents.at(floorId)->showRoomInfo(floorId,roomId);
-    return buildingComponents.at(roomId)->showMyInfo();
+    { for (int i=0; i< buildingComponents.size(); i++)
+        if (buildingComponents.at(i)->getIdx()==floorId)
+            return buildingComponents.at(i)->showRoomInfo(floorId,roomId);
+        return "Floor doesn't exist\n";
+    }
+    for (int i=0; i< buildingComponents.size(); i++)
+        if (buildingComponents.at(i)->getIdx()==roomId)
+            return buildingComponents.at(i)->showMyInfo();
+    return "Room doesn't exist\n";
 
 }
 std::string BuildingComposite::showRoomEq(int floorId, int roomId){
     if (street!="")
-        return buildingComponents.at(floorId)->showRoomEq(floorId,roomId);
-    return buildingComponents.at(roomId)->showMyEq();
+    { for (int i=0; i< buildingComponents.size(); i++)
+            if (buildingComponents.at(i)->getIdx()==floorId)
+                return buildingComponents.at(i)->showRoomEq(floorId,roomId);
+        return "Floor doesn't exist\n";
+    }
+    for (int i=0; i< buildingComponents.size(); i++)
+        if (buildingComponents.at(i)->getIdx()==roomId)
+            return buildingComponents.at(i)->showMyEq();
+    return "Room doesn't exist\n";
 }
