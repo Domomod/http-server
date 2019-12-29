@@ -17,6 +17,8 @@ class BuildingComposite : public BuildingComponent
 private:
     std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
     std::string street;
+
+
 public:
     BuildingComposite(int idx, std::string name);
 

@@ -1,5 +1,7 @@
 #include <utility>
 
+#include <utility>
+
 //
 // Created by Julia on 2019-12-20.
 //
@@ -20,16 +22,16 @@ private:
     int floor_idx = 0;
     int room_idx = 0;
 public:
-    BuildingFactory(std::string name)
+    BuildingFactory()
     {
-        reset(name);
+        reset();
     }
 
-    void reset(std::string name)
+    void reset()
     {
         floor_idx = 0;
         room_idx = 0;
-        constructedComponent.reset(new BuildingComposite(idx, std::move(name)));
+        constructedComponent.reset(new BuildingComposite(idx, ""));
     }
 
     void addFloor(const std::string &name = "")
@@ -52,15 +54,18 @@ public:
                 )->buildingComponents.back()->addEquipment(std::move(equipment));
     }
 
-    std::shared_ptr<BuildingComposite> getResult()
+    std::shared_ptr<BuildingComposite> getResult(const std::string &name)
     {
         idx++;
-        constructedComponent->idx = idx;
-        return std::make_shared<BuildingComposite>(*constructedComponent); //Make a copy of constructedComponent
+        auto result = constructedComponent;
+        result->idx = idx;
+        result->name = name;
+        reset();
+        return result; //Make a copy of constructedComponent
     }
 
     static std::shared_ptr<BuildingComponent> getExample(){
-        BuildingFactory factory("Ul. Ulicowa 1");
+        BuildingFactory factory;
 
         for (int i=1; i<3;i++){
             factory.addFloor("Floor");
@@ -70,7 +75,7 @@ public:
                 factory.addEquipment(eq);
             }
         }
-        return factory.getResult();
+        return factory.getResult("Ul. Ulicowa 1");
     }
 };
 

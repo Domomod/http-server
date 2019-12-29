@@ -11,7 +11,7 @@
 #include "Equipment.h"
 #include <http-server/http/exceptions/HttpException.h>
 #include <http-server/http/exceptions/HttpStatusCodes.h>
-
+#include <shared_mutex>
 
 class BuildingComponent
 {
@@ -19,8 +19,19 @@ class BuildingComponent
 protected:
     int idx;
     std::string name;
+    std::shared_mutex guard;
 public:
     BuildingComponent(int _idx, std::string _name);
+
+    inline std::shared_lock<std::shared_mutex> getReadLock()
+    {
+        return std::move(std::shared_lock<std::shared_mutex>(guard));
+    };
+
+    inline std::unique_lock<std::shared_mutex> getWriteLock()
+    {
+        return std::move(std::unique_lock<std::shared_mutex>(guard));
+    };
 
     int getIdx();
 
@@ -51,7 +62,9 @@ public:
     };
 
     virtual std::string showMyInfo() = 0;
-    virtual std::string convertToJson()=0;
+
+    virtual std::string convertToJson() = 0;
+
     virtual std::string showMyEq() = 0;
 };
 
