@@ -7,11 +7,13 @@
 
 #include<vector>
 #include "BuildingComponent.h"
+#include "Room.h"
 #include <memory>
 #include "Equipment.h"
 
-class BuildingComposite : BuildingComponent
+class BuildingComposite : public BuildingComponent
 {
+    friend class BuildingFactory;
 private:
     std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
     std::string street;

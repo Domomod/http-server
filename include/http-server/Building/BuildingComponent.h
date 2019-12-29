@@ -12,8 +12,10 @@
 #include <http-server/http/exceptions/HttpException.h>
 #include <http-server/http/exceptions/HttpStatusCodes.h>
 
+
 class BuildingComponent
 {
+    friend class BuildingFactory;
 protected:
     int idx;
     std::string name;
@@ -33,7 +35,7 @@ public:
 
     virtual void deleteChild(int floorId)
     {
-        throw HttpException(StatusCode::Method_Not_Allowed ,"Operation remove child not permited");
+        throw HttpException(StatusCode::Method_Not_Allowed, "Operation remove child not permited");
     }
 
     virtual void addEquipment(std::shared_ptr<Equipment> eq)

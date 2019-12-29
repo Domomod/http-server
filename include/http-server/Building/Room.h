@@ -12,7 +12,7 @@
 #include <map>
 #include <memory>
 
-class Room : BuildingComponent{
+class Room : public BuildingComponent{
 private:
     std::map<int,std::shared_ptr<Equipment>> equipment;
 public:
