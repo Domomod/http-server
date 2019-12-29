@@ -9,6 +9,8 @@
 #include <string>
 #include <memory>
 #include "Equipment.h"
+#include <http-server/http/exceptions/HttpException.h>
+#include <http-server/http/exceptions/HttpStatusCodes.h>
 
 class BuildingComponent
 {
@@ -22,42 +24,33 @@ public:
 
     std::string getName();
 
+    virtual void addChild(std::shared_ptr<BuildingComponent> buildingComponent)
+    {
+        throw ("Operation addChild not permited");
+    }
+
     virtual std::shared_ptr<BuildingComponent> getChild(int id) = 0;
 
-    void printInfo();
+    virtual void deleteChild(int floorId)
+    {
+        throw HttpException(StatusCode::Method_Not_Allowed ,"Operation remove child not permited");
+    }
 
-    virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId)
+    virtual void addEquipment(std::shared_ptr<Equipment> eq)
     {
     };
 
-    virtual void deleteEquipment(int eqId, int roomId, int floorId)
+    virtual void deleteEquipment(int equipmentId)
     {
     };
 
-    virtual std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId)
+    virtual std::shared_ptr<Equipment> getEquipment(int equipmentId)
     {
     };
 
-    virtual void addFloor(std::shared_ptr<BuildingComponent> floor);
+    virtual std::string showMyInfo() = 0;
 
-    virtual void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
-
-    virtual void deleteFloor(int floorId);
-
-    virtual void deleteRoom(int floorId, int roomId);
-
-    virtual std::string showMyInfo();
-
-    virtual std::string showMyEq();
-
-    virtual std::string showFloorInfo(int floorId);
-
-    virtual std::string showFloorEq(int floorId);
-
-    virtual std::string showRoomInfo(int floorId, int roomId);
-
-    virtual std::string showRoomEq(int floorId, int roomId);
-
+    virtual std::string showMyEq() = 0;
 };
 
 

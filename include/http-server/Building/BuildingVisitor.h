@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <list>
+#include <http-server/http/exceptions/HttpException.h>
 #include "BuildingComponent.h"
 class BuildingVisitor
 {
@@ -17,9 +18,10 @@ public:
         while(!path.empty()){
             int child_id = path.front();
             node = node->getChild(child_id);
-            if(node == nullptr) throw ;
+            if(node == nullptr) throw HttpException(StatusCode::Gone ,"Resource is gone.");
             path.pop_front();
         }
+        return node;
     }
 
 };

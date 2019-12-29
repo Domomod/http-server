@@ -5,18 +5,27 @@
 #ifndef HTTP_SERVER_HTTPEXCEPTIONS_H
 #define HTTP_SERVER_HTTPEXCEPTIONS_H
 
+#include <utility>
 #include <exception>
 #include <string>
-#include <http-server/http/HttpStatusCodes.h>
-
+#include <http-server/http/exceptions/HttpStatusCodes.h>
 
 class HttpException : public std::exception
 {
-    const char* what() const noexcept override = 0;
-    virtual const std::string asHttpMessage() = 0;
+public:
+    HttpException(StatusCode StatusCode, std::string msg = "") : statusCode(StatusCode), msg(std::move(msg))
+    {
+    }
+
+private:
+    const char* what() const noexcept override
+    {
+        return msg.c_str();
+    };
 
 protected:
-    StatusCode StatusCode;
+    StatusCode statusCode;
+    std::string msg;
 };
 
 #endif //HTTP_SERVER_HTTPEXCEPTIONS_H

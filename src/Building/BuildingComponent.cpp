@@ -21,8 +21,3 @@ int BuildingComponent::getIdx() {
 std::string BuildingComponent::getName() {
     return name;
 }
-
-void BuildingComponent::printInfo(){
-    std::cout<<"Name: "<<getName();
-}
-

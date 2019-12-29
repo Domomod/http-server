@@ -20,31 +20,24 @@ public:
 
     BuildingComposite(int idx, std::string name, std::string _street);
 
-    std::shared_ptr<BuildingComponent> getChild(int id);
+    void addChild(std::shared_ptr<BuildingComponent> buildingComponent) override;
 
-    int GetChildCount();
+    std::shared_ptr<BuildingComponent> getChild(int id) override;
 
-    std::shared_ptr<BuildingComponent> GetLastChild();
+    void deleteChild(int floorId) override;
 
-    void AddChild(std::shared_ptr<BuildingComponent> buildingComponent);
+    void addEquipment(std::shared_ptr<Equipment> equipmentId) override
+    {   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
 
-    void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
+    void deleteEquipment(int equipmentId) override
+    {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
 
-    void deleteEquipment(int eqId, int roomId, int floorId);
+    std::shared_ptr<Equipment> getEquipment(int equipmentId) override
+    {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
 
-    std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId);
+    std::string showMyInfo() override;
 
-    void addFloor(std::shared_ptr<BuildingComponent> floor);
-
-    void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
-
-    void deleteFloor(int floorId);
-
-    void deleteRoom(int floorId, int roomId);
-
-    std::string showMyInfo();
-
-    std::string showMyEq();
+    std::string showMyEq() override;
 };
 
 
