@@ -37,6 +37,8 @@ public:
     std::string showMyInfo() override;
 
     std::string showMyEq() override;
+
+    std::string convertToJson();
 };
 
 

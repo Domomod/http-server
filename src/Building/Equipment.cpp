@@ -19,3 +19,10 @@ std::string Equipment::showInfo(){
     std::string message= std::to_string(index)+": "+name+"\n";
     return message;
 }
+
+std::string Equipment::convertToJson(){
+    std::string message="{\n\"id\" : \""+std::to_string(index)+"\"\n";
+    message+="\"name\" : \""+name+"\"\n";
+    message+="\"type\" : \""+std::to_string(type)+"\"\n}";
+    return message;
+}

@@ -31,6 +31,7 @@ public:
     std::shared_ptr<Equipment> getEquipment(int idx,int roomId, int floorId );
     std::string showMyInfo();
     std::string showMyEq();
+    std::string convertToJson();
 };
 
 
