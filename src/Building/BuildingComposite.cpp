@@ -66,6 +66,15 @@ std::string BuildingComposite::showMyEq()
     return message;
 }
 
+void BuildingComposite::addEquipment(std::shared_ptr<Equipment> equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
+
+void BuildingComposite::deleteEquipment(int equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
+
+std::shared_ptr<Equipment> BuildingComposite::getEquipment(int equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
+
 std::string BuildingComposite::convertToJson(){
     std::string message="{\n\"idx\" : \""+std::to_string(idx)+"\"\n";
     message+="\"name\" : \""+name+"\"\n";
