@@ -7,6 +7,7 @@
 #include <http-server/bsd/BsdSocket_HttpRequestReader.h>
 #include <http-server/http/HttpResponse.h>
 #include <http-server/http/HttpResponseBuilder.h>
+#include <boost/xpressive/xpressive.hpp>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
@@ -79,6 +80,8 @@ void Threaded_tcp_server::handleConnection()
     th.detach();
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-err34-c"
 void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
 {
     HttpRequestReader *httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
@@ -88,6 +91,118 @@ void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
     {
         HttpRequest request = httpRequestReader->getRequest();
         request.print();
+        using namespace boost::xpressive;
+
+        sregex get_regex = sregex::compile(
+                "^GET /buildings"
+                "("
+                /**/"/(?P<building>[[:digit:]]+)"
+                /**/"("
+                /*  */"/floors/(?P<floor>[[:digit:]]+)"
+                /*  */"(/rooms/(?P<room>[[:digit:]]+))?"
+                /**/")?"
+                ")?"
+                "/(?P<what>equipment|structure)"
+        );
+
+        sregex put_regex = sregex::compile(
+                "^PUT /buildings"
+                "("
+                /**/"/(?P<building>[[:digit:]]+)/floors"
+                /**/"("
+                /*  */"/(?P<floor>[[:digit:]]+)/rooms"
+                /*      */"("
+                /*      */"/(?P<room>[[:digit:]]+)/equipment"
+                /*  */")?"
+                /**/")?"
+                ")?$"
+        );
+
+        sregex post_regex = sregex::compile(
+                "^POST /buildings(?P<building>[[:digit:]]+)"
+                "/floors/(?P<floor>[[:digit:]]+)"
+                "/rooms/(?P<room>[[:digit:]]+)"
+                "/equipment/(?P<equipment>[[:digit:]]+)"
+                "$"
+        );
+
+        sregex destination_regex = sregex::compile(
+                "^/buildings(?P<building>[[:digit:]]+)"
+                "/floors/(?P<floor>[[:digit:]]+)"
+                "/rooms/(?P<room>[[:digit:]]+)"
+                "$"
+        );
+
+        sregex delete_regex = sregex::compile(
+                "^DELETE /buildings/(?P<building>[[:digit:]]+)"
+                "("
+                /**/"/floors/(?P<floor>[[:digit:]]+)"
+                /**/"("
+                /*  */"/rooms/(?P<room>[[:digit:]]+)"
+                /*  */"("
+                /*      */"/equipment/(?P<equipment>[[:digit:]]+)"
+                /*  */")?"
+                /**/")?"
+                ")?$"
+        );
+
+        std::string str = request.getRequest();
+        smatch match_path;
+        if (regex_search(str, match_path, get_regex))
+        {
+            int building = std::atoi(match_path["building"].str().c_str());
+            int floor = std::atoi(match_path["floor"].str().c_str());
+            int room = std::atoi(match_path["room"].str().c_str());
+            std::string what = match_path["what"].str();
+            /*ZAWSZE PODANE JEST WHAT*/
+        }
+        else if (regex_search(str, match_path, post_regex))
+        {
+            auto values = request.getFieldValue("destination");
+            if (values.size() == 1 && values[0] != HttpRequest::NO_SUCH_KEY)
+            {
+                smatch match_destination;
+                if (regex_search(str, match_destination, destination_regex))
+                {
+                    int source_building = std::atoi(match_path["building"].str().c_str());
+                    int source_floor = std::atoi(match_path["floor"].str().c_str());
+                    int source_room = std::atoi(match_path["room"].str().c_str());
+                    int source_equipment = std::atoi(match_path["equipment"].str().c_str());
+
+                    int destination_building = std::atoi(match_destination["building"].str().c_str());
+                    int destination_floor = std::atoi(match_destination["floor"].str().c_str());
+                    int destination_room = std::atoi(match_destination["room"].str().c_str());
+
+                    /*W OBU PRZYPADKACH ZAWSZE WSZYSTKO PODANE*/
+                }
+                else
+                {
+                    /*DESTINATION IS GARBAGE*/
+                }
+            }
+            else
+            {
+                /*DESTINATION NOT GIVEN*/
+            }
+        }
+        else if (regex_search(str, match_path, delete_regex))
+        {
+            int source_building = std::atoi(match_path["building"].str().c_str());
+            int source_floor = std::atoi(match_path["floor"].str().c_str());
+            int source_room = std::atoi(match_path["room"].str().c_str());
+            int source_equipment = std::atoi(match_path["equipment"].str().c_str());
+            /*CO NAJMNIEJ BUILDING PODANE*/
+        }
+        else if (regex_search(str, match_path, put_regex))
+        {
+            int source_building = std::atoi(match_path["building"].str().c_str());
+            int source_floor = std::atoi(match_path["floor"].str().c_str());
+            int source_room = std::atoi(match_path["room"].str().c_str());
+            int source_equipment = std::atoi(match_path["equipment"].str().c_str());
+            /*JEŚLI NIC NIE PODANE DODAJEMY BUDYNEK
+             *JEŚLI PODANY JEST BUDYNEK TO DODAJEMY PIĘTRO
+             *JEŚLI PODANY JEST BUDYNEK I PIĘTRO DODAJEMY POKÓJ*/
+        }
 
         HttpResponse httpResponse = httpResponseBuilder
                 .setStatusCode(StatusCode::OK)
@@ -109,6 +224,7 @@ void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
 
     delete httpRequestReader;
 }
+#pragma clang diagnostic pop
 
 void Threaded_tcp_server::init_socket_descriptor_with_error_check(char &reuse_addr_val)
 {

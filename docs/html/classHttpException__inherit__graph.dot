@@ -1,0 +1,18 @@
+digraph "HttpException"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="HttpException",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="std::exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ClientError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classClientError.html",tooltip="Indicates that client&#39;s request cannot be performed, because of an error made by the client..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="BadRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBadRequest.html",tooltip="Used when no other 4XX code is appropiate. For example invalid syntax, invalid parameters etc..."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Conflict",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConflict.html",tooltip="Indicates that a conflict between requests occured. "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Gone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGone.html",tooltip="Indicates that the resource requested by the client has been permanently deleted. ..."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="NotFound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNotFound.html"];
+}

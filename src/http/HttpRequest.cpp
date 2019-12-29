@@ -3,15 +3,9 @@
 //
 #include <http-server/http/HttpRequest.h>
 
-
-const std::string &HttpRequest::getRequest_type() const
+const std::string &HttpRequest::getRequest() const
 {
-    return request_type;
-}
-
-const std::string &HttpRequest::getPath() const
-{
-    return path;
+    return request;
 }
 
 void HttpRequest::print() const
@@ -28,5 +22,5 @@ void HttpRequest::print(std::ostream & ss) const
 
 void HttpRequest::printRequestLine(std::ostream & os) const
 {
-    os << request_type << path << " " << http_version << "\r\n";
+    os << request << " " << http_version << "\r\n";
 }
