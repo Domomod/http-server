@@ -46,3 +46,8 @@ std::string Room::showMyEq(){
     }
     return message;
 }
+
+std::shared_ptr<BuildingComponent> Room::getChild(int id)
+{
+    return nullptr;
+}

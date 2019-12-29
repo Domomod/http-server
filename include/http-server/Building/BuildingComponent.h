@@ -7,34 +7,58 @@
 
 
 #include <string>
+#include <memory>
 #include "Equipment.h"
 
-class BuildingComponent {
+class BuildingComponent
+{
 protected:
     int idx;
     std::string name;
 public:
-     BuildingComponent(int _idx, std::string _name);
-     int getIdx();
-     std::string getName();
-     void printInfo();
-     virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId){};
-    virtual void deleteEquipment(int eqId, int roomId, int floorId){};
-    virtual std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId){};
+    BuildingComponent(int _idx, std::string _name);
+
+    int getIdx();
+
+    std::string getName();
+
+    virtual std::shared_ptr<BuildingComponent> getChild(int id) = 0;
+
+    void printInfo();
+
+    virtual void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId)
+    {
+    };
+
+    virtual void deleteEquipment(int eqId, int roomId, int floorId)
+    {
+    };
+
+    virtual std::shared_ptr<Equipment> getEquipment(int idx, int roomId, int floorId)
+    {
+    };
+
     virtual void addFloor(std::shared_ptr<BuildingComponent> floor);
+
     virtual void addRoom(int floorId, std::shared_ptr<BuildingComponent> room);
+
     virtual void deleteFloor(int floorId);
+
     virtual void deleteRoom(int floorId, int roomId);
+
     virtual std::string showMyInfo();
+
     virtual std::string showMyEq();
+
     virtual std::string showFloorInfo(int floorId);
+
     virtual std::string showFloorEq(int floorId);
+
     virtual std::string showRoomInfo(int floorId, int roomId);
+
     virtual std::string showRoomEq(int floorId, int roomId);
 
 };
-
-
 
 
 #endif //HTTP_SERVER_BUILDINGCOMPONENT_H

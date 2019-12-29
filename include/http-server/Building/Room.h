@@ -17,6 +17,11 @@ private:
     std::map<int,std::shared_ptr<Equipment>> equipment;
 public:
     Room(int idx, std::string name);
+
+private:
+    std::shared_ptr<BuildingComponent> getChild(int id) override;
+
+public:
     void addEquipment(std::shared_ptr<Equipment> eq);
     std::shared_ptr<Equipment> getEquipment(int idx);
     void deleteEquipment(int idx);
