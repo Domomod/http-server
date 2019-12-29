@@ -15,6 +15,11 @@ BuildingComposite::BuildingComposite(int idx, std::string name, std::string _str
     street = _street;
 }
 
+void BuildingComposite::addChild(std::shared_ptr<BuildingComponent> buildingComponent)
+{
+    buildingComponents.push_back(buildingComponent);
+}
+
 std::shared_ptr<BuildingComponent> BuildingComposite::getChild(int id)
 {
     for (std::shared_ptr<BuildingComponent> component : buildingComponents)
@@ -37,7 +42,6 @@ void BuildingComposite::deleteChild(int floorId)
             return;
         }
     }
-
 }
 
 std::string BuildingComposite::showMyInfo()
@@ -61,3 +65,12 @@ std::string BuildingComposite::showMyEq()
     }
     return message;
 }
+
+void BuildingComposite::addEquipment(std::shared_ptr<Equipment> equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
+
+void BuildingComposite::deleteEquipment(int equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
+
+std::shared_ptr<Equipment> BuildingComposite::getEquipment(int equipmentId)
+{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }

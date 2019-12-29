@@ -54,17 +54,17 @@ public:
 
     std::shared_ptr<BuildingComposite> getResult()
     {
-        constructedComponent->idx = idx;
         idx++;
+        constructedComponent->idx = idx;
         return std::make_shared<BuildingComposite>(*constructedComponent); //Make a copy of constructedComponent
     }
 
     static std::shared_ptr<BuildingComponent> getExample(){
         BuildingFactory factory("Ul. Ulicowa 1");
 
-        for (int i=1; i<2;i++){
+        for (int i=1; i<3;i++){
             factory.addFloor("Floor");
-            for (int j=1; j<3;j++){
+            for (int j=1; j<4;j++){
                 factory.addRoom("Room");
                 std::shared_ptr<Equipment> eq = std::make_shared<Equipment>("lozeczko", Equipment::Type::OTHER);
                 factory.addEquipment(eq);

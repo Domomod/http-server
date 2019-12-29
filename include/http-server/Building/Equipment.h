@@ -20,6 +20,4 @@ private:
     std::string name;
 };
 
-int Equipment::counter=0;
-
 #endif //HTTP_SERVER_OBJECT_H

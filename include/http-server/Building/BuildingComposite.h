@@ -28,14 +28,11 @@ public:
 
     void deleteChild(int floorId) override;
 
-    void addEquipment(std::shared_ptr<Equipment> equipmentId) override
-    {   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
+    void addEquipment(std::shared_ptr<Equipment> equipmentId) override;
 
-    void deleteEquipment(int equipmentId) override
-    {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
+    void deleteEquipment(int equipmentId) override;
 
-    std::shared_ptr<Equipment> getEquipment(int equipmentId) override
-    {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
+    std::shared_ptr<Equipment> getEquipment(int equipmentId) override;
 
     std::string showMyInfo() override;
 
