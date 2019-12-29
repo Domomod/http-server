@@ -10,6 +10,7 @@
 #include <string>
 #include "BuildingComposite.h"
 #include "BuildingComponent.h"
+#include "Room.h"
 
 class BuildingFactory {
 private:
@@ -19,8 +20,7 @@ public:
     void Reset(std::string name){};
     void AddFloor(std::string name){};
     void AddRoom(std::string name, float surface, int lampWattage,float cubature){};
-//    BuildingComponent GetResult(){};
-   // static BuildingComponent GetExamplaryBuilding(){};
+ static std::shared_ptr<BuildingComponent> GetExamplaryBuilding();
     //BuildingFactory(std::string name);
 };
 

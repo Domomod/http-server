@@ -7,7 +7,7 @@
 
 BuildingComposite::BuildingComposite(int idx, std::string name) : BuildingComponent(idx, name)
 {
-    street = "";;
+    street = "";
 }
 
 BuildingComposite::BuildingComposite(int idx, std::string name, std::string _street) : BuildingComponent(idx, name)
@@ -42,23 +42,22 @@ void BuildingComposite::deleteChild(int floorId)
 
 std::string BuildingComposite::showMyInfo()
 {
-    std::string message = "";
+    std::string message = std::to_string(idx)+", "+name+"\n";
     if (street != "")
     {
         message += "Street " + street + "\n";
     }
-    message += name + " " + std::to_string(idx) + "\n";
-    if (street == "")
-        message += "This floor has " + std::to_string(buildingComponents.size()) + " rooms\n";
-    else
-        message += "This building has " + std::to_string(buildingComponents.size()) + " floors\n";
+   for (auto buildingcomponent: buildingComponents){
+       message+="\t"+buildingcomponent->showMyInfo();
+   }
     return message;
 }
 
 std::string BuildingComposite::showMyEq()
 {
-    std::string message = "Equipment \n";
-    for (int i = 0; i < buildingComponents.size(); i++)
-        message += showMyEq();
+    std::string message="Equipment in "+std::to_string(idx)+"\n";
+    for (auto buildingcomponent: buildingComponents){
+        message+="\t"+buildingcomponent->showMyEq();
+    }
     return message;
 }
