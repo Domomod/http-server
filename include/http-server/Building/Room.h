@@ -13,6 +13,7 @@
 #include <memory>
 
 class Room : public BuildingComponent{
+    friend class BuildingFactory;
 private:
     std::map<int,std::shared_ptr<Equipment>> equipment;
 public:

@@ -8,16 +8,16 @@
 #include <string>
 
 class Equipment {
-private:
-    enum Type{FURNITURE, ELECTRONICS, OTHER};
-    Type type;
-    int index;
-    std::string name;
 public:
+    enum Type{FURNITURE, ELECTRONICS, OTHER};
     static int counter;
     Equipment(std::string _name, enum Type enumType);
     int getId();
     std::string showInfo();
+private:
+    Type type;
+    int index;
+    std::string name;
 };
 
 int Equipment::counter=0;
