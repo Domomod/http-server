@@ -61,3 +61,15 @@ std::string BuildingComposite::showMyEq()
     }
     return message;
 }
+
+std::string BuildingComposite::convertToJson(){
+    std::string message="{\n\"idx\" : \""+std::to_string(idx)+"\"\n";
+    message+="\"name\" : \""+name+"\"\n";
+    message+="\"street\" : \""+street+"\"\n";
+    message+="\"buildingComponents\" : [";
+    message+="\""+buildingComponents[0]->convertToJson()+"\"";
+    for (int i=1; i<buildingComponents.size();i++)
+        message+=", \""+buildingComponents[i]->convertToJson()+"\"";
+    message+="]\n}";
+    return message;
+}

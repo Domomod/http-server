@@ -51,7 +51,7 @@ public:
     };
 
     virtual std::string showMyInfo() = 0;
-
+    virtual std::string convertToJson()=0;
     virtual std::string showMyEq() = 0;
 };
 

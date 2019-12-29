@@ -14,6 +14,7 @@ public:
     Equipment(std::string _name, enum Type enumType);
     int getId();
     std::string showInfo();
+    std::string convertToJson();
 private:
     Type type;
     int index;

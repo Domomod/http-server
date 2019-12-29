@@ -51,3 +51,15 @@ std::shared_ptr<BuildingComponent> Room::getChild(int id)
 {
     return nullptr;
 }
+
+std::string Room::convertToJson(){
+    std::string message="{\n\"idx\" : \""+std::to_string(idx)+"\"\n";
+    message+="\"name\" : \""+name+"\"\n";
+    message+="\"equipment\" : { ";
+    std::map<int,std::shared_ptr<Equipment>>::iterator iter= equipment.begin();
+    message+="\""+std::to_string(iter->first)+"\" : \""+iter->second->convertToJson()+"\"";
+    for (iter; iter!=equipment.end();iter++)
+        message+=", \""+std::to_string(iter->first)+"\" : \""+iter->second->convertToJson()+"\"";
+    message+="}";
+    return message;
+}
