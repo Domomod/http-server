@@ -2,20 +2,12 @@
 // Created by Julia on 2019-12-30.
 //
 
-#include "../../include/http-server/http/HttpResponser.h"
+#include "../../include/http-server/Building/HttpAdapter.h"
 #include <list>
 HttpResponser::HttpResponser(std::shared_ptr<BuildingSystem> building){
     buildingSystem=building;
     responseBuilder=new HttpResponseBuilder();
-}
-
-HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request){
-    responseBuilder.init();
-
-
-    using namespace boost::xpressive;
-
-    sregex get_regex = sregex::compile(
+    get_regex = sregex::compile(
             "^GET /buildings"
             "("
             /**/"/(?P<building>[[:digit:]]+)"
@@ -26,8 +18,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
             ")?"
             "/(?P<what>equipment|structure)"
     );
-
-    sregex put_regex = sregex::compile(
+    put_regex = sregex::compile(
             "^PUT /buildings"
             "("
             /**/"/(?P<building>[[:digit:]]+)/floors"
@@ -40,22 +31,20 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
             ")?$"
     );
 
-    sregex post_regex = sregex::compile(
+    post_regex = sregex::compile(
             "^POST /buildings(?P<building>[[:digit:]]+)"
             "/floors/(?P<floor>[[:digit:]]+)"
             "/rooms/(?P<room>[[:digit:]]+)"
             "/equipment/(?P<equipment>[[:digit:]]+)"
             "$"
     );
-
-    sregex destination_regex = sregex::compile(
+    destination_regex = sregex::compile(
             "^/buildings(?P<building>[[:digit:]]+)"
             "/floors/(?P<floor>[[:digit:]]+)"
             "/rooms/(?P<room>[[:digit:]]+)"
             "$"
     );
-
-    sregex delete_regex = sregex::compile(
+    delete_regex = sregex::compile(
             "^DELETE /buildings/(?P<building>[[:digit:]]+)"
             "("
             /**/"/floors/(?P<floor>[[:digit:]]+)"
@@ -67,6 +56,10 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
             /**/")?"
             ")?$"
     );
+}
+
+HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request){
+    responseBuilder.init();
 
     std::string str = request.getRequest();
     smatch match_path;
@@ -79,7 +72,10 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
         /*ZAWSZE PODANE JEST WHAT*/
 
         try {
-
+            if (what=="eqipment")
+                responseBuilder.setBody(buildingSystem->find({building,floor,room})->first->showMyEq());
+            else
+            responseBuilder.setBody(buildingSystem->find({building,floor,room})->first->showMyInfo());
         }
         catch (...){
             responseBuilder.setBody("Something wrong\n");
@@ -90,8 +86,6 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                                                   {"Content-Type", {"text/xml"}}
                                           });
         }
-
-
     }
     else if (regex_search(str, match_path, post_regex))
     {
@@ -112,15 +106,8 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
 
                 /*W OBU PRZYPADKACH ZAWSZE WSZYSTKO PODANE*/
                 try{
-                    std::list<int> From;
-                    std::list<int> To;
-                    From.push_back(source_building);
-                    From.push_back(source_floor);
-                    From.push_back(source_room);
-                    To.push_back(destination_building);
-                    To.push_back(destination_floor);
-                    To.push_back(destination_room);
-                    buildingSystem->move(CO?, From,To); //CO?
+                    buildingSystem->move(CO?, {source_building,source_floor,source_room,source_equipment},
+                            {destination_building,destination_floor,destination_room}); //CO?
                     responseBuilder.setStatusCode(StatusCode::OK);
                     responseBuilder.setHeaderInfo({
                                            {"Server",       {"Test"}},
@@ -169,18 +156,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
         int source_room = std::atoi(match_path["room"].str().c_str());
         int source_equipment = std::atoi(match_path["equipment"].str().c_str());
         try {
-            std::list<int> toDestroy;
-            toDestroy.push_back(source_building);
-            if (source_floor!=0){
-                toDestroy.push_back(source_floor);
-                if (source_room!=0)
-                {
-                    toDestroy.push_back(source_room);
-                    if (source_equipment!=0)
-                        toDestroy.push_back(source_equipment);
-                }
-            }
-            buildingSystem->remove(toDestroy);
+            buildingSystem->remove({source_building,source_floor,source_room,source_equipment});
             responseBuilder.setBody("Item deleted.\n");
             responseBuilder.setStatusCode(StatusCode::Ok);
             responseBuilder.setHeaderInfo({
@@ -212,19 +188,8 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
          *JEŚLI PODANY JEST BUDYNEK TO DODAJEMY PIĘTRO
          *JEŚLI PODANY JEST BUDYNEK I PIĘTRO DODAJEMY POKÓJ*/
        try{
-           std::list<int> create;
-           if (source_building!=0){
-                create.push_back(source_building);
-                if (source_floor!=0){
-                    create.push_back(source_floor);
-                    if(source_room!=0){
-                        create.push_back(source_room);
-                        if (source_equipment!=0)
-                            create.push_back(source_equipment);
-                    }
-                }
-           }
-           buildingSystem->add(create, CO?); //CO?
+
+           buildingSystem->add({source_building,source_floor,source_room,source_equipment}, CO?); //CO?
            responseBuilder.setBody("Item created\n");
            responseBuilder.setStatusCode(StatusCode::Ok);
            responseBuilder.setHeaderInfo({

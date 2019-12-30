@@ -29,7 +29,7 @@ public:
     {
         auto node = root;
         std::queue<std::shared_lock<std::shared_mutex>> locked_mutexes;
-        while (!path.empty())
+        while (path.first()!=0)
         {
             locked_mutexes.push(node->getReadLock());
             int child_id = path.front();
