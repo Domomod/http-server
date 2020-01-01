@@ -93,7 +93,7 @@ public:
         swap_first:
         result = find(dest_path);
         destination = result.first;
-        destination_mutexes = result.second;
+        destination_mutexes = std::move(result.second);
         destination_lock = destination->getWriteLock();
         if(swap_order) goto swap_second;
 
