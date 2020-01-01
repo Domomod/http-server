@@ -20,6 +20,7 @@ private:
 
 
 public:
+
     BuildingComposite(int idx, std::string name);
 
     BuildingComposite(int idx, std::string name, std::string _street);

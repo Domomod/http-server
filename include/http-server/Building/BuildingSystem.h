@@ -24,12 +24,26 @@ public:
         root.reset(new BuildingComposite(0, "System root"));
     }
 
+
+    std::shared_ptr<Equipment> equipmentFromJson(std::shared_ptr<HttpRequest> request){
+
+        return nullptr;
+    }
+
+    std::shared_ptr<Room> roomFromJson(std::shared_ptr<HttpRequest> request){
+        return nullptr;
+    }
+
+    std::shared_ptr<BuildingComposite> compositeFromJson(std::shared_ptr<HttpRequest> request){
+        return nullptr;
+    }
+
     std::pair<std::shared_ptr<BuildingComponent>, std::queue<std::shared_lock<std::shared_mutex>>>
     find(std::list<int> path)
     {
         auto node = root;
         std::queue<std::shared_lock<std::shared_mutex>> locked_mutexes;
-        while (!path.empty())
+        while (path.first()!=0)
         {
             locked_mutexes.push(node->getReadLock());
             int child_id = path.front();
@@ -47,6 +61,14 @@ public:
         auto& mutexes = result.second;
         auto node_lock = node->getWriteLock();
         node->addChild(child);
+    }
+
+    void add(std::list<int> path, std::shared_ptr<Equipment> eq){
+        auto result= find(path);
+        auto& node = result.first;
+        auto& mutexes = result.second;
+        auto node_lock = node->getWriteLock();
+        node->addEquipment(eq);
     }
 
     void remove(std::list<int> path)

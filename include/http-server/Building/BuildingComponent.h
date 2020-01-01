@@ -44,6 +44,8 @@ public:
 
     virtual std::shared_ptr<BuildingComponent> getChild(int id) = 0;
 
+
+
     virtual void deleteChild(int floorId)
     {
         throw HttpException(StatusCode::Method_Not_Allowed, "Operation remove child not permited");
