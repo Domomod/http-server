@@ -10,8 +10,9 @@
 #include "../http/HttpResponseBuilder.h"
 #include "BuildingSystem.h"
 #include <memory>
+#include <boost/xpressive/xpressive.hpp>
 
-using namespace boost::xpressive;
+using boost::xpressive::sregex;
 
 class HttpResponser {
 private:

@@ -7,7 +7,6 @@
 #include <http-server/bsd/BsdSocket_HttpRequestReader.h>
 #include <http-server/http/HttpResponse.h>
 #include <http-server/http/HttpResponseBuilder.h>
-#include <boost/xpressive/xpressive.hpp>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
@@ -91,7 +90,6 @@ void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
     {
         HttpRequest request = httpRequestReader->getRequest();
         request.print();
-        using namespace boost::xpressive;
         ////
 
         //std::string strResponse = httpResponse.toSendableString();

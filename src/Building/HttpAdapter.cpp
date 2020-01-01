@@ -2,11 +2,15 @@
 // Created by Julia on 2019-12-30.
 //
 
-#include "../../include/http-server/Building/HttpAdapter.h"
+
+#include <http-server/Building/HttpAdapter.h>
 #include <list>
+
+using namespace boost::xpressive;
+
+
 HttpResponser::HttpResponser(std::shared_ptr<BuildingSystem> building){
     buildingSystem=building;
-    responseBuilder=new HttpResponseBuilder();
     get_regex = sregex::compile(
             "^GET /buildings"
             "("
@@ -61,7 +65,7 @@ HttpResponser::HttpResponser(std::shared_ptr<BuildingSystem> building){
 HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request){
     responseBuilder.init();
 
-    std::string str = request.getRequest();
+    std::string str = request->getRequest();
     smatch match_path;
     if (regex_search(str, match_path, get_regex))
     {
@@ -73,9 +77,9 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
 
         try {
             if (what=="eqipment")
-                responseBuilder.setBody(buildingSystem->find({building,floor,room})->first->showMyEq());
+                responseBuilder.setBody(buildingSystem->find({building,floor,room}).first->showMyEq());
             else
-            responseBuilder.setBody(buildingSystem->find({building,floor,room})->first->showMyInfo());
+            responseBuilder.setBody(buildingSystem->find({building,floor,room}).first->showMyInfo());
         }
         catch (...){
             responseBuilder.setBody("Something wrong\n");
@@ -89,7 +93,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
     }
     else if (regex_search(str, match_path, post_regex))
     {
-        auto values = request.getFieldValue("destination");
+        auto values = request->getFieldValue("destination");
         if (values.size() == 1 && values[1] != HttpRequest::NO_SUCH_KEY)
         {
             smatch match_destination;
@@ -112,7 +116,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                                            {"Server",       {"Test"}},
                                            {"Connection",   {"close"}},
                                            {"Content-Type", {"text/xml"}}
-                                   })
+                                   });
                 }
                 catch (...){
                     responseBuilder.setBody("Couldn't move this element.\n");
@@ -157,7 +161,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
         try {
             buildingSystem->remove({source_building,source_floor,source_room,source_equipment});
             responseBuilder.setBody("Item deleted.\n");
-            responseBuilder.setStatusCode(StatusCode::Ok);
+            responseBuilder.setStatusCode(StatusCode::OK);
             responseBuilder.setHeaderInfo({
                                                   {"Server",       {"Test"}},
                                                   {"Connection",   {"close"}},
@@ -186,20 +190,20 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
          *JEŚLI PODANY JEST BUDYNEK I PIĘTRO DODAJEMY POKÓJ*/
        try{
             if (source_equipment!=0){
-                std::shared_ptr<Equipment> eq=buildingSystem->equipmentFromJson(request);
-                buildingSystem->add({source_building,source_floor,source_room,source_equipment}, eq);
+                //std::shared_ptr<Equipment> eq=buildingSystem->equipmentFromJson(request);
+                //buildingSystem->add({source_building,source_floor,source_room,source_equipment}, eq);
             }
             else{
                 if (source_room!=0){
-                    std::shared_ptr<BuildingComponent> room= buildingSystem->roomFromJson(request);
-                    buildingSystem->add({source_building,source_floor,source_room}, room);
+                    //::shared_ptr<BuildingComponent> room= buildingSystem->roomFromJson(request);
+                    //buildingSystem->add({source_building,source_floor,source_room}, room);
                 }
-                else
-                    std::shared_ptr<BuildingComponent> composite = buildingSystem->compositeFromJson(request);
-                    buildingSystem->add({source_building,source_floor},composite);
+                //else
+                    //std::shared_ptr<BuildingComponent> composite = buildingSystem->compositeFromJson(request);
+                    //buildingSystem->add({source_building,source_floor},composite);
             }
            responseBuilder.setBody("Item created\n");
-           responseBuilder.setStatusCode(StatusCode::Ok);
+           responseBuilder.setStatusCode(StatusCode::OK);
            responseBuilder.setHeaderInfo({
                                                  {"Server",       {"Test"}},
                                                  {"Connection",   {"close"}},
