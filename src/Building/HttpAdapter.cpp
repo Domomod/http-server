@@ -90,7 +90,7 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
     else if (regex_search(str, match_path, post_regex))
     {
         auto values = request.getFieldValue("destination");
-        if (values.size() == 1 && values[0] != HttpRequest::NO_SUCH_KEY)
+        if (values.size() == 1 && values[1] != HttpRequest::NO_SUCH_KEY)
         {
             smatch match_destination;
             if (regex_search(str, match_destination, destination_regex))
@@ -103,11 +103,10 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                 int destination_building = std::atoi(match_destination["building"].str().c_str());
                 int destination_floor = std::atoi(match_destination["floor"].str().c_str());
                 int destination_room = std::atoi(match_destination["room"].str().c_str());
-
                 /*W OBU PRZYPADKACH ZAWSZE WSZYSTKO PODANE*/
                 try{
-                    buildingSystem->move(CO?, {source_building,source_floor,source_room,source_equipment},
-                            {destination_building,destination_floor,destination_room}); //CO?
+                    buildingSystem->move(source_equipment, {source_building,source_floor,source_room},
+                            {destination_building,destination_floor,destination_room});
                     responseBuilder.setStatusCode(StatusCode::OK);
                     responseBuilder.setHeaderInfo({
                                            {"Server",       {"Test"}},
@@ -164,7 +163,6 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                                                   {"Connection",   {"close"}},
                                                   {"Content-Type", {"text/xml"}}
                                           });
-
         }
         catch (...){
             responseBuilder.setBody("Something wrong\n");
@@ -175,7 +173,6 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                                                   {"Content-Type", {"text/xml"}}
                                           });
         }
-
         /*CO NAJMNIEJ BUILDING PODANE*/
     }
     else if (regex_search(str, match_path, put_regex))
@@ -188,8 +185,19 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
          *JEŚLI PODANY JEST BUDYNEK TO DODAJEMY PIĘTRO
          *JEŚLI PODANY JEST BUDYNEK I PIĘTRO DODAJEMY POKÓJ*/
        try{
-
-           buildingSystem->add({source_building,source_floor,source_room,source_equipment}, CO?); //CO?
+            if (source_equipment!=0){
+                std::shared_ptr<Equipment> eq=buildingSystem->equipmentFromJson(request);
+                buildingSystem->add({source_building,source_floor,source_room,source_equipment}, eq);
+            }
+            else{
+                if (source_room!=0){
+                    std::shared_ptr<BuildingComponent> room= buildingSystem->roomFromJson(request);
+                    buildingSystem->add({source_building,source_floor,source_room}, room);
+                }
+                else
+                    std::shared_ptr<BuildingComponent> composite = buildingSystem->compositeFromJson(request);
+                    buildingSystem->add({source_building,source_floor},composite);
+            }
            responseBuilder.setBody("Item created\n");
            responseBuilder.setStatusCode(StatusCode::Ok);
            responseBuilder.setHeaderInfo({
@@ -208,6 +216,5 @@ HttpResponse HttpResponser::createResponse(std::shared_ptr<HttpRequest> request)
                                          });
        }
     }
-
     return responseBuilder.getResponse();
 }
