@@ -20,6 +20,7 @@ private:
 
 
 public:
+    BuildingComposite() = default;
 
     BuildingComposite(int idx, std::string name);
 
@@ -41,7 +42,9 @@ public:
 
     std::string showMyEq() override;
 
-    std::string convertToJson();
+    void convertToJson(json & j) override;
+
+    void convertFromJson(const json &j) override;
 };
 
 

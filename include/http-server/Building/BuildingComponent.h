@@ -11,7 +11,10 @@
 #include "Equipment.h"
 #include <http-server/http/exceptions/HttpException.h>
 #include <http-server/http/exceptions/HttpStatusCodes.h>
+#include <nlohmann/json.hpp>
 #include <shared_mutex>
+
+using json = nlohmann::json;
 
 class BuildingComponent
 {
@@ -21,6 +24,8 @@ protected:
     std::string name;
     std::shared_mutex guard;
 public:
+    BuildingComponent() = default;
+
     BuildingComponent(int _idx, std::string _name);
 
     inline std::shared_lock<std::shared_mutex> getReadLock()
@@ -65,10 +70,23 @@ public:
 
     virtual std::string showMyInfo() = 0;
 
-    virtual std::string convertToJson() = 0;
+    virtual void convertToJson(json & j)
+    {
+        j["idx"] = idx;
+        j["name"] = name;
+    }
+
+    virtual void convertFromJson(const json & j)
+    {
+        j.at("idx").get_to(idx);
+        j.at("name").get_to(name);
+    }
 
     virtual std::string showMyEq() = 0;
 };
 
+void to_json(json &j, const std::shared_ptr<BuildingComponent> &x);
+
+void from_json(const json &j, std::shared_ptr<BuildingComponent> &a);
 
 #endif //HTTP_SERVER_BUILDINGCOMPONENT_H

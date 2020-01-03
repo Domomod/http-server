@@ -75,14 +75,17 @@ void BuildingComposite::deleteEquipment(int equipmentId)
 std::shared_ptr<Equipment> BuildingComposite::getEquipment(int equipmentId)
 {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
 
-std::string BuildingComposite::convertToJson(){
-    std::string message="{\n\"idx\" : \""+std::to_string(idx)+"\"\n";
-    message+="\"name\" : \""+name+"\"\n";
-    message+="\"street\" : \""+street+"\"\n";
-    message+="\"buildingComponents\" : [";
-    message+="\""+buildingComponents[0]->convertToJson()+"\"";
-    for (int i=1; i<buildingComponents.size();i++)
-        message+=", \""+buildingComponents[i]->convertToJson()+"\"";
-    message+="]\n}";
-    return message;
+void BuildingComposite::convertToJson(json & j)
+{
+    BuildingComponent::convertToJson(j);
+    j["@class-name"] = "BuildingComposite";
+    j["street"] = street;
+    j["buildingComponents"] = buildingComponents;
+}
+
+void BuildingComposite::convertFromJson(const json &j)
+{
+    BuildingComponent::convertFromJson(j);
+    j.at("street").get_to(street);
+    j.at("buildingComponents").get_to(buildingComponents);
 }

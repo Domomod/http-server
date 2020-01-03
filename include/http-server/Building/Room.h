@@ -17,6 +17,8 @@ class Room : public BuildingComponent{
 private:
     std::map<int,std::shared_ptr<Equipment>> equipment;
 public:
+    Room() = default;
+
     Room(int idx, std::string name);
 
 private:
@@ -31,7 +33,9 @@ public:
     std::shared_ptr<Equipment> getEquipment(int idx,int roomId, int floorId );
     std::string showMyInfo();
     std::string showMyEq();
-    std::string convertToJson();
+    void convertToJson(json & j) override;
+
+    void convertFromJson(const json &j) override;
 };
 
 
