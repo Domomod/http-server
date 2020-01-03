@@ -7,12 +7,6 @@
 
 BuildingComposite::BuildingComposite(int idx, std::string name) : BuildingComponent(idx, name)
 {
-    street = "";
-}
-
-BuildingComposite::BuildingComposite(int idx, std::string name, std::string _street) : BuildingComponent(idx, name)
-{
-    street = _street;
 }
 
 void BuildingComposite::addChild(std::shared_ptr<BuildingComponent> buildingComponent)
@@ -47,10 +41,6 @@ void BuildingComposite::deleteChild(int floorId)
 std::string BuildingComposite::showMyInfo()
 {
     std::string message = std::to_string(idx)+", "+name+"\n";
-    if (street != "")
-    {
-        message += "Street " + street + "\n";
-    }
    for (auto buildingcomponent: buildingComponents){
        message+="\t"+buildingcomponent->showMyInfo();
    }
@@ -79,13 +69,11 @@ void BuildingComposite::convertToJson(json & j)
 {
     BuildingComponent::convertToJson(j);
     j["@class-name"] = "BuildingComposite";
-    j["street"] = street;
     j["buildingComponents"] = buildingComponents;
 }
 
 void BuildingComposite::convertFromJson(const json &j)
 {
     BuildingComponent::convertFromJson(j);
-    j.at("street").get_to(street);
     j.at("buildingComponents").get_to(buildingComponents);
 }

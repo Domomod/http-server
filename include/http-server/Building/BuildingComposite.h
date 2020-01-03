@@ -16,15 +16,11 @@ class BuildingComposite : public BuildingComponent
     friend class BuildingFactory;
 private:
     std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
-    std::string street;
-
 
 public:
     BuildingComposite() = default;
 
     BuildingComposite(int idx, std::string name);
-
-    BuildingComposite(int idx, std::string name, std::string _street);
 
     void addChild(std::shared_ptr<BuildingComponent> buildingComponent) override;
 
