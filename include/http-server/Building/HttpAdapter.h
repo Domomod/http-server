@@ -5,10 +5,10 @@
 #ifndef HTTP_SERVER_HTTPRESPONSER_H
 #define HTTP_SERVER_HTTPRESPONSER_H
 
-#include "../http/HttpResponse.h"
-#include "../http/HttpRequest.h"
-#include "../http/HttpResponseBuilder.h"
-#include "BuildingSystem.h"
+#include "http-server/http/HttpResponse.h"
+#include "http-server/http/HttpRequest.h"
+#include "http-server/http/HttpResponseBuilder.h"
+#include "http-server/Building/BuildingSystem.h"
 #include <memory>
 #include <boost/xpressive/xpressive.hpp>
 

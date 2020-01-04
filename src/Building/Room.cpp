@@ -46,22 +46,18 @@ std::shared_ptr<Equipment> Room::getEquipment(int idx, int roomId, int floorId)
     return getEquipment(idx);
 }
 
-std::string Room::showMyInfo()
+void Room::showMyInfo( json &j)
 {
-    std::string message = "Room number: " + std::to_string(idx) + ", " + name + "\n";
-    message + "Number of items inside: " + std::to_string(equipment.size()) + "\n";
-    return message;
+    BuildingComponent::convertToJson(j);
+   j["@class-name"]="Room";
+    j["idx"]=idx;
+    j["name"]=name;
 }
 
-std::string Room::showMyEq()
+void  Room::showMyEq( json &j)
 {
-    std::string message = "Room number: " + std::to_string(idx) + " inventory list\n";
-    std::map<int, std::shared_ptr<Equipment>>::iterator iter;
-    for (iter = equipment.begin(); iter != equipment.end(); iter++)
-    {
-        message += iter->second->showInfo();
-    }
-    return message;
+for (auto eq : equipment)
+    j.push_back(eq.second);
 }
 
 std::shared_ptr<BuildingComponent> Room::getChild(int id)

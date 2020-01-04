@@ -34,9 +34,9 @@ public:
 
     std::shared_ptr<Equipment> getEquipment(int equipmentId) override;
 
-    std::string showMyInfo() override;
+   void showMyInfo( json &j) override;
 
-    std::string showMyEq() override;
+   void showMyEq( json &j) override;
 
     void convertToJson(json & j) override;
 

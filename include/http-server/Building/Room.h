@@ -31,8 +31,8 @@ public:
     void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
     void deleteEquipment(int eqId, int roomId, int floorId);
     std::shared_ptr<Equipment> getEquipment(int idx,int roomId, int floorId );
-    std::string showMyInfo();
-    std::string showMyEq();
+    void showMyInfo( json &j);
+    void showMyEq( json &j);
     void convertToJson(json & j) override;
 
     void convertFromJson(const json &j) override;

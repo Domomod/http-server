@@ -38,22 +38,22 @@ void BuildingComposite::deleteChild(int floorId)
     }
 }
 
-std::string BuildingComposite::showMyInfo()
+void BuildingComposite::showMyInfo( json &j)
 {
-    std::string message = std::to_string(idx)+", "+name+"\n";
-   for (auto buildingcomponent: buildingComponents){
-       message+="\t"+buildingcomponent->showMyInfo();
-   }
-    return message;
+ BuildingComponent::convertToJson(j);
+ j["@class-name"]="BuildingComposite";
+ j["idx"]=idx;
+ j["name"]=name;
+ j["insides start"]="{";
+ for (auto build: buildingComponents)
+     build->showMyInfo(j);
+ j["insides end"]="}";
 }
 
-std::string BuildingComposite::showMyEq()
+void BuildingComposite::showMyEq(json &j)
 {
-    std::string message="Equipment in "+std::to_string(idx)+"\n";
-    for (auto buildingcomponent: buildingComponents){
-        message+="\t"+buildingcomponent->showMyEq();
-    }
-    return message;
+    for (auto build: buildingComponents)
+        build->showMyEq(j);
 }
 
 void BuildingComposite::addEquipment(std::shared_ptr<Equipment> equipmentId)

@@ -68,7 +68,7 @@ public:
     {
     };
 
-    virtual std::string showMyInfo() = 0;
+    virtual void showMyInfo( json &j);
 
     virtual void convertToJson(json & j)
     {
@@ -76,13 +76,15 @@ public:
         j["name"] = name;
     }
 
+
+
     virtual void convertFromJson(const json & j)
     {
         j.at("idx").get_to(idx);
         j.at("name").get_to(name);
     }
 
-    virtual std::string showMyEq() = 0;
+    virtual void  showMyEq( json &j);
 };
 
 void to_json(json &j, const std::shared_ptr<BuildingComponent> &x);
