@@ -5,18 +5,22 @@
 #ifndef HTTP_SERVER_HTTPRESPONSER_H
 #define HTTP_SERVER_HTTPRESPONSER_H
 
-#include "../http/HttpResponse.h"
-#include "../http/HttpRequest.h"
-#include "../http/HttpResponseBuilder.h"
+#include <http-server/http/HttpResponse.h>
+#include <http-server/http/HttpRequest.h>
+#include <http-server/http/HttpResponseBuilder.h>
+#include <http-server/http/HttpRequestReader.h>
+#include <http-server/bsd/BsdSocket_HttpRequestReader.h>
+
 #include "BuildingSystem.h"
 #include <memory>
 #include <boost/xpressive/xpressive.hpp>
 
 using boost::xpressive::sregex;
+using boost::xpressive::smatch;
 
-class HttpResponser {
+class HttpAdapter {
 private:
-    std::shared_ptr<BuildingSystem> buildingSystem;
+    BuildingSystem& buildingSystem;
     HttpResponseBuilder responseBuilder;
     sregex get_regex;
     sregex post_regex;
@@ -24,8 +28,23 @@ private:
     sregex destination_regex;
     sregex delete_regex;
 public:
-    HttpResponse createResponse(std::shared_ptr<HttpRequest> request);
-    HttpResponser(std::shared_ptr<BuildingSystem> building);
+    HttpAdapter(BuildingSystem &buildingSystem);
+
+    void operator()(int connection_socket_descriptor);
+
+
+    HttpResponse respond_to(const HttpRequest &request);
+
+    void respond_to_get(const boost::xpressive::smatch &match_path);
+
+    void respond_to_post(const HttpRequest &request, const std::string &str,
+                         const boost::xpressive::smatch &match_path);
+
+    void respond_to_delete(const boost::xpressive::smatch &match_path);
+
+    void respond_to_put(const HttpRequest &request, const boost::xpressive::smatch &match_path);
+
+    int getInt(const smatch &match_path, const std::string &name) const;
 };
 
 

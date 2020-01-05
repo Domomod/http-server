@@ -33,7 +33,7 @@ HttpRequest BsdSocket_HttpRequestReader::getRequest()
             httpParser.parse_line(line);
         }
 
-        while (!unprocessed_data.empty() && httpParser.isInState(HttpParser::State::PARSING_HTTP_MESSAGE_BODY))
+        while (httpParser.isInState(HttpParser::State::PARSING_HTTP_MESSAGE_BODY) && !unprocessed_data.empty())
         {
             unsigned long how_much_left = httpParser.how_much_msg_body_left();
             if (how_much_left >= unprocessed_data.size())

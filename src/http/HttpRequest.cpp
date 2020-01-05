@@ -11,6 +11,7 @@ const std::string &HttpRequest::getRequest() const
 void HttpRequest::print() const
 {
     print(std::cout);
+    std::cout<<"\n";
 }
 
 void HttpRequest::print(std::ostream & ss) const

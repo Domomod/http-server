@@ -40,7 +40,7 @@ public:
      * @param field_name Header key to be extracted
      * @return A vector of header values corresponding to given header key.
      */
-    const std::vector<std::string> getFieldValue(const std::string &field_name);
+    const std::vector<std::string> getFieldValue(const std::string &field_name) const;
 
     /*!
      * @brief Prints object on the standard output.
@@ -53,7 +53,7 @@ public:
      */
     virtual void print(std::ostream & os) const = 0;
 
-    std::__cxx11::string toSendableString()
+    std::__cxx11::string toSendableString() const
     {
         std::stringstream ss;
         print(ss);

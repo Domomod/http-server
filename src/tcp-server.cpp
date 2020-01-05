@@ -5,14 +5,15 @@
 #include <http-server/tcp-server.h>
 #include <http-server/http/HttpRequestReader.h>
 #include <http-server/bsd/BsdSocket_HttpRequestReader.h>
-#include <http-server/http/HttpResponse.h>
 #include <http-server/http/HttpResponseBuilder.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
-Threaded_tcp_server::Threaded_tcp_server(uint16_t server_port, int queue_size) : server_port(server_port),
-                                                                                 queue_size(queue_size)
+Threaded_tcp_server::Threaded_tcp_server(const uint16_t server_port, const std::function<void(int)> &threadBeheaviour,
+                                         const int queue_size) : server_port(server_port),
+                                                                 queue_size(queue_size),
+                                                                 threadBeheaviour(threadBeheaviour)
 {
     char reuse_addr_val = 1;
 
@@ -24,6 +25,9 @@ Threaded_tcp_server::Threaded_tcp_server(uint16_t server_port, int queue_size) :
 
     listen_with_error_check();
 }
+
+
+
 
 void Threaded_tcp_server::loop()
 {
@@ -75,31 +79,10 @@ void Threaded_tcp_server::handleConnection()
         exit(1);
     }
 
-    std::thread th(ThreadBehavior, connection_socket_descriptor);
+    std::thread th(threadBeheaviour, connection_socket_descriptor);
     th.detach();
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cert-err34-c"
-void *Threaded_tcp_server::ThreadBehavior(int connection_socket_descriptor)
-{
-    HttpRequestReader *httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
-    HttpResponseBuilder httpResponseBuilder;
-
-    while (true)
-    {
-        HttpRequest request = httpRequestReader->getRequest();
-        request.print();
-        ////
-
-        //std::string strResponse = httpResponse.toSendableString();
-        //std::cout << "\n\n" << strResponse << "\n\n";
-        //write(connection_socket_descriptor, strResponse.c_str(), strResponse.size());
-    }
-
-    delete httpRequestReader;
-}
-#pragma clang diagnostic pop
 
 void Threaded_tcp_server::init_socket_descriptor_with_error_check(char &reuse_addr_val)
 {
@@ -112,6 +95,5 @@ void Threaded_tcp_server::init_socket_descriptor_with_error_check(char &reuse_ad
     setsockopt(server_socket_descriptor, SOL_SOCKET, SO_REUSEADDR, (char *) &reuse_addr_val,
                sizeof(reuse_addr_val));
 }
-
 
 #pragma clang diagnostic pop

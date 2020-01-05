@@ -14,6 +14,8 @@
 #include "BuildingComposite.h"
 #include "Equipment.h"
 
+class HttpAdapter;
+
 class BuildingSystem
 {
 private:
@@ -23,6 +25,8 @@ public:
     {
         root.reset(new BuildingComposite(0, "System root"));
     }
+
+    HttpAdapter getHttpAdapter();
 
     std::pair<std::shared_ptr<BuildingComponent>, std::queue<std::shared_lock<std::shared_mutex>>>
     find(std::list<int> path)
@@ -38,6 +42,24 @@ public:
             path.pop_front();
         }
         return {node, std::move(locked_mutexes)};
+    }
+
+    std::string getInfo(std::list<int> path)
+    {
+        auto result = find(path);
+        auto& node = result.first;
+        auto& mutexes = result.second;
+        auto node_lock = node->getReadLock();
+        return node->showMyInfo();
+    }
+
+    std::string getEquipment(std::list<int> path)
+    {
+        auto result = find(path);
+        auto& node = result.first;
+        auto& mutexes = result.second;
+        auto node_lock = node->getReadLock();
+        return node->showMyEq();
     }
 
     void add(std::list<int> path, std::shared_ptr<BuildingComponent> child)

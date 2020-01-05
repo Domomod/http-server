@@ -18,7 +18,7 @@ const std::string &HttpMessage::getBody() const
 }
 
 
-const std::vector<std::string> HttpMessage::getFieldValue(const std::string &field_name)
+const std::vector<std::string> HttpMessage::getFieldValue(const std::string &field_name) const
 {
     auto search = header_info.find(field_name);
     if (search != header_info.end())
@@ -27,7 +27,7 @@ const std::vector<std::string> HttpMessage::getFieldValue(const std::string &fie
     }
     else
     {
-        return std::vector<std::string>({"No such header"});
+        return std::vector<std::string>({NO_SUCH_KEY});
     }
 }
 
