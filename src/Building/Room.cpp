@@ -11,7 +11,7 @@ Room::Room(int idx, std::string name) : BuildingComponent(idx, name)
 
 void Room::add_equipment(std::shared_ptr<Equipment> eq)
 {
-    equipment.insert({eq->getId(), eq});
+    equipment.insert({eq->get_id(), eq});
 }
 
 std::shared_ptr<Equipment> Room::get_equipment(int idx)

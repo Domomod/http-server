@@ -8,38 +8,35 @@
 #include "../../include/http-server/Building/Equipment.h"
 
 int Equipment::counter=0;
+//Declaration of counter guard (otherwise linking errors would occur_
+std::mutex Equipment::counter_guard;
 
 Equipment::Equipment(std::string _name, enum Type enumType){
-    index=++counter;
+    index=generate_id();
     name=_name;
     type=enumType;
 }
 
-int Equipment::getId() {
+int Equipment::get_id() {
     return index;
 }
-std::string Equipment::showInfo(){
-    std::string message= std::to_string(index)+": "+name+"\n";
-    return message;
-}
 
-void Equipment::convertToJson(json &j)
+void Equipment::to_json(json &j)
 {
-    j["index"] = index;
     j["name"] = name;
     j["type"] = type;
 }
 
-void Equipment::convertFromJson(const json &j)
+void Equipment::from_json(const json &j)
 {
-    j.at("index").get_to(index);
+    index=generate_id();
     j.at("name").get_to(name);
     j.at("type").get_to(type);
 }
 
 void to_json(json &j, const std::shared_ptr<Equipment> &e)
 {
-    e->convertToJson(j);
+    e->to_json(j);
 }
 
 void from_json(const json &j, std::shared_ptr<Equipment> &e)
@@ -47,11 +44,17 @@ void from_json(const json &j, std::shared_ptr<Equipment> &e)
     try
     {
         e.reset(new Equipment());
-        e->convertFromJson(j);
+        e->from_json(j);
     }
     catch (...)
     {
         e.reset();
         throw std::runtime_error("Incorrect Json: Not an Equipment object representation.");
     }
+}
+
+int Equipment::generate_id()
+{
+    std::lock_guard<std::mutex> lock(counter_guard);
+    return counter++;
 }

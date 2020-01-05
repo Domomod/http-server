@@ -27,6 +27,8 @@ class HttpRequest : public HttpMessage
 {
 public:
 
+    const std::string &get_request() const;
+
     std::string get_request_line() const;
 
 

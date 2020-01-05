@@ -88,7 +88,7 @@ HttpResponse HttpAdapter::respond_to(const HttpRequest &request)
 {
     responseBuilder.init();
 
-    std::string str = request.get_request_line();
+    std::string str = request.get_request();
     smatch match_path;
     if (regex_search(str, match_path, get_regex))
     {

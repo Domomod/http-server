@@ -19,3 +19,8 @@ std::string HttpRequest::get_request_line() const
     ss << request << " " << http_version << "\r\n";
     return ss.str();
 }
+
+const std::string &HttpRequest::get_request() const
+{
+    return request;
+}
