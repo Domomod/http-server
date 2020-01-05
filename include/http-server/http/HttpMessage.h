@@ -22,6 +22,8 @@ class HttpResponseBuilder;
 class HttpMessage
 {
 public:
+    HttpMessage()
+    = default;
 
     const std::string &get_http_version() const;
 
@@ -46,8 +48,6 @@ public:
      */
     static const std::string NO_SUCH_KEY;
 protected:
-    HttpMessage()
-    = default;
 
     /*!
      * @brief Adds or assigns given value to the header dictionary.

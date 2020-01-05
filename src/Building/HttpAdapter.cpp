@@ -67,12 +67,12 @@ void HttpAdapter::operator()(int connection_socket_descriptor)
 {
     HttpRequestReader *httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
     HttpResponseBuilder httpResponseBuilder;
-    HttpRequest request = httpRequestReader->get_request();
+    request = httpRequestReader->get_request();
 
     std::cout << "@\t\tRECIEVED A REQUEST FROM: " << connection_socket_descriptor << "\n"
               << request.get_request_line() << "\n";
 
-    HttpResponse response = respond_to(request);
+    HttpResponse response = respond_to_request();
 
     std::string strResponse = response.to_str();
 
@@ -84,7 +84,7 @@ void HttpAdapter::operator()(int connection_socket_descriptor)
     delete httpRequestReader;
 }
 
-HttpResponse HttpAdapter::respond_to(const HttpRequest &request)
+HttpResponse HttpAdapter::respond_to_request()
 {
     responseBuilder.init();
 
@@ -96,7 +96,7 @@ HttpResponse HttpAdapter::respond_to(const HttpRequest &request)
     }
     else if (regex_search(str, match_path, post_regex))
     {
-        respond_to_post(request, str, match_path);
+        respond_to_post(match_path);
     }
     else if (regex_search(str, match_path, delete_regex))
     {
@@ -104,7 +104,7 @@ HttpResponse HttpAdapter::respond_to(const HttpRequest &request)
     }
     else if (regex_search(str, match_path, put_regex))
     {
-        respond_to_put(request, match_path);
+        respond_to_put(match_path);
 
     }
     else
@@ -119,7 +119,7 @@ HttpResponse HttpAdapter::respond_to(const HttpRequest &request)
     return responseBuilder.getResponse();
 }
 
-void HttpAdapter::respond_to_put(const HttpRequest &request, const smatch &match_path)
+void HttpAdapter::respond_to_put(const smatch &match_path)
 {
     int source_building = to_int(match_path, "building");
     int source_floor = to_int(match_path, "floor");
@@ -170,13 +170,13 @@ void HttpAdapter::respond_to_delete(const smatch &match_path)
     /*CO NAJMNIEJ BUILDING PODANE*/}
 
 void
-HttpAdapter::respond_to_post(const HttpRequest &request, const std::string &str, const smatch &match_path)
+HttpAdapter::respond_to_post(const smatch &match_path)
 {
     auto values = request.get_field_value("destination");
-    if (values.size() == 1 && values[1] != HttpMessage::NO_SUCH_KEY)
+    if (values.size() == 1 && values[0] != HttpMessage::NO_SUCH_KEY)
     {
         smatch match_destination;
-        if (regex_search(str, match_destination, destination_regex))
+        if (regex_search(values[0], match_destination, destination_regex))
         {
             int source_building = to_int(match_path, "building");
             int source_floor = to_int(match_path, "floor");

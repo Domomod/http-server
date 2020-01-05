@@ -26,20 +26,18 @@ class HttpRequest;
 class HttpRequest : public HttpMessage
 {
 public:
+    HttpRequest()
+    = default;
 
     const std::string &get_request() const;
 
     std::string get_request_line() const;
-
 
     /*!
      * @brief Prints the request in human readable way on the standard output;
      */
     std::string to_str() const override;
 private:
-    HttpRequest()
-    = default;
-
     std::string request;
 
     friend class HttpParser;
