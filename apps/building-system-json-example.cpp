@@ -12,7 +12,7 @@ using json = nlohmann::json;
 
 int main()
 {
-    std::shared_ptr<BuildingComponent> building = BuildingFactory::getExample();
+    std::shared_ptr<BuildingComponent> building = BuildingFactory::get_example();
 
     json j = building;
 

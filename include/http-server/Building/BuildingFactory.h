@@ -32,28 +32,28 @@ public:
     /*!
      * @brief Adds a new floor to the constructed building.
      */
-    void addFloor(const std::string &name = "");
+    void add_floor(const std::string &name = "");
 
     /*!
      * @brief Adds a new floor to the most recently added floor.
      */
-    void addRoom(const std::string &name = "");
+    void add_room(const std::string &name = "");
 
     /*!
      * @brief Adds a new equipment to the most recently added room.
      */
-    void addEquipment(std::shared_ptr<Equipment> equipment);
+    void add_equipment(std::shared_ptr<Equipment> equipment);
 
     /*!
      * @brief Returns the constructed building and returns Factory to initial state.
      */
-    std::shared_ptr<BuildingComposite> getResult(const std::string &name);
+    std::shared_ptr<BuildingComposite> get_result(const std::string &name);
 
     /*!
      * @brief Creates an examplary building with floors, rooms and equipment
      * @return Pointer to root BuildingComponent of the building
      */
-    static std::shared_ptr<BuildingComponent> getExample();
+    static std::shared_ptr<BuildingComponent> get_example();
 };
 
 
