@@ -26,21 +26,15 @@ class HttpRequest;
 class HttpRequest : public HttpMessage
 {
 public:
-    /*!
-     * @brief Simple getter.
-     * @return Request type and path ex. GET /buildings
-     */
-    const std::string &getRequest() const;
 
-    void print() const override;
+    std::string get_request_line() const;
+
 
     /*!
      * @brief Prints the request in human readable way on the standard output;
      */
-    void print(std::ostream & ss) const override;
+    std::string to_str() const override;
 private:
-    void printRequestLine(std::ostream & = std::cout) const;
-
     HttpRequest()
     = default;
 

@@ -22,14 +22,14 @@ HttpResponseBuilder::setHeaderInfo(const std::map<std::__cxx11::string, std::vec
     return *this;
 }
 
-HttpResponseBuilder & HttpResponseBuilder::setStatusCode(StatusCode statusCode)
+HttpResponseBuilder & HttpResponseBuilder::set_status_code(StatusCode statusCode)
 {
     httpResponse->status_code = statusCode;
     isStatusCodeSet = true;
     return *this;
 }
 
-HttpResponseBuilder & HttpResponseBuilder::setBody(std::string body)
+HttpResponseBuilder & HttpResponseBuilder::set_body(std::string body)
 {
     httpResponse->body = body;
     httpResponse->addFieldValue("Content-Length", {std::to_string(body.size())});

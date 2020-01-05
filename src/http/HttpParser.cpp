@@ -87,7 +87,7 @@ void HttpParser::check_if_request_has_body()
      *If for some reason Content-Length would be set to 0, this would also mean that body
      *is absent.
      * */
-    std::vector<std::string> value_list = httpRequest->getFieldValue("Content-Length");
+    std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
     if (value_list[0] == HttpRequest::NO_SUCH_KEY || value_list[0] == "0")
     {
         currentState = State::HTTP_REQUEST_READY;
@@ -100,7 +100,7 @@ void HttpParser::check_if_request_has_body()
 
 unsigned long HttpParser::how_much_msg_body_left()
 {
-    std::vector<std::string> value_list = httpRequest->getFieldValue("Content-Length");
+    std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
     if (value_list[0] == HttpRequest::NO_SUCH_KEY)
     {
         return 0;

@@ -13,80 +13,57 @@
 #include <http-server/http/exceptions/HttpStatusCodes.h>
 #include <nlohmann/json.hpp>
 #include <shared_mutex>
+#include "Exceptions.h"
 
 using json = nlohmann::json;
 
 class BuildingComponent
 {
     friend class BuildingFactory;
-protected:
-    int idx;
-    std::string name;
-    std::shared_mutex guard;
+    friend void to_json(json &j, const std::shared_ptr<BuildingComponent> &x);
+    friend void from_json(const json &j, std::shared_ptr<BuildingComponent> &a);
 public:
     BuildingComponent() = default;
 
     BuildingComponent(int _idx, std::string _name);
 
-    inline std::shared_lock<std::shared_mutex> getReadLock()
-    {
-        return std::move(std::shared_lock<std::shared_mutex>(guard));
-    };
+    virtual void add_child(std::shared_ptr<BuildingComponent> buildingComponent) = 0;
 
-    inline std::unique_lock<std::shared_mutex> getWriteLock()
-    {
-        return std::move(std::unique_lock<std::shared_mutex>(guard));
-    };
+    virtual void add_equipment(std::shared_ptr<Equipment> eq) = 0;
 
-    int getIdx();
+    virtual void delete_child(int floorId) = 0;
 
-    std::string getName();
+    virtual void delete_equipment(int equipmentId) = 0;
 
-    virtual void addChild(std::shared_ptr<BuildingComponent> buildingComponent)
-    {
-        throw ("Operation addChild not permited");
-    }
+    virtual std::shared_ptr<BuildingComponent> get_child(int id) = 0;
 
-    virtual std::shared_ptr<BuildingComponent> getChild(int id) = 0;
+    virtual std::shared_ptr<Equipment> get_equipment(int equipmentId) = 0;
 
+    inline std::shared_lock<std::shared_mutex> get_read_lock();
 
+    inline std::unique_lock<std::shared_mutex> get_write_lock();
 
-    virtual void deleteChild(int floorId)
-    {
-        throw HttpException(StatusCode::Method_Not_Allowed, "Operation remove child not permited");
-    }
+    std::string get_structure_json(int i = -1);
 
-    virtual void addEquipment(std::shared_ptr<Equipment> eq)
-    {
-    };
+    std::string get_equipment_json(int i = -1);
 
-    virtual void deleteEquipment(int equipmentId)
-    {
-    };
+    int get_idx();
 
-    virtual std::shared_ptr<Equipment> getEquipment(int equipmentId)
-    {
-    };
+    std::string get_name();
 
-    virtual std::string showMyInfo() = 0;
+protected:
+    virtual void create_structure_json(json &j) = 0;
 
-    virtual void convertToJson(json & j)
-    {
-        j["idx"] = idx;
-        j["name"] = name;
-    }
+    virtual void create_equipment_json(json &j) = 0;
 
-    virtual void convertFromJson(const json & j)
-    {
-        j.at("idx").get_to(idx);
-        j.at("name").get_to(name);
-    }
+    virtual void to_json(json &j);
 
-    virtual std::string showMyEq() = 0;
+    virtual void from_json(const json &j);
+
+    int idx;
+    std::string name;
+    std::shared_mutex guard;
 };
 
-void to_json(json &j, const std::shared_ptr<BuildingComponent> &x);
-
-void from_json(const json &j, std::shared_ptr<BuildingComponent> &a);
 
 #endif //HTTP_SERVER_BUILDINGCOMPONENT_H

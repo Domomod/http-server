@@ -35,31 +35,31 @@ public:
         std::queue<std::shared_lock<std::shared_mutex>> locked_mutexes;
         while (path.front()!=0)
         {
-            locked_mutexes.push(node->getReadLock());
+            locked_mutexes.push(node->get_read_lock());
             int child_id = path.front();
-            node = node->getChild(child_id);
+            node = node->get_child(child_id);
             if (node == nullptr) throw HttpException(StatusCode::Gone, "Resource is gone.");
             path.pop_front();
         }
         return {node, std::move(locked_mutexes)};
     }
 
-    std::string getInfo(std::list<int> path)
+    std::string get_info(std::list<int> path)
     {
         auto result = find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->getReadLock();
-        return node->showMyInfo();
+        auto node_lock = node->get_read_lock();
+        return node->get_structure_json();
     }
 
-    std::string getEquipment(std::list<int> path)
+    std::string get_equipment(std::list<int> path)
     {
         auto result = find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->getReadLock();
-        return node->showMyEq();
+        auto node_lock = node->get_read_lock();
+        return node->get_equipment_json();
     }
 
     void add(std::list<int> path, std::shared_ptr<BuildingComponent> child)
@@ -67,16 +67,16 @@ public:
         auto result = find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->getWriteLock();
-        node->addChild(child);
+        auto node_lock = node->get_write_lock();
+        node->add_child(child);
     }
 
     void add(std::list<int> path, std::shared_ptr<Equipment> eq){
         auto result= find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->getWriteLock();
-        node->addEquipment(eq);
+        auto node_lock = node->get_write_lock();
+        node->add_equipment(eq);
     }
 
     void remove(std::list<int> path)
@@ -88,8 +88,8 @@ public:
             auto result = find(path);
             auto& node = result.first;
             auto& mutexes = result.second;
-            auto node_lock = node->getWriteLock();
-            node->deleteChild(removed_id);
+            auto node_lock = node->get_write_lock();
+            node->delete_child(removed_id);
         }
         else
         {
@@ -117,20 +117,20 @@ public:
         result = find(source_path);
         source = std::move(result.first);
         source_mutexes = std::move(result.second);
-        source_lock = source->getWriteLock();
+        source_lock = source->get_write_lock();
         if(swap_order) goto swap_end;
 
         swap_first:
         result = find(dest_path);
         destination = result.first;
         destination_mutexes = std::move(result.second);
-        destination_lock = destination->getWriteLock();
+        destination_lock = destination->get_write_lock();
         if(swap_order) goto swap_second;
 
         swap_end:
-        auto equipment = source->getEquipment(eq_id);
-        destination->addEquipment(equipment);
-        source->deleteEquipment(eq_id);
+        auto equipment = source->get_equipment(eq_id);
+        destination->add_equipment(equipment);
+        source->delete_equipment(eq_id);
     }
 #pragma clang diagnostic pop
 };

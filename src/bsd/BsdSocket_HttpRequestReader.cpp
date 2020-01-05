@@ -10,13 +10,11 @@ BsdSocket_HttpRequestReader::BsdSocket_HttpRequestReader(int connection_socket_d
 {
 }
 
-BsdSocket_HttpRequestReader::~BsdSocket_HttpRequestReader()
-= default;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
-HttpRequest BsdSocket_HttpRequestReader::getRequest()
+HttpRequest BsdSocket_HttpRequestReader::get_request()
 {
     while (true)
     {
@@ -73,6 +71,11 @@ std::__cxx11::string BsdSocket_HttpRequestReader::splitOnNth(std::__cxx11::strin
     std::__cxx11::string first_part = str.substr(0, n);
     str = str.substr(n + 1);
     return first_part;
+}
+
+BsdSocket_HttpRequestReader::~BsdSocket_HttpRequestReader()
+{
+    close(connection_socket_descriptor);
 }
 
 #pragma clang diagnostic pop

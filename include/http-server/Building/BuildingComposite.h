@@ -14,33 +14,34 @@
 class BuildingComposite : public BuildingComponent
 {
     friend class BuildingFactory;
-private:
-    std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
-
 public:
     BuildingComposite() = default;
 
     BuildingComposite(int idx, std::string name);
 
-    void addChild(std::shared_ptr<BuildingComponent> buildingComponent) override;
+    void add_child(std::shared_ptr<BuildingComponent> buildingComponent) override;
 
-    std::shared_ptr<BuildingComponent> getChild(int id) override;
+    void add_equipment(std::shared_ptr<Equipment> eq) override;
 
-    void deleteChild(int floorId) override;
+    void delete_child(int floorId) override;
 
-    void addEquipment(std::shared_ptr<Equipment> equipmentId) override;
+    void delete_equipment(int equipmentId) override;
 
-    void deleteEquipment(int equipmentId) override;
+    std::shared_ptr<BuildingComponent> get_child(int id) override;
 
-    std::shared_ptr<Equipment> getEquipment(int equipmentId) override;
+    std::shared_ptr<Equipment> get_equipment(int equipmentId) override;
 
-    std::string showMyInfo() override;
+protected:
+    void create_structure_json(json &j) override;
 
-    std::string showMyEq() override;
+    void create_equipment_json(json &j) override;
 
-    void convertToJson(json & j) override;
+    void to_json(json &j) override;
 
-    void convertFromJson(const json &j) override;
+    void from_json(const json &j) override;
+
+private:
+    std::vector<std::shared_ptr<BuildingComponent>> buildingComponents;
 };
 
 

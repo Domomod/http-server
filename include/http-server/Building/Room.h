@@ -22,20 +22,20 @@ public:
     Room(int idx, std::string name);
 
 private:
-    std::shared_ptr<BuildingComponent> getChild(int id) override;
+    std::shared_ptr<BuildingComponent> get_child(int id) override;
 
 public:
-    void addEquipment(std::shared_ptr<Equipment> eq);
-    std::shared_ptr<Equipment> getEquipment(int idx);
-    void deleteEquipment(int idx);
+    void add_equipment(std::shared_ptr<Equipment> eq);
+    std::shared_ptr<Equipment> get_equipment(int idx);
+    void delete_equipment(int idx);
     void addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId);
     void deleteEquipment(int eqId, int roomId, int floorId);
     std::shared_ptr<Equipment> getEquipment(int idx,int roomId, int floorId );
-    std::string showMyInfo();
-    std::string showMyEq();
-    void convertToJson(json & j) override;
+    void create_structure_json(json &j);
+    void create_equipment_json(json &j);
+    void to_json(json &j) override;
 
-    void convertFromJson(const json &j) override;
+    void from_json(const json &j) override;
 };
 
 

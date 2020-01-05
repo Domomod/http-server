@@ -21,13 +21,11 @@ public:
     HttpResponse()
     = default;
 
-    void print() const override;
+    std::string to_str() const override;
 
-    void print(std::ostream & ss) const override;
+    std::string get_response_line() const;
 
 private:
-    void printResponseLine(std::ostream & os = std::cout) const;
-
     StatusCode status_code;
 
     friend class HttpResponseBuilder;

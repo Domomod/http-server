@@ -18,7 +18,7 @@ class HttpResponseBuilder
 public:
     HttpResponseBuilder();
 
-    HttpResponseBuilder & setStatusCode(StatusCode statusCode);
+    HttpResponseBuilder & set_status_code(StatusCode statusCode);
 
     /*!
      * @brief Adds multiple headers th the response.
@@ -33,7 +33,7 @@ public:
      * @param body The body of the response
      * @return Reference to the HttpResponseBuilder for cascade calls of it's methods.
      */
-    HttpResponseBuilder & setBody(std::string body);
+    HttpResponseBuilder & set_body(std::string body);
 
     /*!
      * @brief Returns the request. Instantly forgets the request, so calling getResponse twice in a row won't return

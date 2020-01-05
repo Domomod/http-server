@@ -9,16 +9,16 @@ BuildingComposite::BuildingComposite(int idx, std::string name) : BuildingCompon
 {
 }
 
-void BuildingComposite::addChild(std::shared_ptr<BuildingComponent> buildingComponent)
+void BuildingComposite::add_child(std::shared_ptr<BuildingComponent> buildingComponent)
 {
     buildingComponents.push_back(buildingComponent);
 }
 
-std::shared_ptr<BuildingComponent> BuildingComposite::getChild(int id)
+std::shared_ptr<BuildingComponent> BuildingComposite::get_child(int id)
 {
     for (std::shared_ptr<BuildingComponent> component : buildingComponents)
     {
-        if (component->getIdx() == id)
+        if (component->get_idx() == id)
         {
             return component;
         }
@@ -26,11 +26,11 @@ std::shared_ptr<BuildingComponent> BuildingComposite::getChild(int id)
     return nullptr;
 }
 
-void BuildingComposite::deleteChild(int floorId)
+void BuildingComposite::delete_child(int floorId)
 {
     for (int i = 0; i < buildingComponents.size(); i++)
     {
-        if (buildingComponents[i]->getIdx() == floorId)
+        if (buildingComponents[i]->get_idx() == floorId)
         {
             buildingComponents.erase(buildingComponents.begin() + i);
             return;
@@ -38,42 +38,43 @@ void BuildingComposite::deleteChild(int floorId)
     }
 }
 
-std::string BuildingComposite::showMyInfo()
+void BuildingComposite::create_structure_json(json &j)
 {
-    std::string message = std::to_string(idx)+", "+name+"\n";
-   for (auto buildingcomponent: buildingComponents){
-       message+="\t"+buildingcomponent->showMyInfo();
-   }
-    return message;
-}
-
-std::string BuildingComposite::showMyEq()
-{
-    std::string message="Equipment in "+std::to_string(idx)+"\n";
-    for (auto buildingcomponent: buildingComponents){
-        message+="\t"+buildingcomponent->showMyEq();
+    BuildingComponent::to_json(j);
+    j["idx"]=idx;
+    j["name"]=name;
+    for (auto build: buildingComponents)
+    {
+        json j2;
+        build->create_structure_json(j2);
+        j["structure"].push_back(j2);
     }
-    return message;
 }
 
-void BuildingComposite::addEquipment(std::shared_ptr<Equipment> equipmentId)
+void BuildingComposite::create_equipment_json(json &j)
+{
+    for (auto build: buildingComponents)
+        build->create_equipment_json(j);
+}
+
+void BuildingComposite::add_equipment(std::shared_ptr<Equipment> equipmentId)
 {   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
 
-void BuildingComposite::deleteEquipment(int equipmentId)
+void BuildingComposite::delete_equipment(int equipmentId)
 {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
 
-std::shared_ptr<Equipment> BuildingComposite::getEquipment(int equipmentId)
+std::shared_ptr<Equipment> BuildingComposite::get_equipment(int equipmentId)
 {   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
 
-void BuildingComposite::convertToJson(json & j)
+void BuildingComposite::to_json(json &j)
 {
-    BuildingComponent::convertToJson(j);
+    BuildingComponent::to_json(j);
     j["@class-name"] = "BuildingComposite";
     j["buildingComponents"] = buildingComponents;
 }
 
-void BuildingComposite::convertFromJson(const json &j)
+void BuildingComposite::from_json(const json &j)
 {
-    BuildingComponent::convertFromJson(j);
+    BuildingComponent::from_json(j);
     j.at("buildingComponents").get_to(buildingComponents);
 }

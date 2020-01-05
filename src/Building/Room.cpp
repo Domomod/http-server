@@ -9,12 +9,12 @@ Room::Room(int idx, std::string name) : BuildingComponent(idx, name)
 
 }
 
-void Room::addEquipment(std::shared_ptr<Equipment> eq)
+void Room::add_equipment(std::shared_ptr<Equipment> eq)
 {
     equipment.insert({eq->getId(), eq});
 }
 
-std::shared_ptr<Equipment> Room::getEquipment(int idx)
+std::shared_ptr<Equipment> Room::get_equipment(int idx)
 {
     try
     {
@@ -26,59 +26,53 @@ std::shared_ptr<Equipment> Room::getEquipment(int idx)
     }
 }
 
-void Room::deleteEquipment(int idx)
+void Room::delete_equipment(int idx)
 {
     equipment.erase(idx);
 }
 
 void Room::addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId)
 {
-    addEquipment(eq);
+    add_equipment(eq);
 }
 
 void Room::deleteEquipment(int eqId, int roomId, int floorId)
 {
-    deleteEquipment(eqId);
+    delete_equipment(eqId);
 }
 
 std::shared_ptr<Equipment> Room::getEquipment(int idx, int roomId, int floorId)
 {
-    return getEquipment(idx);
+    return get_equipment(idx);
 }
 
-std::string Room::showMyInfo()
+void Room::create_structure_json(json &j)
 {
-    std::string message = "Room number: " + std::to_string(idx) + ", " + name + "\n";
-    message + "Number of items inside: " + std::to_string(equipment.size()) + "\n";
-    return message;
+    j["idx"]=idx;
+    j["name"]=name;
 }
 
-std::string Room::showMyEq()
+void  Room::create_equipment_json(json &j)
 {
-    std::string message = "Room number: " + std::to_string(idx) + " inventory list\n";
-    std::map<int, std::shared_ptr<Equipment>>::iterator iter;
-    for (iter = equipment.begin(); iter != equipment.end(); iter++)
-    {
-        message += iter->second->showInfo();
-    }
-    return message;
+for (auto eq : equipment)
+    j.push_back(eq.second);
 }
 
-std::shared_ptr<BuildingComponent> Room::getChild(int id)
+std::shared_ptr<BuildingComponent> Room::get_child(int id)
 {
     return nullptr;
 }
 
-void Room::convertToJson(json &j)
+void Room::to_json(json &j)
 {
-    BuildingComponent::convertToJson(j);
+    BuildingComponent::to_json(j);
     j["@class-name"] = "Room";
     j["equipment"] = equipment;
 }
 
-void Room::convertFromJson(const json &j)
+void Room::from_json(const json &j)
 {
-    BuildingComponent::convertFromJson(j);
+    BuildingComponent::from_json(j);
     auto equipment_json = j.at("equipment");
     if(equipment_json.empty() == false)
         j.at("equipment").get_to(equipment);

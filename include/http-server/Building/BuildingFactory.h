@@ -22,61 +22,38 @@ private:
     int floor_idx = 0;
     int room_idx = 0;
 public:
-    BuildingFactory()
-    {
-        reset();
-    }
+    BuildingFactory();
 
-    void reset()
-    {
-        floor_idx = 0;
-        room_idx = 0;
-        constructedComponent.reset(new BuildingComposite(idx, ""));
-    }
+    /*!
+     * @brief Resets the factory to initial state.
+     */
+    void reset();
 
-    void addFloor(const std::string &name = "")
-    {
-        floor_idx++;
-        constructedComponent->addChild(std::make_shared<BuildingComposite>(floor_idx, name));
-        room_idx = 0;
-    }
+    /*!
+     * @brief Adds a new floor to the constructed building.
+     */
+    void addFloor(const std::string &name = "");
 
-    void addRoom(const std::string &name = "")
-    {
-        room_idx++;
-        constructedComponent->buildingComponents.back()->addChild(std::make_shared<Room>(room_idx, name));
-    }
+    /*!
+     * @brief Adds a new floor to the most recently added floor.
+     */
+    void addRoom(const std::string &name = "");
 
-    void addEquipment(std::shared_ptr<Equipment> equipment)
-    {
-        std::dynamic_pointer_cast<BuildingComposite>(
-                constructedComponent->buildingComponents.back()
-                )->buildingComponents.back()->addEquipment(std::move(equipment));
-    }
+    /*!
+     * @brief Adds a new equipment to the most recently added room.
+     */
+    void addEquipment(std::shared_ptr<Equipment> equipment);
 
-    std::shared_ptr<BuildingComposite> getResult(const std::string &name)
-    {
-        idx++;
-        auto result = constructedComponent;
-        result->idx = idx;
-        result->name = name;
-        reset();
-        return result; //Make a copy of constructedComponent
-    }
+    /*!
+     * @brief Returns the constructed building and returns Factory to initial state.
+     */
+    std::shared_ptr<BuildingComposite> getResult(const std::string &name);
 
-    static std::shared_ptr<BuildingComponent> getExample(){
-        BuildingFactory factory;
-
-        for (int i=1; i<3;i++){
-            factory.addFloor("Floor");
-            for (int j=1; j<4;j++){
-                factory.addRoom("Room");
-                std::shared_ptr<Equipment> eq = std::make_shared<Equipment>("lozeczko", Equipment::Type::OTHER);
-                factory.addEquipment(eq);
-            }
-        }
-        return factory.getResult("Ul. Ulicowa 1");
-    }
+    /*!
+     * @brief Creates an examplary building with floors, rooms and equipment
+     * @return Pointer to root BuildingComponent of the building
+     */
+    static std::shared_ptr<BuildingComponent> getExample();
 };
 
 

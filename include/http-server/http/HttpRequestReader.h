@@ -22,7 +22,7 @@ public:
      * @brief Reads a single whole HttpRequest string, parses it with HttpParser, and returns HttpRequest to the user.
      * @return
      */
-    virtual HttpRequest getRequest() = 0;
+    virtual HttpRequest get_request() = 0;
 
 protected:
     HttpParser httpParser;

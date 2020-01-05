@@ -44,7 +44,7 @@ public:
 
     void respond_to_put(const HttpRequest &request, const boost::xpressive::smatch &match_path);
 
-    int getInt(const smatch &match_path, const std::string &name) const;
+    int to_int(const smatch &match_path, const std::string &name) const;
 };
 
 
