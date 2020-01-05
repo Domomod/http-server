@@ -11,6 +11,6 @@
 int main(int argc, char *argv[])
 {
     BuildingSystem buildingSystem;
-    Threaded_tcp_server threaded_tcp_server(1235, buildingSystem.getHttpAdapter());
+    Threaded_tcp_server threaded_tcp_server(1235, buildingSystem.get_http_adapter());
     threaded_tcp_server.loop();
 }

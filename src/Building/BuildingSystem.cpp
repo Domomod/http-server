@@ -5,7 +5,7 @@
 #include <http-server/Building/BuildingSystem.h>
 #include <http-server/Building/HttpAdapter.h>
 
-HttpAdapter BuildingSystem::getHttpAdapter()
+HttpAdapter BuildingSystem::get_http_adapter()
 {
     return HttpAdapter(*this);
 }
@@ -20,18 +20,17 @@ BuildingSystem::find(std::list<int> path)
 {
     auto node = root;
     std::queue<std::shared_lock<std::shared_mutex>> locked_mutexes;
-    while (path.front()!=0)
+    while (!path.empty() && path.front()!=0)
     {
         locked_mutexes.push(node->get_read_lock());
         int child_id = path.front();
         node = node->get_child(child_id);
-        if (node == nullptr) throw HttpException(StatusCode::Gone, "Resource is gone.");
         path.pop_front();
     }
     return {node, std::move(locked_mutexes)};
 }
 
-std::string BuildingSystem::get_info(std::list<int> path)
+std::string BuildingSystem::get_structure(std::list<int> path)
 {
     auto result = find(path);
     auto& node = result.first;
@@ -85,6 +84,16 @@ void BuildingSystem::remove(std::list<int> path)
     }
 }
 
+void BuildingSystem::remove(int eq_id, std::list<int> path)
+{
+    auto result = find(path);
+    auto& node = result.first;
+    auto& mutexes = result.second;
+    auto node_lock = node->get_write_lock();
+    node->delete_equipment(eq_id);
+}
+
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-avoid-goto"
 void BuildingSystem::move(int eq_id, std::list<int> source_path, std::list<int> dest_path)
@@ -120,4 +129,5 @@ void BuildingSystem::move(int eq_id, std::list<int> source_path, std::list<int> 
     destination->add_equipment(equipment);
     source->delete_equipment(eq_id);
 }
+
 #pragma clang diagnostic pop

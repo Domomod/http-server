@@ -23,7 +23,7 @@ std::shared_ptr<BuildingComponent> BuildingComposite::get_child(int id)
             return component;
         }
     }
-    return nullptr;
+    throw ResourceNotFound();
 }
 
 void BuildingComposite::delete_child(int floorId)
@@ -36,6 +36,7 @@ void BuildingComposite::delete_child(int floorId)
             return;
         }
     }
+    throw ResourceNotFound();
 }
 
 void BuildingComposite::create_structure_json(json &j)

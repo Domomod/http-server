@@ -19,7 +19,8 @@ const char *what()\
 }}
 
 
-DEFINE_EXCEPTION(MethodNotImplemented, "This method is not implemented.");
+DEFINE_EXCEPTION(MethodNotImplemented, "This method is not supported by at least one of the resources.");
+DEFINE_EXCEPTION(ResourceNotFound, "Resource not found.\n");
 
 
 #undef DEFINE_EXCEPTION

@@ -223,7 +223,7 @@ void HttpAdapter::respond_to_get(const smatch &match_path)
     try
     {
         std::string body = (what == "equipment" ? buildingSystem.get_equipment({building, floor, room}) :
-                            buildingSystem.get_info({building, floor, room}));
+                            buildingSystem.get_structure({building, floor, room}));
         responseBuilder.set_body(body);
         responseBuilder.set_status_code(StatusCode::OK);
     }
