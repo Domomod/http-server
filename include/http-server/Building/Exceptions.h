@@ -27,5 +27,4 @@ DEFINE_EXCEPTION(MethodNotImplemented, "This method is not implemented.");
 #endif //HTTP_SERVER_EXCEPTIONS_H
 
 /*
-{   throw MethodNotImplemented();   }
 */

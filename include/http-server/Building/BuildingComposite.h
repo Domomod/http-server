@@ -21,21 +21,25 @@ public:
 
     void add_child(std::shared_ptr<BuildingComponent> buildingComponent) override;
 
-    void add_equipment(std::shared_ptr<Equipment> eq) override;
+    void add_equipment(std::shared_ptr<Equipment> eq) override
+    {   throw MethodNotImplemented();   }
 
     void delete_child(int floorId) override;
 
-    void delete_equipment(int equipmentId) override;
+    void delete_equipment(int equipmentId) override
+    {   throw MethodNotImplemented();   }
 
     std::shared_ptr<BuildingComponent> get_child(int id) override;
 
-    std::shared_ptr<Equipment> get_equipment(int equipmentId) override;
+    std::shared_ptr<Equipment> get_equipment(int equipmentId) override
+    {   throw MethodNotImplemented();   }
 
-protected:
     void create_structure_json(json &j) override;
 
     void create_equipment_json(json &j) override;
 
+
+protected:
     void to_json(json &j) override;
 
     void from_json(const json &j) override;

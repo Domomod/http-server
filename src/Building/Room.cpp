@@ -31,21 +31,6 @@ void Room::delete_equipment(int idx)
     equipment.erase(idx);
 }
 
-void Room::addEquipment(std::shared_ptr<Equipment> eq, int roomId, int floorId)
-{
-    add_equipment(eq);
-}
-
-void Room::deleteEquipment(int eqId, int roomId, int floorId)
-{
-    delete_equipment(eqId);
-}
-
-std::shared_ptr<Equipment> Room::getEquipment(int idx, int roomId, int floorId)
-{
-    return get_equipment(idx);
-}
-
 void Room::create_structure_json(json &j)
 {
     j["idx"]=idx;

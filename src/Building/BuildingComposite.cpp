@@ -57,15 +57,6 @@ void BuildingComposite::create_equipment_json(json &j)
         build->create_equipment_json(j);
 }
 
-void BuildingComposite::add_equipment(std::shared_ptr<Equipment> equipmentId)
-{   throw HttpException(StatusCode ::Bad_Request ,"Operation permitted only on rooms");  }
-
-void BuildingComposite::delete_equipment(int equipmentId)
-{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
-
-std::shared_ptr<Equipment> BuildingComposite::get_equipment(int equipmentId)
-{   throw HttpException(StatusCode ::Bad_Request, "Operation permitted only on rooms");  }
-
 void BuildingComposite::to_json(json &j)
 {
     BuildingComponent::to_json(j);

@@ -39,9 +39,9 @@ public:
 
     virtual std::shared_ptr<Equipment> get_equipment(int equipmentId) = 0;
 
-    inline std::shared_lock<std::shared_mutex> get_read_lock();
+    std::shared_lock<std::shared_mutex> get_read_lock();
 
-    inline std::unique_lock<std::shared_mutex> get_write_lock();
+    std::unique_lock<std::shared_mutex> get_write_lock();
 
     std::string get_structure_json(int i = -1);
 
@@ -51,11 +51,11 @@ public:
 
     std::string get_name();
 
-protected:
     virtual void create_structure_json(json &j) = 0;
 
     virtual void create_equipment_json(json &j) = 0;
 
+protected:
     virtual void to_json(json &j);
 
     virtual void from_json(const json &j);
