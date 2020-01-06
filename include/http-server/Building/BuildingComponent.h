@@ -100,12 +100,12 @@ protected:
     /*!
      * @brief Serializes object to json.
      */
-    void to_json(json &j);
+    virtual void to_json(json &j);
 
     /*!
      * @brief Deserializes object from json.
      */
-    void from_json(const json &j);
+    virtual void from_json(const json &j);
 
     int idx;
     std::string name;
