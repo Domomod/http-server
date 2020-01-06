@@ -18,14 +18,13 @@ const char *what()\
     return msg;\
 }}
 
+namespace BuildingSystem
+{
+    DEFINE_EXCEPTION(MethodNotImplemented, "This method is not supported by at least one of the resources.");
 
-DEFINE_EXCEPTION(MethodNotImplemented, "This method is not supported by at least one of the resources.");
-DEFINE_EXCEPTION(ResourceNotFound, "Resource not found.\n");
-
+    DEFINE_EXCEPTION(ResourceNotFound, "Resource not found.\n");
+}
 
 #undef DEFINE_EXCEPTION
 
 #endif //HTTP_SERVER_EXCEPTIONS_H
-
-/*
-*/
