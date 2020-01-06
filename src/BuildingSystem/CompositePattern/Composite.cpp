@@ -44,6 +44,7 @@ namespace BuildingSystem
 
     void Composite::create_structure_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         Component::to_json(j);
         j["idx"]=idx;
         j["name"]=name;
@@ -57,12 +58,14 @@ namespace BuildingSystem
 
     void Composite::create_equipment_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         for (auto build: buildingComponents)
             build->create_equipment_json(j);
     }
 
     void Composite::to_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         Component::to_json(j);
         j["@class-name"] = "BuildingComposite";
         j["buildingComponents"] = buildingComponents;

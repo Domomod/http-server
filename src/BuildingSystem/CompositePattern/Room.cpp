@@ -35,18 +35,21 @@ namespace BuildingSystem
 
     void Room::create_structure_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         j["idx"]=idx;
         j["name"]=name;
     }
 
     void  Room::create_equipment_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         for (auto eq : equipment_map)
             j.push_back(eq.second);
     }
 
     void Room::to_json(json &j)
     {
+        auto read_lock = Component::get_read_lock();
         Component::to_json(j);
         j["@class-name"] = "Room";
         j["equipment"] = equipment_map;
