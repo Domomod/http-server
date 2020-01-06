@@ -26,32 +26,19 @@ class HttpRequest;
 class HttpRequest : public HttpMessage
 {
 public:
-    /*!
-     * @brief Simple getter.
-     * @return Request type aka. GET,PUT,etc...
-     */
-    const std::string &getRequest_type() const;
+    HttpRequest()
+    = default;
 
-    /*!
-     * @brief Simple getter.
-     * @return Path to the requested file
-     */
-    const std::string &getPath() const;
+    const std::string &get_request() const;
 
-    void print() const override;
+    std::string get_request_line() const;
 
     /*!
      * @brief Prints the request in human readable way on the standard output;
      */
-    void print(std::ostream & ss) const override;
+    std::string to_str() const override;
 private:
-    void printRequestLine(std::ostream & = std::cout) const;
-
-    HttpRequest()
-    = default;
-
-    std::string request_type;
-    std::string path;
+    std::string request;
 
     friend class HttpParser;
 };

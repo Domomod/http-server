@@ -7,7 +7,7 @@
 
 #include <http-server/http/HttpMessage.h>
 #include <http-server/http/HttpParser.h>
-#include <http-server/http/HttpStatusCodes.h>
+#include <http-server/http/exceptions/HttpStatusCodes.h>
 
 /* @brief Http response representation.
  * @details This class allows for represenation of a http/1.1 response.\n
@@ -21,13 +21,11 @@ public:
     HttpResponse()
     = default;
 
-    void print() const override;
+    std::string to_str() const override;
 
-    void print(std::ostream & ss) const override;
+    std::string get_response_line() const;
 
 private:
-    void printResponseLine(std::ostream & os = std::cout) const;
-
     StatusCode status_code;
 
     friend class HttpResponseBuilder;

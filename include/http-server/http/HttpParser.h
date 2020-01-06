@@ -91,7 +91,6 @@ private:
     State currentState;
 };
 
-
 #include <string>
 #include <map>
 #include <vector>

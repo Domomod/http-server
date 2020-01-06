@@ -40,8 +40,7 @@ void HttpParser::parse_request_line(const std::string &line)
 {
     std::vector<std::__cxx11::string> words;
     iter_split(words, line, boost::algorithm::first_finder(" "));
-    httpRequest->request_type = words[0];
-    httpRequest->path = words[1];
+    httpRequest->request = words[0] + " " + words[1];
     httpRequest->http_version = words[2];
     currentState = State::PARSING_HTTP_HEADER_FIELDS;
 }
@@ -88,7 +87,7 @@ void HttpParser::check_if_request_has_body()
      *If for some reason Content-Length would be set to 0, this would also mean that body
      *is absent.
      * */
-    std::vector<std::string> value_list = httpRequest->getFieldValue("Content-Length");
+    std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
     if (value_list[0] == HttpRequest::NO_SUCH_KEY || value_list[0] == "0")
     {
         currentState = State::HTTP_REQUEST_READY;
@@ -101,7 +100,7 @@ void HttpParser::check_if_request_has_body()
 
 unsigned long HttpParser::how_much_msg_body_left()
 {
-    std::vector<std::string> value_list = httpRequest->getFieldValue("Content-Length");
+    std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
     if (value_list[0] == HttpRequest::NO_SUCH_KEY)
     {
         return 0;

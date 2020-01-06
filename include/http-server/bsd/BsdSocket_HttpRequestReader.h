@@ -13,9 +13,9 @@ class BsdSocket_HttpRequestReader : public HttpRequestReader
 public:
     BsdSocket_HttpRequestReader(int connection_socket_descriptor);
 
-    virtual ~BsdSocket_HttpRequestReader();
+    ~BsdSocket_HttpRequestReader() override;;
 
-    HttpRequest getRequest() override;
+    HttpRequest get_request() override;
 
 private:
     inline bool contains(const std::__cxx11::string &line, char character);

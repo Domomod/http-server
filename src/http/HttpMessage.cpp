@@ -6,19 +6,19 @@
 const std::string HttpMessage::NO_SUCH_KEY = "No such key";
 
 
-const std::string &HttpMessage::getHttp_version() const
+const std::string &HttpMessage::get_http_version() const
 {
     return http_version;
 }
 
 
-const std::string &HttpMessage::getBody() const
+const std::string &HttpMessage::get_body() const
 {
     return body;
 }
 
 
-const std::vector<std::string> HttpMessage::getFieldValue(const std::string &field_name)
+const std::vector<std::string> HttpMessage::get_field_value(const std::string &field_name) const
 {
     auto search = header_info.find(field_name);
     if (search != header_info.end())
@@ -27,33 +27,29 @@ const std::vector<std::string> HttpMessage::getFieldValue(const std::string &fie
     }
     else
     {
-        return std::vector<std::string>({"No such header"});
+        return std::vector<std::string>({NO_SUCH_KEY});
     }
 }
 
 
-void HttpMessage::printHeader(std::ostream & os) const
+std::string HttpMessage::get_header() const
 {
+    std::stringstream ss;
     for (const auto & elem :header_info)
     {
-        os << elem.first << ": ";
+        ss << elem.first << ": ";
         bool is_not_first_val = false;
         for (const auto & val : elem.second)
         {
             if(is_not_first_val)
             {
-                os << ", ";
+                ss << ", ";
             }
-            os << val;
+            ss << val;
             is_not_first_val = true;
         }
-        os << "\r\n";
+        ss << "\r\n";
     }
-    os << "\r\n";
-}
-
-
-void HttpMessage::printBody(std::ostream & os) const
-{
-    os << body;
+    ss << "\r\n";
+    return ss.str();
 }

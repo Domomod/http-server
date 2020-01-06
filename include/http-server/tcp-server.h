@@ -29,7 +29,8 @@ public:
      * @param server_port port to open the service at
      * @param queue_size maximum number of opened sessions.
      */
-    Threaded_tcp_server(uint16_t server_port, int queue_size = 3);
+    Threaded_tcp_server(const uint16_t server_port, const std::function<void(int)> &threadBeheaviour,
+                        const int queue_size = 3);
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
@@ -74,16 +75,10 @@ private:
      */
     void handleConnection();
 
-    /*!
-     * @brief Handles communication with the client.
-     * @param connection_socket_descriptor Client's socket descriptor.
-     */
-    static void *ThreadBehavior(int connection_socket_descriptor);
-
     int server_socket_descriptor;
     struct sockaddr_in server_address;
     const uint16_t server_port;
     const int queue_size;
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+    std::function<void (int)> threadBeheaviour;
 };
-

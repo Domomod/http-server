@@ -22,17 +22,16 @@ class HttpResponseBuilder;
 class HttpMessage
 {
 public:
-    /*!
-    * @brief Simple getter.
-    * @return Http protocol version
-    */
-    const std::string &getHttp_version() const;
+    HttpMessage()
+    = default;
 
-    /*!
-     * @brief Simple getter.
-     * @return Http request body
-     */
-    const std::string &getBody() const;
+    const std::string &get_http_version() const;
+
+
+    const std::string &get_body() const;
+
+    std::string get_header() const;
+
 
     /*!
      * @brief Looks fo the value of a given header key. Returns an empty vector if no value was specified by the request.\n
@@ -40,45 +39,15 @@ public:
      * @param field_name Header key to be extracted
      * @return A vector of header values corresponding to given header key.
      */
-    const std::vector<std::string> getFieldValue(const std::string &field_name);
+    const std::vector<std::string> get_field_value(const std::string &field_name) const;
 
-    /*!
-     * @brief Prints object on the standard output.
-     */
-    virtual void print() const = 0;
-
-    /*!
-     * @brief Prints object, in format specfied by RFC2616, on given output stream.
-     * @param os Output stream to be used.
-     */
-    virtual void print(std::ostream & os) const = 0;
-
-    std::__cxx11::string toSendableString()
-    {
-        std::stringstream ss;
-        print(ss);
-        return ss.str();
-    }
+    virtual std::string to_str() const = 0;
 
     /*!
      * @brief A string value returned when getFieldValue does not find a field with given name.
      */
     static const std::string NO_SUCH_KEY;
 protected:
-    HttpMessage()
-    = default;
-
-    /*!
-     * @brief Prints the header, in format specfied by RFC2616, on given output stream.
-     * @param os Output stream.
-     */
-    void printHeader(std::ostream & os = std::cout) const;
-
-    /*!
-     * @brief Prints the Body, in format specfied by RFC2616, on given output stream.
-     * @param os Output stream.
-     */
-    void printBody(std::ostream & os = std::cout) const;
 
     /*!
      * @brief Adds or assigns given value to the header dictionary.

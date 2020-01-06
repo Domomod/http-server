@@ -4,19 +4,18 @@
 
 #include <http-server/http/HttpResponse.h>
 
-void HttpResponse::print() const
+std::string HttpResponse::to_str() const
 {
-    print(std::cout);
+    std::stringstream ss;
+    ss << get_response_line();
+    ss << get_header();
+    ss << get_body();
+    return ss.str();
 }
 
-void HttpResponse::print(std::ostream & ss) const
+std::string HttpResponse::get_response_line() const
 {
-    printResponseLine(ss);
-    printHeader(ss);
-    printBody(ss);
-}
-
-void HttpResponse::printResponseLine(std::ostream &os) const
-{
-    os << http_version << " " << static_cast<int>(status_code) << " " << ReasonPhrase(status_code) << "\r\n";
+    std::stringstream s;
+    s << http_version << " " << static_cast<int>(status_code) << " " << ReasonPhrase(status_code) << "\r\n";
+    return s.str();
 }

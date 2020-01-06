@@ -10,13 +10,11 @@ BsdSocket_HttpRequestReader::BsdSocket_HttpRequestReader(int connection_socket_d
 {
 }
 
-BsdSocket_HttpRequestReader::~BsdSocket_HttpRequestReader()
-= default;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 
-HttpRequest BsdSocket_HttpRequestReader::getRequest()
+HttpRequest BsdSocket_HttpRequestReader::get_request()
 {
     while (true)
     {
@@ -33,7 +31,7 @@ HttpRequest BsdSocket_HttpRequestReader::getRequest()
             httpParser.parse_line(line);
         }
 
-        while (!unprocessed_data.empty() && httpParser.isInState(HttpParser::State::PARSING_HTTP_MESSAGE_BODY))
+        while (httpParser.isInState(HttpParser::State::PARSING_HTTP_MESSAGE_BODY) && !unprocessed_data.empty())
         {
             unsigned long how_much_left = httpParser.how_much_msg_body_left();
             if (how_much_left >= unprocessed_data.size())
@@ -73,6 +71,11 @@ std::__cxx11::string BsdSocket_HttpRequestReader::splitOnNth(std::__cxx11::strin
     std::__cxx11::string first_part = str.substr(0, n);
     str = str.substr(n + 1);
     return first_part;
+}
+
+BsdSocket_HttpRequestReader::~BsdSocket_HttpRequestReader()
+{
+    close(connection_socket_descriptor);
 }
 
 #pragma clang diagnostic pop

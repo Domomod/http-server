@@ -4,29 +4,23 @@
 #include <http-server/http/HttpRequest.h>
 
 
-const std::string &HttpRequest::getRequest_type() const
+std::string HttpRequest::to_str() const
 {
-    return request_type;
+    std::stringstream ss;
+    ss << get_request_line()
+       << get_header()
+       << get_body();
+    return ss.str();
 }
 
-const std::string &HttpRequest::getPath() const
+std::string HttpRequest::get_request_line() const
 {
-    return path;
+    std::stringstream ss;
+    ss << request << " " << http_version << "\r\n";
+    return ss.str();
 }
 
-void HttpRequest::print() const
+const std::string &HttpRequest::get_request() const
 {
-    print(std::cout);
-}
-
-void HttpRequest::print(std::ostream & ss) const
-{
-    printRequestLine(ss);
-    printHeader(ss);
-    printBody(ss);
-}
-
-void HttpRequest::printRequestLine(std::ostream & os) const
-{
-    os << request_type << path << " " << http_version << "\r\n";
+    return request;
 }
