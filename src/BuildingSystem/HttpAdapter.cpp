@@ -21,7 +21,7 @@ namespace BuildingSystem
                 /*  */"(/rooms/(?P<room>[[:digit:]]+))?"
                 /**/")?"
                 ")?"
-                "/(?P<what>equipment|structure)"
+                "(/(?P<what>equipment|structure))?$"
         );
         put_regex = sregex::compile(
                 "^PUT /buildings"
@@ -125,29 +125,20 @@ namespace BuildingSystem
         int source_floor = to_int(match_path, "floor");
         int source_room = to_int(match_path, "room");
 
-        try
-        {
-            json j = json::parse(request.get_body());
+        json j = json::parse(request.get_body());
 
-            if (source_room != 0)
-            {
-                std::shared_ptr<Equipment> equipment = j;
-                buildingSystem.add({source_building, source_floor, source_room}, equipment);
-            }
-            else
-            {
-                std::shared_ptr<Component> buildingComponent = j;
-                buildingSystem.add({source_building, source_floor, source_room}, buildingComponent);
-            }
-            responseBuilder.set_body("Item created\n");
-            responseBuilder.set_status_code(StatusCode::OK);
-
-        }
-        catch (...)
+        if (source_room != 0)
         {
-            responseBuilder.set_body("Something went wrong\n");
-            responseBuilder.set_status_code(StatusCode::Bad_Request);
+            std::shared_ptr<Equipment> equipment = j;
+            buildingSystem.add({source_building, source_floor, source_room}, equipment);
         }
+        else
+        {
+            std::shared_ptr<Component> buildingComponent = j;
+            buildingSystem.add({source_building, source_floor, source_room}, buildingComponent);
+        }
+        responseBuilder.set_body("Item created\n");
+        responseBuilder.set_status_code(StatusCode::OK);
     }
 
     void HttpAdapter::respond_to_delete(const smatch &match_path)
@@ -156,17 +147,10 @@ namespace BuildingSystem
         int source_floor = to_int(match_path, "floor");
         int source_room = to_int(match_path, "room");
         int source_equipment = to_int(match_path, "equipment");
-        try
-        {
-            buildingSystem.remove({source_building, source_floor, source_room, source_equipment});
-            responseBuilder.set_body("Item deleted.\n");
-            responseBuilder.set_status_code(StatusCode::OK);
-        }
-        catch (...)
-        {
-            responseBuilder.set_body("Something went wrong\n");
-            responseBuilder.set_status_code(StatusCode::Bad_Request);
-        }
+
+        buildingSystem.remove({source_building, source_floor, source_room, source_equipment});
+        responseBuilder.set_body("Item deleted.\n");
+        responseBuilder.set_status_code(StatusCode::OK);
         /*CO NAJMNIEJ BUILDING PODANE*/}
 
     void
@@ -188,17 +172,10 @@ namespace BuildingSystem
                 int destination_floor = to_int(match_path, "floor");
                 int destination_room = to_int(match_path, "room");
 
-                try
-                {
-                    buildingSystem.move(source_equipment, {source_building, source_floor, source_room},
-                                        {destination_building, destination_floor, destination_room});
-                    responseBuilder.set_status_code(StatusCode::OK);
-                }
-                catch (...)
-                {
-                    responseBuilder.set_body("Equipment couldn't be moved\n");
-                    responseBuilder.set_status_code(StatusCode::Not_Modified);
-                }
+
+                buildingSystem.move(source_equipment, {source_building, source_floor, source_room},
+                                    {destination_building, destination_floor, destination_room});
+                responseBuilder.set_status_code(StatusCode::OK);
             }
             else
             {
@@ -218,20 +195,22 @@ namespace BuildingSystem
         int building = to_int(match_path, "building");
         int floor = to_int(match_path, "floor");
         int room = to_int(match_path, "room");
-        std::__cxx11::string what = match_path["what"].str();
+        std::string what = match_path["what"].str();
 
-        try
-        {
-            std::string body = (what == "equipment" ? buildingSystem.get_equipment({building, floor, room}) :
-                                buildingSystem.get_structure({building, floor, room}));
-            responseBuilder.set_body(body);
-            responseBuilder.set_status_code(StatusCode::OK);
-        }
-        catch (...)
-        {
-            responseBuilder.set_body("Something went wrong\n");
-            responseBuilder.set_status_code(StatusCode::Bad_Request);
-        }
+        std::list path = {building, floor, room};
+        std::string body;
+
+        if(what.empty())
+            body = buildingSystem.get_full_info(path);
+        else if(what == "equipment")
+            body = buildingSystem.get_equipment(path);
+        else if(what == "structure")
+            body = buildingSystem.get_structure(path);
+        else
+            throw MethodNotImplemented();
+
+        responseBuilder.set_body(body);
+        responseBuilder.set_status_code(StatusCode::OK);
     }
 
     int HttpAdapter::to_int(const smatch &match_path, const std::string &name) const

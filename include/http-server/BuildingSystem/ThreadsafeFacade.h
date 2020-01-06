@@ -63,7 +63,7 @@ namespace BuildingSystem
          * @param path Path od indexes in a form of list, with possibility to indicate an earlier end by a zero.
          * @return Json as a string, no indents.
          */
-        std::string get_full_info(std::list<int> path){return "";}
+        std::string get_full_info(std::list<int> path);
 
         /*!
          * @brief Adds a node (Room, Floor, Building) to the system as a child of path specified node.

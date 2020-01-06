@@ -2,6 +2,8 @@
 // Created by dominik on 29.12.19.
 //
 
+#include <http-server/BuildingSystem/ThreadsafeFacade.h>
+
 #include "http-server/BuildingSystem/ThreadsafeFacade.h"
 #include "http-server/BuildingSystem/HttpAdapter.h"
 
@@ -37,7 +39,7 @@ namespace BuildingSystem
         auto result = find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->get_read_lock();
+        /*This function takse care of further locking*/
         return node->get_structure_json();
     }
 
@@ -46,8 +48,18 @@ namespace BuildingSystem
         auto result = find(path);
         auto& node = result.first;
         auto& mutexes = result.second;
-        auto node_lock = node->get_read_lock();
+        /*This function takse care of further locking*/
         return node->get_equipment_json();
+    }
+
+    std::string ThreadsafeFacade::get_full_info(std::list<int> path)
+    {
+        auto result = find(path);
+        auto& node = result.first;
+        auto& mutexes = result.second;
+        /*This function takse care of further locking*/
+        json j = node;
+        return j.dump(-1);
     }
 
     void ThreadsafeFacade::add(std::list<int> path, std::shared_ptr<Component> child)
@@ -131,6 +143,5 @@ namespace BuildingSystem
         destination->add_equipment(equipment);
         source->delete_equipment(eq_id);
     }
-
 #pragma clang diagnostic pop
 }
