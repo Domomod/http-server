@@ -13,7 +13,7 @@
 
 #include "CompositePattern/Component.h"
 #include "CompositePattern/Composite.h"
-#include "Equipment.h"
+#include "http-server/BuildingSystem/CompositePattern/Equipment.h"
 
 namespace BuildingSystem
 {

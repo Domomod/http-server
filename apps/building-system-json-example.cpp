@@ -2,8 +2,8 @@
 // Created by dominik on 03.01.20.
 //
 
-#include <http-server/Building/BuildingFactory.h>
-#include <http-server/Building/BuildingComponent.h>
+#include <http-server/Building/CompositePattern/ComponentFactory.h>
+#include <http-server/Building/CompositePattern/Component.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <memory>

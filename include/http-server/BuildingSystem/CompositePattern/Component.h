@@ -11,8 +11,8 @@
 #include <nlohmann/json.hpp>
 #include <shared_mutex>
 
-#include "http-server/Building/Equipment.h"
-#include "http-server/Building/Exceptions.h"
+#include "Equipment.h"
+#include "http-server/BuildingSystem/Exceptions.h"
 
 using json = nlohmann::json;
 

@@ -3,14 +3,14 @@
 //
 
 #include <http-server/tcp-server.h>
-#include <http-server/Building/BuildingSystem.h>
-#include <http-server/Building/HttpAdapter.h>
+#include <http-server/BuildingSystem/ThreadsafeFacade.h>
+#include <http-server/BuildingSystem/HttpAdapter.h>
 #include <iostream>
 
 
 int main(int argc, char *argv[])
 {
-    BuildingSystem buildingSystem;
+    BuildingSystem::ThreadsafeFacade buildingSystem;
     Threaded_tcp_server threaded_tcp_server(1235, buildingSystem.get_http_adapter());
     threaded_tcp_server.loop();
 }

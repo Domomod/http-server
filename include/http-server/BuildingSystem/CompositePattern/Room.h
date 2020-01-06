@@ -7,7 +7,7 @@
 
 
 #include "Component.h"
-#include "http-server/Building/Equipment.h"
+#include "Equipment.h"
 #include <vector>
 #include <map>
 #include <memory>

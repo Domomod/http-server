@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <memory>
-#include "http-server/Building/Equipment.h"
+#include "Equipment.h"
 #include "Component.h"
 #include "Room.h"
 

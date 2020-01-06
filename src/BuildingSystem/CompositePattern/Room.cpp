@@ -2,7 +2,7 @@
 // Created by Julia on 2019-12-20.
 //
 
-#include "http-server/Building/CompositePattern/Room.h"
+#include "http-server/BuildingSystem/CompositePattern/Room.h"
 
 namespace BuildingSystem
 {

@@ -2,8 +2,8 @@
 // Created by dominik on 29.12.19.
 //
 
-#include "http-server/Building/ThreadsafeFacade.h"
-#include "http-server/Building/HttpAdapter.h"
+#include "http-server/BuildingSystem/ThreadsafeFacade.h"
+#include "http-server/BuildingSystem/HttpAdapter.h"
 
 namespace BuildingSystem
 {

@@ -2,7 +2,7 @@
 // Created by Julia on 2019-12-20.
 //
 
-#include "http-server/Building/CompositePattern/ComponentFactory.h"
+#include "http-server/BuildingSystem/CompositePattern/ComponentFactory.h"
 
 namespace BuildingSystem
 {
