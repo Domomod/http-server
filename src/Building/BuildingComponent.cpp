@@ -18,11 +18,6 @@ int BuildingComponent::get_idx()
     return idx;
 }
 
-std::string BuildingComponent::get_name()
-{
-    return name;
-}
-
 std::string BuildingComponent::get_structure_json(int i)
 {
     json j;

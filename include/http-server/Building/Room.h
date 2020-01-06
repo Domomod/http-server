@@ -20,31 +20,65 @@ public:
 
     Room(int idx, std::string name);
 
+    /*!
+     * @brief Throws an exception, as Rooms need to be leafs of Building System tree.
+     */
     void add_child(std::shared_ptr<BuildingComponent> buildingComponent) override
     {   throw MethodNotImplemented();   }
 
-    void add_equipment(std::shared_ptr<Equipment> eq) override;
+    /*!
+     * @brief Adds equipment to the room.
+     */
+    void add_equipment(std::shared_ptr<Equipment> equipment) override;
 
+    /*!
+     * @brief Throws an exception, as Rooms need to be leafs of Building System tree.
+     */
     void delete_child(int floorId) override
     {   throw MethodNotImplemented();   }
 
+    /*!
+     * @brief Removes equipment from room. Throws exception if no such equipment found.
+     * @param equipmentId
+     */
     void delete_equipment(int equipmentId) override;
 
-    std::shared_ptr<BuildingComponent> get_child(int id) override;
+    /*!
+     * @brief Throws an exception, as Rooms need to be leafs of Building System tree.
+     */
+    std::shared_ptr<BuildingComponent> get_child(int id) override
+    {   throw MethodNotImplemented();   }
 
+    /*!
+     * @brief If found returns a equipment stored inside the room.
+     */
     std::shared_ptr<Equipment> get_equipment(int equipmentId) override;
 
+    /*!
+     * @brief Constructs a json representation of this room (omitting stored equipment).
+     * @param j reference to json constructing object.
+     */
     void create_structure_json(json &j) override;
 
+    /*!
+     * @brief Appends equipment json to a json representation of a vector.
+     * @param j reference to json constructing object.
+     */
     void create_equipment_json(json &j) override;
 
 protected:
+    /*!
+     * @brief Serializes object to json.
+     */
     void to_json(json &j) override;
 
+    /*!
+     * @brief Deserializes object from json.
+     */
     void from_json(const json &j) override;
 
 private:
-    std::map<int,std::shared_ptr<Equipment>> equipment;
+    std::map<int,std::shared_ptr<Equipment>> equipment_map;
 };
 
 

@@ -72,7 +72,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Equipment::Type, {
 })
 
 /*!
- * @brief Function used to provide variouse serialization operators by nlhomann's "Json for Modern C++".
+ * @brief Function used to provide various serialization operators by nlhomann's "Json for Modern C++".
  * @param j Json to contains a serialized equipment object.
  * @param e Equipment object to be serialized.
  */

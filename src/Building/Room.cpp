@@ -9,16 +9,16 @@ Room::Room(int idx, std::string name) : BuildingComponent(idx, name)
 
 }
 
-void Room::add_equipment(std::shared_ptr<Equipment> eq)
+void Room::add_equipment(std::shared_ptr<Equipment> equipment)
 {
-    equipment.insert({eq->get_id(), eq});
+    equipment_map.insert({equipment->get_id(), equipment});
 }
 
 std::shared_ptr<Equipment> Room::get_equipment(int idx)
 {
     try
     {
-        return equipment.at(idx);
+        return equipment_map.at(idx);
     }
     catch (...)
     {
@@ -28,7 +28,7 @@ std::shared_ptr<Equipment> Room::get_equipment(int idx)
 
 void Room::delete_equipment(int idx)
 {
-    equipment.erase(idx);
+    equipment_map.erase(idx);
 }
 
 void Room::create_structure_json(json &j)
@@ -39,20 +39,15 @@ void Room::create_structure_json(json &j)
 
 void  Room::create_equipment_json(json &j)
 {
-for (auto eq : equipment)
+for (auto eq : equipment_map)
     j.push_back(eq.second);
-}
-
-std::shared_ptr<BuildingComponent> Room::get_child(int id)
-{
-    return nullptr;
 }
 
 void Room::to_json(json &j)
 {
     BuildingComponent::to_json(j);
     j["@class-name"] = "Room";
-    j["equipment"] = equipment;
+    j["equipment"] = equipment_map;
 }
 
 void Room::from_json(const json &j)
@@ -60,5 +55,5 @@ void Room::from_json(const json &j)
     BuildingComponent::from_json(j);
     auto equipment_json = j.at("equipment");
     if(equipment_json.empty() == false)
-        j.at("equipment").get_to(equipment);
+        j.at("equipment").get_to(equipment_map);
 }
