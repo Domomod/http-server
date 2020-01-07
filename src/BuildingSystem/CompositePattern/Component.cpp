@@ -9,15 +9,18 @@
 
 namespace BuildingSystem
 {
-    Component::Component(int _idx, std::string _name)
+    Component::Component(int idx, int height, std::string name) : idx(idx), node_height(height), name(name)
     {
-        this->idx = _idx;
-        this->name = _name;
     }
 
     int Component::get_idx()
     {
         return idx;
+    }
+
+    int Component::get_node_height() const
+    {
+        return node_height;
     }
 
     std::string Component::get_structure_json(int i)
@@ -80,5 +83,4 @@ namespace BuildingSystem
             throw std::runtime_error("Incorrect Json: Not a " + type + ".");
         }
     }
-
 }

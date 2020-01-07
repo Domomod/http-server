@@ -9,7 +9,6 @@
 #include <list>
 #include <queue>
 #include <shared_mutex>
-#include "http-server/http/exceptions/HttpException.h"
 
 #include "CompositePattern/Component.h"
 #include "CompositePattern/Composite.h"
@@ -39,7 +38,7 @@ namespace BuildingSystem
         /*!
          * @brief Searches a building tree for a node. Follows indexes given path untill zero index or end of list is encountered.
          * @param path Path od indexes in a form of list, with possibility to indicate an earlier end by a zero.
-         * @return Desired node or ResourceNotFound thrown.
+         * @return Desired node, and a list of shared locks on nodes on the path. Only the desired node is not locked.
          */
         std::pair<std::shared_ptr<Component>, std::queue<std::shared_lock<std::shared_mutex>>>
         find(std::list<int> path);

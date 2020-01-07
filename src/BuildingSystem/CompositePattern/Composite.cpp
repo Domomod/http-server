@@ -3,43 +3,37 @@
 //
 
 #include <iostream>
+#include <http-server/BuildingSystem/CompositePattern/Composite.h>
+
 #include "http-server/BuildingSystem/CompositePattern/Composite.h"
 
 
 namespace BuildingSystem
 {
-    Composite::Composite(int idx, std::string name) : Component(idx, name)
+    Composite::Composite(int idx, int height, std::string name) : Component(idx, height, name)
     {
     }
 
-    void Composite::add_child(std::shared_ptr<Component> buildingComponent)
+    void Composite::add_child(std::shared_ptr<Component> child)
     {
-        buildingComponents.push_back(buildingComponent);
+        /*Check if given component is of proper type. Ex Buildings schould recieve floors, Floors schould recieve rooms*/
+        if(child->get_node_height() != node_height - 1) throw UnfittingComponentGiven();
+        if(buildingComponents.find(child->get_idx()) != buildingComponents.end()) throw ResourceAlreadyExists();
+
+        buildingComponents.emplace(child->get_idx(),child);
     }
 
     std::shared_ptr<Component> Composite::get_child(int id)
     {
-        for (std::shared_ptr<Component> component : buildingComponents)
-        {
-            if (component->get_idx() == id)
-            {
-                return component;
-            }
-        }
-        throw ResourceNotFound();
+        auto record = buildingComponents.find(id);
+        if( record == buildingComponents.end()) throw ResourceNotFound();
+        return record->second;
     }
 
-    void Composite::delete_child(int floorId)
+    void Composite::delete_child(int id)
     {
-        for (int i = 0; i < buildingComponents.size(); i++)
-        {
-            if (buildingComponents[i]->get_idx() == floorId)
-            {
-                buildingComponents.erase(buildingComponents.begin() + i);
-                return;
-            }
-        }
-        throw ResourceNotFound();
+        if( buildingComponents.find(id) == buildingComponents.end()) throw ResourceNotFound();
+        buildingComponents.erase(id);
     }
 
     void Composite::create_structure_json(json &j)
@@ -48,7 +42,7 @@ namespace BuildingSystem
         Component::to_json(j);
         j["idx"]=idx;
         j["name"]=name;
-        for (auto build: buildingComponents)
+        for (auto& [key, build]: buildingComponents)
         {
             json j2;
             build->create_structure_json(j2);
@@ -59,7 +53,7 @@ namespace BuildingSystem
     void Composite::create_equipment_json(json &j)
     {
         auto read_lock = Component::get_read_lock();
-        for (auto build: buildingComponents)
+        for (auto& [key, build]: buildingComponents)
             build->create_equipment_json(j);
     }
 
@@ -75,5 +69,28 @@ namespace BuildingSystem
     {
         Component::from_json(j);
         j.at("buildingComponents").get_to(buildingComponents);
+
+        if(!is_balanced())
+        {
+            throw UnbalancedCompositeGiven();
+        }
+
+        auto & front_child = buildingComponents.begin()->second;
+        node_height = front_child->get_node_height() + 1;
+    }
+
+    bool Composite::is_balanced()
+    {
+        if(buildingComponents.empty())
+            return  true;
+        auto & front_child = buildingComponents.begin()->second;
+
+        int height = front_child->get_node_height();
+        for(auto& [key, child] : buildingComponents)
+        {
+            if(child->get_node_height() != height)
+                return false;
+        }
+        return true;
     }
 }

@@ -21,6 +21,9 @@ namespace BuildingSystem
     {
     private:
         std::shared_ptr<Composite> constructedComponent;
+        std::shared_ptr<Component> lastFloor;
+        std::shared_ptr<Component> lastRoom;
+
         int idx = 0;
         int floor_idx = 0;
         int room_idx = 0;

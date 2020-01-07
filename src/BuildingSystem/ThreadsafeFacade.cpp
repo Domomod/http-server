@@ -16,7 +16,7 @@ namespace BuildingSystem
 
     ThreadsafeFacade::ThreadsafeFacade()
     {
-        root.reset(new Composite(0, "System root"));
+        root.reset(new Composite(0, 3, "System root"));
     }
 
     std::pair<std::shared_ptr<Component>, std::queue<std::shared_lock<std::shared_mutex>>>
@@ -82,7 +82,7 @@ namespace BuildingSystem
 
     void ThreadsafeFacade::remove(std::list<int> path)
     {
-        if (!path.empty())
+        if (path.front()!=0 && !path.empty())
         {
             int removed_id = path.back();
             path.pop_back();
@@ -94,7 +94,7 @@ namespace BuildingSystem
         }
         else
         {
-            root.reset(new Composite(0, "System root"));
+            root.reset(new Composite(0, 0, "System root"));
         }
     }
 

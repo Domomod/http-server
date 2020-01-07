@@ -15,27 +15,27 @@ namespace BuildingSystem
     {
         floor_idx = 0;
         room_idx = 0;
-        constructedComponent.reset(new Composite(idx, ""));
+        constructedComponent.reset(new Composite(idx, 2, ""));
     }
 
     void ComponentFactory::add_floor(const std::string &name)
     {
         floor_idx++;
-        constructedComponent->add_child(std::make_shared<Composite>(floor_idx, name));
+        lastFloor.reset(new Composite(floor_idx, 1, name));
+        constructedComponent->add_child(lastFloor);
         room_idx = 0;
     }
 
     void ComponentFactory::add_room(const std::string &name)
     {
         room_idx++;
-        constructedComponent->buildingComponents.back()->add_child(std::make_shared<Room>(room_idx, name));
+        lastRoom.reset(new Room(room_idx, name));
+        lastFloor->add_child(lastRoom);
     }
 
     void ComponentFactory::add_equipment(std::shared_ptr<Equipment> equipment)
     {
-        std::dynamic_pointer_cast<Composite>(
-                constructedComponent->buildingComponents.back()
-        )->buildingComponents.back()->add_equipment(std::move(equipment));
+        lastRoom->add_equipment(std::move(equipment));
     }
 
     std::shared_ptr<Composite> ComponentFactory::get_result(const std::string &name)

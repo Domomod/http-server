@@ -5,7 +5,7 @@
 #ifndef HTTP_SERVER_BUILDINGCOMPOSITE_H
 #define HTTP_SERVER_BUILDINGCOMPOSITE_H
 
-#include <vector>
+#include <map>
 #include <memory>
 #include "Equipment.h"
 #include "Component.h"
@@ -19,12 +19,12 @@ namespace BuildingSystem
     public:
         Composite() = default;
 
-        Composite(int idx, std::string name);
+        Composite(int idx, int height, std::string name);
 
         /*!
          * @brief Adds a node to this composite.
          */
-        void add_child(std::shared_ptr<Component> buildingComponent) override;
+        void add_child(std::shared_ptr<Component> child) override;
 
         /*!
          * @brief Throws exception as only Rooms are allowed to have equipment.
@@ -35,7 +35,7 @@ namespace BuildingSystem
         /*!
          * @brief Removes a node from this composite.
          */
-        void delete_child(int floorId) override;
+        void delete_child(int id) override;
 
         /*!
          * @brief Throws exception as only Rooms are allowed to have equipment.
@@ -53,6 +53,11 @@ namespace BuildingSystem
          */
         std::shared_ptr<Equipment> get_equipment(int equipmentId) override
         {   throw MethodNotImplemented();   }
+
+        /*!
+         * @brief Checks if all branches coming from this node are of the same length.
+         */
+        bool is_balanced() override;
 
         /*!
          * @brief Constructs a json representation of this node subtree structure.
@@ -79,7 +84,7 @@ namespace BuildingSystem
         void from_json(const json &j) override;
 
     private:
-        std::vector<std::shared_ptr<Component>> buildingComponents;
+        std::map<int, std::shared_ptr<Component>> buildingComponents;
     };
 }
 

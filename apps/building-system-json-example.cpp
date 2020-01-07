@@ -2,23 +2,25 @@
 // Created by dominik on 03.01.20.
 //
 
-#include <http-server/Building/CompositePattern/ComponentFactory.h>
-#include <http-server/Building/CompositePattern/Component.h>
+#include <http-server/BuildingSystem/CompositePattern/ComponentFactory.h>
+#include <http-server/BuildingSystem/CompositePattern/Component.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <memory>
 
 using json = nlohmann::json;
 
+using namespace BuildingSystem;
+
 int main()
 {
-    std::shared_ptr<BuildingComponent> building = BuildingFactory::get_example();
+    std::shared_ptr<Component> building = ComponentFactory::get_example();
 
     json j = building;
 
     std::cout << j.dump(4);
 
-    std::shared_ptr<BuildingComponent> building_from_json;
+    std::shared_ptr<Component> building_from_json;
 
     j.get_to(building_from_json);
 

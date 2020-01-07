@@ -37,27 +37,29 @@ namespace BuildingSystem
         );
 
         post_regex = sregex::compile(
-                "^POST /buildings(?P<building>[[:digit:]]+)"
+                "^POST /buildings/(?P<building>[[:digit:]]+)"
                 "/floors/(?P<floor>[[:digit:]]+)"
                 "/rooms/(?P<room>[[:digit:]]+)"
                 "/equipment/(?P<equipment>[[:digit:]]+)"
+                "\\?destination="
+                "/buildings/(?P<destBuilding>[[:digit:]]+)"
+                "/floors/(?P<destFloor>[[:digit:]]+)"
+                "/rooms/(?P<destRoom>[[:digit:]]+)"
                 "$"
         );
-        destination_regex = sregex::compile(
-                "^/buildings(?P<building>[[:digit:]]+)"
-                "/floors/(?P<floor>[[:digit:]]+)"
-                "/rooms/(?P<room>[[:digit:]]+)"
-                "$"
-        );
+
         delete_regex = sregex::compile(
-                "^DELETE /buildings/(?P<building>[[:digit:]]+)"
+                "^DELETE /buildings"
                 "("
-                /**/"/floors/(?P<floor>[[:digit:]]+)"
+                /**/"/(?P<building>[[:digit:]]+)"
                 /**/"("
-                /*  */"/rooms/(?P<room>[[:digit:]]+)"
-                /*  */"("
-                /*      */"/equipment/(?P<equipment>[[:digit:]]+)"
-                /*  */")?"
+                /*    */"/floors/(?P<floor>[[:digit:]]+)"
+                /*    */"("
+                /*        */"/rooms/(?P<room>[[:digit:]]+)"
+                /*        */"("
+                /*            */"/equipment/(?P<equipment>[[:digit:]]+)"
+                /*        */")?"
+                /*   */")?"
                 /**/")?"
                 ")?$"
         );
@@ -88,33 +90,67 @@ namespace BuildingSystem
     {
         responseBuilder.init();
 
-        std::string str = request.get_request();
-        smatch match_path;
-        if (regex_search(str, match_path, get_regex))
+        try
         {
-            respond_to_get(match_path);
-        }
-        else if (regex_search(str, match_path, post_regex))
-        {
-            respond_to_post(match_path);
-        }
-        else if (regex_search(str, match_path, delete_regex))
-        {
-            respond_to_delete(match_path);
-        }
-        else if (regex_search(str, match_path, put_regex))
-        {
-            respond_to_put(match_path);
+            std::string str = request.get_request();
+            smatch match_path;
+            if (regex_search(str, match_path, get_regex))
+            {
+                respond_to_get(match_path);
+            }
+            else if (regex_search(str, match_path, post_regex))
+            {
+                respond_to_post(match_path);
+            }
+            else if (regex_search(str, match_path, delete_regex))
+            {
+                respond_to_delete(match_path);
+            }
+            else if (regex_search(str, match_path, put_regex))
+            {
+                respond_to_put(match_path);
 
+            }
+            else
+            {
+                responseBuilder.set_body("Request not recognized\n");
+                responseBuilder.set_status_code(StatusCode::Bad_Request);
+            }
         }
-        else
+        catch (MethodNotImplemented& e)
         {
-            responseBuilder.set_body("Request not recognized\n");
+            responseBuilder.set_body(std::string(e.what()));
             responseBuilder.set_status_code(StatusCode::Not_Implemented);
         }
+        catch (ResourceNotFound& e)
+        {
+            responseBuilder.set_body(std::string(e.what()));
+            responseBuilder.set_status_code(StatusCode::Not_Found);
+        }
+        catch (UnfittingComponentGiven& e)
+        {
+            responseBuilder.set_body(std::string(e.what()));
+            responseBuilder.set_status_code(StatusCode::Bad_Request);
+        }
+        catch (UnbalancedCompositeGiven& e)
+        {
+            responseBuilder.set_body(std::string(e.what()));
+            responseBuilder.set_status_code(StatusCode::Bad_Request);
+        }
+        catch (SourceIsDestination& e)
+        {
+            responseBuilder.set_body(std::string(e.what()));
+            responseBuilder.set_status_code(StatusCode::Bad_Request);
+        }
+        catch (std::runtime_error& e)
+        {
+            responseBuilder.set_body(std::string(e.what()));
+            responseBuilder.set_status_code(StatusCode::Internal_Server_Error);
+        }
+
         responseBuilder.setHeaderInfo({{"Server",       {"BuildingSystem"}},
                                        {"Connection",   {"Keep-Alive"}},
-                                       {"Content-Type", {"text/xml"}}
+                                       {"Content-Type", {"text/json"}}
                                       });
         return responseBuilder.getResponse();
     }
@@ -156,38 +192,24 @@ namespace BuildingSystem
     void
     HttpAdapter::respond_to_post(const smatch &match_path)
     {
-        auto values = request.get_field_value("destination");
-        if (values.size() == 1 && values[0] != HttpMessage::NO_SUCH_KEY)
-        {
-            smatch match_destination;
-            if (regex_search(values[0], match_destination, destination_regex))
-            {
-                int source_building = to_int(match_path, "building");
-                int source_floor = to_int(match_path, "floor");
-                int source_room = to_int(match_path, "room");
-                int source_equipment = to_int(match_path, "equipment");
+        int source_building = to_int(match_path, "building");
+        int source_floor = to_int(match_path, "floor");
+        int source_room = to_int(match_path, "room");
+        int source_equipment = to_int(match_path, "equipment");
 
 
-                int destination_building = to_int(match_path, "building");
-                int destination_floor = to_int(match_path, "floor");
-                int destination_room = to_int(match_path, "room");
+        int destination_building = to_int(match_path, "destBuilding");
+        int destination_floor = to_int(match_path, "destFloor");
+        int destination_room = to_int(match_path, "destRoom");
 
+        std::list source({source_building, source_floor, source_room});
+        std::list destination({destination_building, destination_floor, destination_room});
+        if(source == destination)
+            throw SourceIsDestination();
 
-                buildingSystem.move(source_equipment, {source_building, source_floor, source_room},
-                                    {destination_building, destination_floor, destination_room});
-                responseBuilder.set_status_code(StatusCode::OK);
-            }
-            else
-            {
-                responseBuilder.set_body("Inproper destination path.\n");
-                responseBuilder.set_status_code(StatusCode::Not_Found);
-            }
-        }
-        else
-        {
-            responseBuilder.set_body("Expected a destination header, got none.\n");
-            responseBuilder.set_status_code(StatusCode::Precondition_Failed);
-        }
+        buildingSystem.move(source_equipment, source, destination);
+        responseBuilder.set_status_code(StatusCode::OK);
+
     }
 
     void HttpAdapter::respond_to_get(const smatch &match_path)
