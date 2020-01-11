@@ -18,11 +18,9 @@ namespace HttpServer
                                                                      queue_size(queue_size),
                                                                      threadBeheaviour(threadBeheaviour)
     {
-        char reuse_addr_val = 1;
-
         init_server_adress();
 
-        init_socket_descriptor_with_error_check(reuse_addr_val);
+        init_socket_descriptor_with_error_check();
 
         bind_with_error_check();
 
@@ -85,15 +83,17 @@ namespace HttpServer
     }
 
 
-    void Threaded_tcp_server::init_socket_descriptor_with_error_check(char &reuse_addr_val)
+    void Threaded_tcp_server::init_socket_descriptor_with_error_check()
     {
+        long reuse_addr_val=1;
+
         server_socket_descriptor = socket(AF_INET, SOCK_STREAM, 0);
         if (server_socket_descriptor < 0)
         {
             std::cerr << "Błąd przy próbie utworzenia gniazda..\n";
             exit(1);
         }
-        setsockopt(server_socket_descriptor, SOL_SOCKET, SO_REUSEADDR, (char *) &reuse_addr_val,
+        setsockopt(server_socket_descriptor, SOL_SOCKET, SO_REUSEADDR, &reuse_addr_val,
                    sizeof(reuse_addr_val));
     }
 

@@ -66,7 +66,10 @@ namespace BuildingSystem
     {
         Component::from_json(j);
         j.at("buildingComponents").get_to(buildingComponents);
-
-        auto & front_child = buildingComponents.begin()->second;
+        for (auto& [key, build]: buildingComponents)
+        {
+            if(key != build->get_idx())
+                throw IllformedBuildingJsonStructure();
+        }
     }
 }

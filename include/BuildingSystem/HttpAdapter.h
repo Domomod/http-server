@@ -27,8 +27,8 @@ namespace BuildingSystem
         HttpServer::Request request;
         sregex get_regex;
         sregex post_regex;
-        sregex put_regex;
-        sregex destination_regex;
+        sregex put_for_adding_regex;
+        sregex put_for_moving_regex;
         sregex delete_regex;
     public:
         explicit HttpAdapter(ThreadsafeFacade &buildingSystem);
@@ -52,7 +52,7 @@ namespace BuildingSystem
         void respond_to_get(const smatch &match_path);
 
         /*!
-         * @brief POST requests are used to move equipment across the system.
+         * @brief POST requests are used to insert equipment, because they have automatically generated id.
          * @param match_path result of a succesfull matching to a POST request regular expression.
          */
         void respond_to_post(const smatch &match_path);
@@ -64,10 +64,16 @@ namespace BuildingSystem
         void respond_to_delete(const smatch &match_path);
 
         /*!
-         * @brief PUT requests are used to insert or replace a resource in the system.
+         * @brief Responds to PUT requests which URI match with add resource operation.
          * @param match_path result of a succesfull matching to a POST request regular expression.
          */
-        void respond_to_put(const smatch &match_path);
+        void respond_to_put_for_adding(const smatch &match_path);
+
+        /*!
+         * @brief Responds to PUT requests which URI match with add resource operation.
+         * * @param match_path result of a succesfull matching to a POST request regular expression.
+         */
+        void respond_to_put_for_moving(const smatch &match_path);
 
         /*!
          * @brief Retrieves a named capture from regular expression matching result.

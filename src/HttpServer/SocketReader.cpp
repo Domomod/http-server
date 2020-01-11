@@ -25,7 +25,7 @@ namespace HttpServer
 
             if(n <= 0)
             {
-                break;
+                this->end_connection = true;
             }
 
             buf[n] = 0;
@@ -44,6 +44,11 @@ namespace HttpServer
     SocketReader::~SocketReader()
     {
         close(connection_socket_descriptor);
+    }
+
+    bool SocketReader::is_connection_ended() const
+    {
+        return !end_connection;
     }
 
 #pragma clang diagnostic pop

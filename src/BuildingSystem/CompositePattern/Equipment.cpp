@@ -50,7 +50,7 @@ namespace BuildingSystem
         catch (...)
         {
             e.reset();
-            throw std::runtime_error("Incorrect Json: Not an Equipment object representation.");
+            throw IncorrectJson();
         }
     }
 

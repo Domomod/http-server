@@ -20,11 +20,14 @@ namespace HttpServer
 
         Request get_request();
 
+        bool is_connection_ended() const;
+
     private:
         int connection_socket_descriptor;
         char buf[101];
         std::__cxx11::string unprocessed_data;
         RequestParser httpParser;
+        bool end_connection = true;
     };
 }
 

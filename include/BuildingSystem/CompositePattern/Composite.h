@@ -105,7 +105,7 @@ namespace BuildingSystem
         {
             if (typeid(*child).hash_code() != typeid(Room).hash_code())
             {
-                throw UnfittingComponentGiven();
+                throw UnfittingObjectGiven();
             }
             Composite::add_child(child);
         }
@@ -130,7 +130,7 @@ namespace BuildingSystem
             {
                 j.at("@class-name").get_to(type);
             }
-            catch (...) /*I have no idea what json class throws*/
+            catch (json::out_of_range & e)
             {
                 throw IncorrectJson();
             }
@@ -162,7 +162,7 @@ namespace BuildingSystem
         {
             if (typeid(*child).hash_code() != typeid(Floor).hash_code())
             {
-                throw UnfittingComponentGiven();
+                throw UnfittingObjectGiven();
             }
             Composite::add_child(child);
         }
@@ -187,7 +187,7 @@ namespace BuildingSystem
             {
                 j.at("@class-name").get_to(type);
             }
-            catch (...) /*I have no idea what json class throws*/
+            catch (json::out_of_range & e) /*I have no idea what json class throws*/
             {
                 throw IncorrectJson();
             }
@@ -219,7 +219,7 @@ namespace BuildingSystem
         {
             if (typeid(*child).hash_code() != typeid(Building).hash_code())
             {
-                throw UnfittingComponentGiven();
+                throw UnfittingObjectGiven();
             }
             Composite::add_child(child);
         }
@@ -244,7 +244,7 @@ namespace BuildingSystem
             {
                 j.at("@class-name").get_to(type);
             }
-            catch (...) /*I have no idea what json class throws*/
+            catch (json::out_of_range & e) /*I have no idea what json class throws*/
             {
                 throw IncorrectJson();
             }

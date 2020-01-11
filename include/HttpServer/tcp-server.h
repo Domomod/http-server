@@ -57,7 +57,7 @@ namespace HttpServer
          * @brief Creates a server socket descriptor. Stops the program on failure.
          * @param reuse_addr_val If set on true, server will be able to reopen on the same port more frequently.
          */
-        void init_socket_descriptor_with_error_check(char &reuse_addr_val);
+        void init_socket_descriptor_with_error_check();
 
         /*!
          * @brief Assigns an adress (often refered to as a 'name') to a socket.
