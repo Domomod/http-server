@@ -20,6 +20,7 @@ HttpRequest BsdSocket_HttpRequestReader::get_request()
     {
         ssize_t n;
         n = read(connection_socket_descriptor, buf, sizeof(buf) - 1);
+        //TODO: -1 i 0
         buf[n] = 0;
         unprocessed_data += buf;
 

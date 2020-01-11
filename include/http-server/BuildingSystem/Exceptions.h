@@ -28,6 +28,7 @@ namespace BuildingSystem
 
     DEFINE_EXCEPTION(UnfittingComponentGiven, "Provided object does not fit it's destination.\n");
 
+    //IllformedComposite
     DEFINE_EXCEPTION(UnbalancedCompositeGiven, "Provided object does not fit it's destination.\n");
 
     DEFINE_EXCEPTION(SourceIsDestination, "Destination need's to be diffrent than source.\n");

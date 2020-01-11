@@ -27,7 +27,6 @@ namespace BuildingSystem
         std::shared_ptr<Component> root;
     public:
         ThreadsafeFacade();
-
         /*!
          * @brief Creates an adapter which provides access to this object via a http communication protocol.
          * Such adapters can be passed as a functor for thread behaviour.
