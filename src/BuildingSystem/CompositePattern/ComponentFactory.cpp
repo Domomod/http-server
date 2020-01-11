@@ -15,13 +15,13 @@ namespace BuildingSystem
     {
         floor_idx = 0;
         room_idx = 0;
-        constructedComponent.reset(new Composite(idx, 2, ""));
+        constructedComponent.reset(new Building(idx, ""));
     }
 
     void ComponentFactory::add_floor(const std::string &name)
     {
         floor_idx++;
-        lastFloor.reset(new Composite(floor_idx, 1, name));
+        lastFloor.reset(new Floor(floor_idx, name));
         constructedComponent->add_child(lastFloor);
         room_idx = 0;
     }

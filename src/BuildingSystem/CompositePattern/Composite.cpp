@@ -9,14 +9,12 @@
 
 namespace BuildingSystem
 {
-    Composite::Composite(int idx, int height, std::string name) : Component(idx, height, name)
+    Composite::Composite(int idx, std::string name) : Component(idx, name)
     {
     }
 
     void Composite::add_child(std::shared_ptr<Component> child)
     {
-        /*Check if given component is of proper type. Ex Buildings schould recieve floors, Floors schould recieve rooms*/
-        if(child->get_node_height() != node_height - 1) throw UnfittingComponentGiven();
         if(buildingComponents.find(child->get_idx()) != buildingComponents.end()) throw ResourceAlreadyExists();
 
         buildingComponents.emplace(child->get_idx(),child);
@@ -60,7 +58,7 @@ namespace BuildingSystem
     {
         auto read_lock = Component::get_read_lock();
         Component::to_json(j);
-        j["@class-name"] = "BuildingComposite";
+        j["@class-name"] = typeid(Composite).name();
         j["buildingComponents"] = buildingComponents;
     }
 
@@ -69,27 +67,6 @@ namespace BuildingSystem
         Component::from_json(j);
         j.at("buildingComponents").get_to(buildingComponents);
 
-        if(!is_balanced())
-        {
-            throw UnbalancedCompositeGiven();
-        }
-
         auto & front_child = buildingComponents.begin()->second;
-        node_height = front_child->get_node_height() + 1;
-    }
-
-    bool Composite::is_balanced()
-    {
-        if(buildingComponents.empty())
-            return  true;
-        auto & front_child = buildingComponents.begin()->second;
-
-        int height = front_child->get_node_height();
-        for(auto& [key, child] : buildingComponents)
-        {
-            if(child->get_node_height() != height)
-                return false;
-        }
-        return true;
     }
 }

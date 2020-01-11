@@ -26,7 +26,7 @@ namespace BuildingSystem
     public:
         Component() = default;
 
-        Component(int idx, int height, std::string name);
+        Component(int idx, std::string name);
 
         /*!
          * @brief Implementation schould either store recieved object or inform user about method being unsuported.
@@ -69,11 +69,6 @@ namespace BuildingSystem
         std::unique_lock<std::shared_mutex> get_write_lock();
 
         /*!
-         * @brief Checks if all branches coming from this node are of the same length.
-         */
-        virtual bool is_balanced() = 0;
-
-        /*!
          * @brief Calls create_structure_json(json &j)
          * @param i Indentation for pretty writing, use -1 to remove any redundant whitespaces.
          * @return Json representation of a node's structure stored in a string.
@@ -91,8 +86,6 @@ namespace BuildingSystem
          * @brief Returns idx
          */
         int get_idx();
-
-        int get_node_height() const;
 
         /*!
          * @brief Function used in process of creating a json representation of of the object subtree data, except to stored equipment.
@@ -116,7 +109,6 @@ namespace BuildingSystem
         virtual void from_json(const json &j);
 
         int idx;
-        int node_height;
         std::string name;
         std::shared_mutex guard;
     };

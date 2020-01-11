@@ -8,7 +8,7 @@
 
 namespace BuildingSystem
 {
-    Room::Room(int idx, std::string name) : Component(idx, 0, name)
+    Room::Room(int idx, std::string name) : Component(idx, name)
     {
 
     }
@@ -53,7 +53,7 @@ namespace BuildingSystem
     {
         auto read_lock = Component::get_read_lock();
         Component::to_json(j);
-        j["@class-name"] = "Room";
+        j["@class-name"] = typeid(Room).name();
         j["equipment"] = equipment_map;
     }
 
@@ -63,10 +63,5 @@ namespace BuildingSystem
         auto equipment_json = j.at("equipment");
         if(equipment_json.empty() == false)
             j.at("equipment").get_to(equipment_map);
-    }
-
-    bool Room::is_balanced()
-    {
-        return true;
     }
 }

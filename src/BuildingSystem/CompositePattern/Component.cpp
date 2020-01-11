@@ -9,18 +9,13 @@
 
 namespace BuildingSystem
 {
-    Component::Component(int idx, int height, std::string name) : idx(idx), node_height(height), name(name)
+    Component::Component(int idx, std::string name) : idx(idx), name(name)
     {
     }
 
     int Component::get_idx()
     {
         return idx;
-    }
-
-    int Component::get_node_height() const
-    {
-        return node_height;
     }
 
     std::string Component::get_structure_json(int i)
@@ -70,17 +65,21 @@ namespace BuildingSystem
         try
         {
             j.at("@class-name").get_to(type);
-            if (type == "BuildingComposite")
-                a.reset(new Composite());
-            if (type == "Room")
+            if (type == typeid(Room).name())
                 a.reset(new Room());
-
-            a->from_json(j);
+            if (type == typeid(System).name())
+                a.reset(new System());
+            if (type == typeid(Floor).name())
+                a.reset(new Floor());
+            if (type == typeid(Building).name())
+                a.reset(new Building());
         }
         catch (...)
         {
             a.reset();
-            throw std::runtime_error("Incorrect Json: Not a " + type + ".");
+            throw IncorrectJson();
         }
+
+        a->from_json(j);
     }
 }

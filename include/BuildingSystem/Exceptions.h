@@ -28,8 +28,9 @@ namespace BuildingSystem
 
     DEFINE_EXCEPTION(UnfittingComponentGiven, "Provided object does not fit it's destination.\n");
 
-    //IllformedComposite
-    DEFINE_EXCEPTION(UnbalancedCompositeGiven, "Provided object does not fit it's destination.\n");
+    DEFINE_EXCEPTION(IncorrectJson, "Provided object contained invalid json syntax, has missing fields or represents another class.\n");
+
+    DEFINE_EXCEPTION(IllformedBuildingJsonStructure, "Provided json contained invalid building component structure. For example Floor containing a Building.\n");
 
     DEFINE_EXCEPTION(SourceIsDestination, "Destination need's to be diffrent than source.\n");
 }

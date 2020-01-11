@@ -16,7 +16,7 @@ namespace BuildingSystem
 
     ThreadsafeFacade::ThreadsafeFacade()
     {
-        root.reset(new Composite(0, 3, "System root"));
+        root.reset(new System(0, "System root"));
     }
 
     std::pair<std::shared_ptr<Component>, std::queue<std::shared_lock<std::shared_mutex>>>
@@ -94,7 +94,7 @@ namespace BuildingSystem
         }
         else
         {
-            root.reset(new Composite(0, 0, "System root"));
+            root.reset(new System(0, "System root"));
         }
     }
 

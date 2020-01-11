@@ -130,7 +130,7 @@ namespace BuildingSystem
             responseBuilder.set_body(std::string(e.what()));
             responseBuilder.set_status_code(StatusCode::Bad_Request);
         }
-        catch (UnbalancedCompositeGiven& e)
+        catch (IllformedBuildingJsonStructure& e)
         {
             responseBuilder.set_body(std::string(e.what()));
             responseBuilder.set_status_code(StatusCode::Bad_Request);

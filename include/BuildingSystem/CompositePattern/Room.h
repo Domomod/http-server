@@ -57,11 +57,6 @@ namespace BuildingSystem
         std::shared_ptr<Equipment> get_equipment(int equipmentId) override;
 
         /*!
-         * @brief Checks if all branches coming from this node are of the same length. As room is the leaf of the tree, it is always balanced.
-         */
-        bool is_balanced() override;
-
-        /*!
          * @brief Constructs a json representation of this room (omitting stored equipment).
          * @param j reference to json constructing object.
          */
