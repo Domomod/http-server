@@ -7,7 +7,7 @@
 #include "BuildingSystem/HttpAdapter.h"
 
 using namespace boost::xpressive;
-
+using namespace HttpServer;
 namespace BuildingSystem
 {
     HttpAdapter::HttpAdapter(ThreadsafeFacade &buildingSystem) : buildingSystem(buildingSystem)
@@ -67,14 +67,14 @@ namespace BuildingSystem
 
     void HttpAdapter::operator()(int connection_socket_descriptor)
     {
-        HttpRequestReader *httpRequestReader = new BsdSocket_HttpRequestReader(connection_socket_descriptor);
-        HttpResponseBuilder httpResponseBuilder;
-        request = httpRequestReader->get_request();
+        SocketReader httpRequestReader(connection_socket_descriptor);
+        ResponseBuilder httpResponseBuilder;
+        request = httpRequestReader.get_request();
 
         std::cout << "@\t\tRECIEVED A REQUEST FROM: " << connection_socket_descriptor << "\n"
                   << request.get_request_line() << "\n";
 
-        HttpResponse response = respond_to_request();
+        Response response = respond_to_request();
 
         std::string strResponse = response.to_str();
 
@@ -82,11 +82,9 @@ namespace BuildingSystem
                   << response.get_response_line() << "\n";
 
         write(connection_socket_descriptor, strResponse.c_str(), strResponse.size());
-
-        delete httpRequestReader;
     }
 
-    HttpResponse HttpAdapter::respond_to_request()
+    HttpServer::Response HttpAdapter::respond_to_request()
     {
         responseBuilder.init();
 

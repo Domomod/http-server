@@ -5,11 +5,11 @@
 #ifndef HTTP_SERVER_HTTPRESPONSER_H
 #define HTTP_SERVER_HTTPRESPONSER_H
 
-#include <HttpServer/HttpResponse.h>
-#include <HttpServer/HttpRequest.h>
-#include <HttpServer/HttpResponseBuilder.h>
-#include <HttpServer/HttpRequestReader.h>
-#include <HttpServer/BsdSocket_HttpRequestReader.h>
+#include <HttpServer/Response.h>
+#include <HttpServer/Request.h>
+#include <HttpServer/ResponseBuilder.h>
+#include <HttpServer/SocketReader.h>
+#include <HttpServer/SocketReader.h>
 
 #include "ThreadsafeFacade.h"
 #include <memory>
@@ -23,15 +23,15 @@ namespace BuildingSystem
     class HttpAdapter {
     private:
         ThreadsafeFacade& buildingSystem;
-        HttpResponseBuilder responseBuilder;
-        HttpRequest request;
+        HttpServer::ResponseBuilder responseBuilder;
+        HttpServer::Request request;
         sregex get_regex;
         sregex post_regex;
         sregex put_regex;
         sregex destination_regex;
         sregex delete_regex;
     public:
-        HttpAdapter(ThreadsafeFacade &buildingSystem);
+        explicit HttpAdapter(ThreadsafeFacade &buildingSystem);
 
         /*!
          * @brief Handles communication with a socket, request parsing, responding and closing connection.
@@ -43,7 +43,7 @@ namespace BuildingSystem
          * @brief Responds to a http request.
          * @return Server response to given request
          */
-        HttpResponse respond_to_request();
+        HttpServer::Response respond_to_request();
 
         /*!
          * @brief GET requests are used to gather information about system.

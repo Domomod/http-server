@@ -11,10 +11,13 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string_regex.hpp>
 #include <iostream>
-#include <HttpServer/HttpMessage.h>
+#include <HttpServer/Message.h>
 
-class HttpRequest;
 
+namespace HttpServer
+{
+
+    class Request;
 
 /*!
  * @brief Http request representation.
@@ -23,25 +26,26 @@ class HttpRequest;
  *          vectors of coresponding values in a dictionary. Both values and keys are stored as strings.\n
  *          Conversion of those values is left to the class user.\n
  */
-class HttpRequest : public HttpMessage
-{
-public:
-    HttpRequest()
-    = default;
+    class Request : public Message
+    {
+    public:
+        Request()
+        = default;
 
-    const std::string &get_request() const;
+        const std::string &get_request() const;
 
-    std::string get_request_line() const;
+        std::string get_request_line() const;
 
-    /*!
-     * @brief Prints the request in human readable way on the standard output;
-     */
-    std::string to_str() const override;
-private:
-    std::string request;
+        /*!
+         * @brief Prints the request in human readable way on the standard output;
+         */
+        std::string to_str() const override;
 
-    friend class HttpParser;
-};
+    private:
+        std::string request;
 
+        friend class RequestParser;
+    };
+}
 
 #endif //HTTP_SERVER_HTTPREQUEST_H
