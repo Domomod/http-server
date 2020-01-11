@@ -1,7 +1,7 @@
 //
 // Created by dominik on 04.11.19.
 //
-#include <http-server/http/HttpRequest.h>
+#include <HttpServer/HttpRequest.h>
 
 
 std::string HttpRequest::to_str() const

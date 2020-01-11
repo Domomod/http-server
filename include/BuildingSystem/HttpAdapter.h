@@ -5,11 +5,11 @@
 #ifndef HTTP_SERVER_HTTPRESPONSER_H
 #define HTTP_SERVER_HTTPRESPONSER_H
 
-#include <http-server/http/HttpResponse.h>
-#include <http-server/http/HttpRequest.h>
-#include <http-server/http/HttpResponseBuilder.h>
-#include <http-server/http/HttpRequestReader.h>
-#include <http-server/bsd/BsdSocket_HttpRequestReader.h>
+#include <HttpServer/HttpResponse.h>
+#include <HttpServer/HttpRequest.h>
+#include <HttpServer/HttpResponseBuilder.h>
+#include <HttpServer/HttpRequestReader.h>
+#include <HttpServer/BsdSocket_HttpRequestReader.h>
 
 #include "ThreadsafeFacade.h"
 #include <memory>

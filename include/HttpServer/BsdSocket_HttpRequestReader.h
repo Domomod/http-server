@@ -5,8 +5,8 @@
 #ifndef HTTP_SERVER_BSDSOCKET_HTTPREQUESTREADER_H
 #define HTTP_SERVER_BSDSOCKET_HTTPREQUESTREADER_H
 
-#include <http-server/http/HttpRequestReader.h>
-#include <http-server/http/HttpRequest.h>
+#include <HttpServer/HttpRequestReader.h>
+#include <HttpServer/HttpRequest.h>
 
 class BsdSocket_HttpRequestReader : public HttpRequestReader
 {

@@ -2,8 +2,8 @@
 // Created by dominik on 04.11.19.
 //
 
-#include <http-server/http/HttpRequest.h>
-#include <http-server/http/HttpParser.h>
+#include <HttpServer/HttpRequest.h>
+#include <HttpServer/HttpParser.h>
 
 
 void HttpParser::parse_line(const std::__cxx11::string &line)

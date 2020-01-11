@@ -4,7 +4,7 @@
 //
 
 
-#include "http-server/BuildingSystem/HttpAdapter.h"
+#include "BuildingSystem/HttpAdapter.h"
 
 using namespace boost::xpressive;
 

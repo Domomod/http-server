@@ -2,7 +2,7 @@
 // Created by dominik on 22.11.19.
 //
 
-#include <http-server/http/HttpRequestReader.h>
+#include <HttpServer/HttpRequestReader.h>
 
 HttpRequestReader::HttpRequestReader()
 {

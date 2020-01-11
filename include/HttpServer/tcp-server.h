@@ -12,7 +12,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string_regex.hpp>
 
-#include "http/HttpParser.h"
+#include "HttpParser.h"
 
 #define QUEUE_SIZE 3
 

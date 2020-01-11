@@ -2,7 +2,7 @@
 // Created by dominik on 22.11.19.
 //
 
-#include <http-server/bsd/BsdSocket_HttpRequestReader.h>
+#include <HttpServer/BsdSocket_HttpRequestReader.h>
 
 BsdSocket_HttpRequestReader::BsdSocket_HttpRequestReader(int connection_socket_descriptor)
         : connection_socket_descriptor(

@@ -2,9 +2,9 @@
 // Created by dominik on 05.11.19.
 //
 
-#include <http-server/tcp-server.h>
-#include <http-server/BuildingSystem/ThreadsafeFacade.h>
-#include <http-server/BuildingSystem/HttpAdapter.h>
+#include <HttpServer/tcp-server.h>
+#include <BuildingSystem/ThreadsafeFacade.h>
+#include <BuildingSystem/HttpAdapter.h>
 #include <iostream>
 
 

@@ -2,7 +2,7 @@
 // Created by dominik on 30.11.19.
 //
 
-#include <http-server/http/HttpResponseBuilder.h>
+#include <HttpServer/HttpResponseBuilder.h>
 
 HttpResponseBuilder::HttpResponseBuilder()
 {

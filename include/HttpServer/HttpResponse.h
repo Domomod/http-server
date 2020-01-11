@@ -5,9 +5,9 @@
 #ifndef HTTP_SERVER_HTTPRESPONSE_H
 #define HTTP_SERVER_HTTPRESPONSE_H
 
-#include <http-server/http/HttpMessage.h>
-#include <http-server/http/HttpParser.h>
-#include <http-server/http/HttpStatusCodes.h>
+#include <HttpServer/HttpMessage.h>
+#include <HttpServer/HttpParser.h>
+#include <HttpServer/HttpStatusCodes.h>
 
 /* @brief Http response representation.
  * @details This class allows for represenation of a http/1.1 response.\n

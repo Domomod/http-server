@@ -11,7 +11,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string_regex.hpp>
 #include <iostream>
-#include <http-server/http/HttpMessage.h>
+#include <HttpServer/HttpMessage.h>
 
 class HttpRequest;
 

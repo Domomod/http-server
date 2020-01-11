@@ -5,8 +5,8 @@
 #ifndef HTTP_SERVER_HTTPRESPONSEBUILDER_H
 #define HTTP_SERVER_HTTPRESPONSEBUILDER_H
 
-#include <http-server/http/HttpResponse.h>
-#include <http-server/http/HttpStatusCodes.h>
+#include <HttpServer/HttpResponse.h>
+#include <HttpServer/HttpStatusCodes.h>
 
 /*!
  * @brief A fancier version of a builder pattern, allowing for cascade calls of it's methods. Build a HttpResponse.

@@ -2,9 +2,9 @@
 // Created by Julia on 2019-12-22.
 //
 
-#include "http-server/BuildingSystem/CompositePattern/Component.h"
-#include "http-server/BuildingSystem/CompositePattern/Equipment.h"
-#include "http-server/BuildingSystem/CompositePattern/Equipment.h"
+#include <BuildingSystem/CompositePattern/Component.h>
+#include <BuildingSystem/CompositePattern/Equipment.h>
+#include <BuildingSystem/CompositePattern/Equipment.h>
 
 namespace BuildingSystem
 {

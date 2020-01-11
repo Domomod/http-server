@@ -3,9 +3,8 @@
 //
 
 #include <iostream>
-#include <http-server/BuildingSystem/CompositePattern/Composite.h>
-
-#include "http-server/BuildingSystem/CompositePattern/Composite.h"
+#include <BuildingSystem/CompositePattern/Composite.h>
+#include <BuildingSystem/CompositePattern/Composite.h>
 
 
 namespace BuildingSystem

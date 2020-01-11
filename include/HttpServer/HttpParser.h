@@ -5,7 +5,7 @@
 #ifndef HTTP_SERVER_HTTTPPARSER_H
 #define HTTP_SERVER_HTTTPPARSER_H
 
-#include <http-server/http/HttpRequest.h>
+#include <HttpServer/HttpRequest.h>
 #include "HttpRequest.h"
 
 

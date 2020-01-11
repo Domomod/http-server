@@ -2,7 +2,7 @@
 // Created by dominik on 23.11.19.
 //
 
-#include <http-server/http/HttpMessage.h>
+#include <HttpServer/HttpMessage.h>
 const std::string HttpMessage::NO_SUCH_KEY = "No such key";
 
 

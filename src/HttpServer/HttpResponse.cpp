@@ -2,7 +2,7 @@
 // Created by dominik on 06.11.19.
 //
 
-#include <http-server/http/HttpResponse.h>
+#include <HttpServer/HttpResponse.h>
 
 std::string HttpResponse::to_str() const
 {

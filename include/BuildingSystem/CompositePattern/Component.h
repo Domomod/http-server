@@ -12,7 +12,7 @@
 #include <shared_mutex>
 
 #include "Equipment.h"
-#include "http-server/BuildingSystem/Exceptions.h"
+#include "BuildingSystem/Exceptions.h"
 
 using json = nlohmann::json;
 

@@ -2,9 +2,9 @@
 // Created by Julia on 2019-12-20.
 //
 
-#include <http-server/BuildingSystem/CompositePattern/Room.h>
+#include <BuildingSystem/CompositePattern/Room.h>
 
-#include "http-server/BuildingSystem/CompositePattern/Room.h"
+#include <BuildingSystem/CompositePattern/Room.h>
 
 namespace BuildingSystem
 {

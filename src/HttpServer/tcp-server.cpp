@@ -2,10 +2,10 @@
 // Created by dominik on 05.11.19.
 //
 
-#include <http-server/tcp-server.h>
-#include <http-server/http/HttpRequestReader.h>
-#include <http-server/bsd/BsdSocket_HttpRequestReader.h>
-#include <http-server/http/HttpResponseBuilder.h>
+#include <HttpServer/tcp-server.h>
+#include <HttpServer/HttpRequestReader.h>
+#include <HttpServer/BsdSocket_HttpRequestReader.h>
+#include <HttpServer/HttpResponseBuilder.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
