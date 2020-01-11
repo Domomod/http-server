@@ -41,23 +41,13 @@ namespace HttpServer
     public:
         RequestParser();
 
-        /*!
-         * @brief Parses a single line of httpRequest. Returns parsed object on the last line.
-         * @param line line to be parsed.
-         * @return  HttpRequest pointer if full request parsed, nullptr otherwise.
-         * @see HttpRequest
-         */
-        void parse_line(const std::__cxx11::string &line);
+        void parse_and_update_buffer(std::string & buffer);
 
         Request get_request();
 
-        void discard();
+        bool is_request_ready() const;
 
-        enum class State;
-
-        bool isInState(const State &state) const;;
-
-        unsigned long how_much_msg_body_left();
+        unsigned long how_much_body_left();
 
         enum class State
         {
@@ -79,23 +69,25 @@ namespace HttpServer
          * @brief Parses a line containig header field.
          * @param line line of header key and values separated by single spaces
          */
-        void parse_header_field(const std::string &line);
+        void parse_header(const std::string &line);
 
         /*!
          * @brief Parses a line of the message body.
          * @param line any string
          */
-        void parse_body_line(const std::string &line);
+        void append_to_body(const std::string &line);
 
         /*!
          * @brief Resets HttpParser to the state after it's construction.
          */
-        void resetState();
+        void reset_state();
 
-        /*!
-         * @brief Checks if request has body, aka if it has "Content-Length" header field.
-         */
-        void check_if_request_has_body();
+
+        inline bool contains(const std::__cxx11::string &line, char character);
+
+        std::string move_line(std::__cxx11::string &str);
+
+        std::string split_on(std::__cxx11::string &str, unsigned long n);
 
         Request *httpRequest;
         State currentState;

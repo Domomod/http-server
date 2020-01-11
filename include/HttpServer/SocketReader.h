@@ -21,12 +21,6 @@ namespace HttpServer
         Request get_request();
 
     private:
-        inline bool contains(const std::__cxx11::string &line, char character);
-
-        std::__cxx11::string extractLine(std::__cxx11::string &str);
-
-        std::__cxx11::string splitOnNth(std::__cxx11::string &str, unsigned long n);
-
         int connection_socket_descriptor;
         char buf[101];
         std::__cxx11::string unprocessed_data;

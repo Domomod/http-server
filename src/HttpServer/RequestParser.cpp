@@ -7,34 +7,65 @@
 
 namespace HttpServer
 {
-    void RequestParser::parse_line(const std::__cxx11::string &line)
+    RequestParser::RequestParser()
     {
-        if (!isInState(State::HTTP_REQUEST_READY))
-        {
-            if (isInState(State::PARSING_HTTP_REQUEST_LINE))
-            {
-                parse_request_line(line);
-            }
-            else if (line.empty())
-            {
-                check_if_request_has_body();
-            }
-            else if (isInState(State::PARSING_HTTP_HEADER_FIELDS))
-            {
-                parse_header_field(line);
-            }
-            else if (isInState(State::PARSING_HTTP_MESSAGE_BODY))
-            {
-                parse_body_line(line);
-            }
-        }
-        else
-        {
-            std::cerr << "HttpParser can't proceed to parse lines because it contains a httpRequest fully parsed\n "
-                         "You need to either get or discard it";
-            exit(-1);
-        }
+        httpRequest = new Request();
+        currentState = State::PARSING_HTTP_REQUEST_LINE;
+    }
 
+
+    void RequestParser::parse_and_update_buffer(std::string &buffer)
+    {
+        while (currentState != State::HTTP_REQUEST_READY)
+        {
+            if (currentState == State::PARSING_HTTP_REQUEST_LINE && contains(buffer, '\n'))
+            {
+                std::string line = move_line(buffer);
+                parse_request_line(line);
+                currentState = State::PARSING_HTTP_HEADER_FIELDS;
+            }
+            else if (currentState == State::PARSING_HTTP_HEADER_FIELDS && contains(buffer, '\n'))
+            {
+                while (currentState == State::PARSING_HTTP_HEADER_FIELDS && contains(buffer, '\n'))
+                {
+                    std::string line = move_line(buffer);
+                    if (line.empty())
+                    {
+                        currentState = State::PARSING_HTTP_MESSAGE_BODY;
+                    }
+                    else
+                    {
+                        parse_header(line);
+                    }
+                }
+            }
+            else if (currentState == State::PARSING_HTTP_MESSAGE_BODY && how_much_body_left() == 0)
+            {
+                /*Message's body was either fully parsed already, or message did not contain a body in the beginning*/
+                currentState = State::HTTP_REQUEST_READY;
+            }
+            else if (currentState == State::PARSING_HTTP_MESSAGE_BODY && !buffer.empty())
+            {
+                unsigned long body_left = how_much_body_left();
+                unsigned long buffer_length = buffer.size();
+                if (buffer_length > body_left)
+                {
+                    /*Buffer contain's parts of another request. Extract only what's needed */
+                    std::__cxx11::string line = split_on(buffer, body_left);
+                    append_to_body(line);
+                }
+                else
+                {
+                    append_to_body(buffer);
+                    buffer.erase();
+                }
+            }
+            else
+            {
+                /*Data left in buffer is insufficient to continue parsing. Return and wait for next call*/
+                return;
+            }
+        }
     }
 
     void RequestParser::parse_request_line(const std::string &line)
@@ -43,10 +74,9 @@ namespace HttpServer
         iter_split(words, line, boost::algorithm::first_finder(" "));
         httpRequest->request = words[0] + " " + words[1];
         httpRequest->http_version = words[2];
-        currentState = State::PARSING_HTTP_HEADER_FIELDS;
     }
 
-    void RequestParser::parse_header_field(const std::string &line)
+    void RequestParser::parse_header(const std::string &line)
     {
         std::vector<std::__cxx11::string> words;
         iter_split(words, line, boost::algorithm::first_finder(" "));
@@ -66,40 +96,12 @@ namespace HttpServer
         );
     }
 
-    void RequestParser::parse_body_line(const std::string &line)
+    void RequestParser::append_to_body(const std::string &line)
     {
         httpRequest->body.append(line);
-        if (how_much_msg_body_left() == 0)
-        {
-            currentState = State::HTTP_REQUEST_READY;
-        }
     }
 
-
-    RequestParser::RequestParser()
-    {
-        httpRequest = new Request();
-        currentState = State::PARSING_HTTP_REQUEST_LINE;
-    }
-
-    void RequestParser::check_if_request_has_body()
-    {
-        /*If a http request contains Content-Length header field, it also contains html body.
-         *If for some reason Content-Length would be set to 0, this would also mean that body
-         *is absent.
-         * */
-        std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
-        if (value_list[0] == Request::NO_SUCH_KEY || value_list[0] == "0")
-        {
-            currentState = State::HTTP_REQUEST_READY;
-        }
-        else
-        {
-            currentState = State::PARSING_HTTP_MESSAGE_BODY;
-        }
-    }
-
-    unsigned long RequestParser::how_much_msg_body_left()
+    unsigned long RequestParser::how_much_body_left()
     {
         std::vector<std::string> value_list = httpRequest->get_field_value("Content-Length");
         if (value_list[0] == Request::NO_SUCH_KEY)
@@ -117,36 +119,41 @@ namespace HttpServer
 
     Request RequestParser::get_request()
     {
-        if (isInState(State::HTTP_REQUEST_READY))
-        {
-            Request request = *httpRequest;
-            resetState();
-            return request;
-        }
-        else
-        {
-            std::cerr << "HtppParser can't return a request before its fully parsed.";
-            exit(-1);
-        }
+        Request request = *httpRequest;
+        reset_state();
+        return request;
     }
 
-    bool RequestParser::isInState(const RequestParser::State &state) const
+    bool RequestParser::is_request_ready() const
     {
-        return currentState == state;
+        return currentState == State::HTTP_REQUEST_READY;
     }
 
-    void RequestParser::discard()
-    {
-        resetState();
-    }
-
-    void RequestParser::resetState()
+    void RequestParser::reset_state()
     {
         delete httpRequest;
         httpRequest = new Request();
         currentState = State::PARSING_HTTP_REQUEST_LINE;
     }
 
+    bool RequestParser::contains(const std::__cxx11::string &line, char character)
+    {
+        return line.find('\n') != std::string::npos;
+    }
+
+    std::string RequestParser::move_line(std::string &str)
+    {
+        std::__cxx11::string line = split_on(str, str.find('\n'));
+        line.pop_back();
+        return line;
+    }
+
+    std::string RequestParser::split_on(std::__cxx11::string &str, unsigned long n)
+    {
+        std::__cxx11::string first_part = str.substr(0, n);
+        str = str.substr(n + 1);
+        return first_part;
+    }
+
+
 }
-
-
