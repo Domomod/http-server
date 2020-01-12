@@ -89,7 +89,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ab82b3f0dd2b3ecf9f35c41b3925a5e6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpResponse.html#ab82b3f0dd2b3ecf9f35c41b3925a5e6d">print</a> (std::ostream &amp;ss) const override</td></tr>
 <tr class="memdesc:ab82b3f0dd2b3ecf9f35c41b3925a5e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints object, in format specfied by RFC2616, on given output stream.  <a href="#ab82b3f0dd2b3ecf9f35c41b3925a5e6d">More...</a><br /></td></tr>
 <tr class="separator:ab82b3f0dd2b3ecf9f35c41b3925a5e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="inherit_header pub_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHttpMessage.html">Message</a></td></tr>
 <tr class="memitem:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a11a6f43a8ce43302ce61c36ef45c17d0">getHttp_version</a> () const</td></tr>
 <tr class="memdesc:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple getter.  <a href="classHttpMessage.html#a11a6f43a8ce43302ce61c36ef45c17d0">More...</a><br /></td></tr>
 <tr class="separator:a11a6f43a8ce43302ce61c36ef45c17d0 inherit pub_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,12 +112,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpResponseBuilder<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="inherit_header pub_static_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classHttpMessage.html">Message</a></td></tr>
 <tr class="memitem:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="ae15d854b7cfbabe2fde8101e9d444850"></a>
 static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#ae15d854b7cfbabe2fde8101e9d444850">NO_SUCH_KEY</a></td></tr>
 <tr class="memdesc:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value returned when getFieldValue does not find a field with given name. <br /></td></tr>
 <tr class="separator:ae15d854b7cfbabe2fde8101e9d444850 inherit pub_static_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="inherit_header pro_methods_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classHttpMessage.html">Message</a></td></tr>
 <tr class="memitem:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a0c4093f5c313400d3c837c08aaab8499">printHeader</a> (std::ostream &amp;os=std::cout) const</td></tr>
 <tr class="memdesc:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the header, in format specfied by RFC2616, on given output stream.  <a href="classHttpMessage.html#a0c4093f5c313400d3c837c08aaab8499">More...</a><br /></td></tr>
 <tr class="separator:a0c4093f5c313400d3c837c08aaab8499 inherit pro_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +127,7 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr class="memitem:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpMessage.html#a58b877f7261992457304b78c6a090b0e">addFieldValue</a> (const std::string field_name, const std::vector&lt; std::string &gt; &amp;values)</td></tr>
 <tr class="memdesc:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds or assigns given value to the header dictionary.  <a href="classHttpMessage.html#a58b877f7261992457304b78c6a090b0e">More...</a><br /></td></tr>
 <tr class="separator:a58b877f7261992457304b78c6a090b0e inherit pro_methods_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHttpMessage.html">HttpMessage</a></td></tr>
+<tr class="inherit_header pro_attribs_classHttpMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHttpMessage')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHttpMessage.html">Message</a></td></tr>
 <tr class="memitem:ad8809614b1bde4f1c5e741912752d180 inherit pro_attribs_classHttpMessage"><td class="memItemLeft" align="right" valign="top"><a id="ad8809614b1bde4f1c5e741912752d180"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>http_version</b></td></tr>
 <tr class="separator:ad8809614b1bde4f1c5e741912752d180 inherit pro_attribs_classHttpMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +171,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>body</b></td><
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classHttpMessage.html#a62f461eb5df44088b35ec7ea61e5d6ec">HttpMessage</a>.</p>
+<p>Implements <a class="el" href="classHttpMessage.html#a62f461eb5df44088b35ec7ea61e5d6ec">Message</a>.</p>
 
 </div>
 </div>

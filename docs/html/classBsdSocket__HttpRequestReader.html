@@ -84,13 +84,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abfe8e13b97f4007e7e99b69765afe119"><td class="memItemLeft" align="right" valign="top"><a id="abfe8e13b97f4007e7e99b69765afe119"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BsdSocket_HttpRequestReader</b> (int connection_socket_descriptor)</td></tr>
 <tr class="separator:abfe8e13b97f4007e7e99b69765afe119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40223a84aa145b186c37cae95a7cdba9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBsdSocket__HttpRequestReader.html#a40223a84aa145b186c37cae95a7cdba9">getRequest</a> () override</td></tr>
-<tr class="memdesc:a40223a84aa145b186c37cae95a7cdba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> to the user.  <a href="#a40223a84aa145b186c37cae95a7cdba9">More...</a><br /></td></tr>
+<tr class="memitem:a40223a84aa145b186c37cae95a7cdba9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHttpRequest.html">Request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBsdSocket__HttpRequestReader.html#a40223a84aa145b186c37cae95a7cdba9">getRequest</a> () override</td></tr>
+<tr class="memdesc:a40223a84aa145b186c37cae95a7cdba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> to the user.  <a href="#a40223a84aa145b186c37cae95a7cdba9">More...</a><br /></td></tr>
 <tr class="separator:a40223a84aa145b186c37cae95a7cdba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_classHttpRequestReader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHttpRequestReader')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHttpRequestReader.html">HttpRequestReader</a></td></tr>
+<tr class="inherit_header pro_attribs_classHttpRequestReader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classHttpRequestReader')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classHttpRequestReader.html">SocketReader</a></td></tr>
 <tr class="memitem:af5c2aeef37ddd1b4f0655fdca1760a02 inherit pro_attribs_classHttpRequestReader"><td class="memItemLeft" align="right" valign="top"><a id="af5c2aeef37ddd1b4f0655fdca1760a02"></a>
 <a class="el" href="classHttpParser.html">HttpParser</a>&#160;</td><td class="memItemRight" valign="bottom"><b>httpParser</b></td></tr>
 <tr class="separator:af5c2aeef37ddd1b4f0655fdca1760a02 inherit pro_attribs_classHttpRequestReader"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,7 +106,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classHttpRequest.html">HttpRequest</a> BsdSocket_HttpRequestReader::getRequest </td>
+          <td class="memname"><a class="el" href="classHttpRequest.html">Request</a> BsdSocket_HttpRequestReader::getRequest </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -119,10 +119,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> to the user. </p>
+<p>Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> to the user. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implements <a class="el" href="classHttpRequestReader.html#aec034289e16322ab2be9fa82f9680223">HttpRequestReader</a>.</p>
+<p>Implements <a class="el" href="classHttpRequestReader.html#aec034289e16322ab2be9fa82f9680223">SocketReader</a>.</p>
 
 </div>
 </div>

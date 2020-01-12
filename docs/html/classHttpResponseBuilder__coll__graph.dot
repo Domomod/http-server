@@ -6,5 +6,5 @@ digraph "HttpResponseBuilder"
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" httpResponse" ,fontname="Helvetica"];
   Node2 [label="HttpResponse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpResponse.html"];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="HttpMessage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpMessage.html",tooltip="Abstract base class for HttpRequest and HttpResponse. "];
+  Node3 [label="Message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpMessage.html",tooltip="Abstract base class for Request and HttpResponse. "];
 }

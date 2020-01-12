@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Threaded_tcp_server",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classThreaded__tcp__server.html",tooltip="A tcp threaded server. Creates a thread for each client communicating with the server. The protocol of communication (http, ftp, etc...) and taken actions depend on a function provided by the user during the initialization. "];
+  Node0 [label="HttpServer::ResponseBuilder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpServer_1_1ResponseBuilder.html",tooltip="A fancier version of a builder pattern, allowing for cascade calls of it&#39;s methods. Build a HttpResponse. Absoulte minimum to create a HttpResponse is to set it&#39;s StatusCode. Does not remember values of HttpRequest after returning it to the user. "];
 }

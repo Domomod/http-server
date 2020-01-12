@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>http_server: HttpRequestReader Class Reference</title>
+<title>http_server: SocketReader Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,22 +64,22 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classHttpRequestReader-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">HttpRequestReader Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">SocketReader Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>An interface for a class reading <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> as a string, responsible for sending this string to <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returning a parsed HttpRequset to the user.  
+<p>An interface for a class reading <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> as a string, responsible for sending this string to <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returning a parsed HttpRequset to the user.
  <a href="classHttpRequestReader.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="HttpRequestReader_8h_source.html">HttpRequestReader.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="HttpRequestReader_8h_source.html">SocketReader.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for HttpRequestReader:</div>
+Inheritance diagram for SocketReader:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHttpRequestReader__inherit__graph.png" border="0" usemap="#HttpRequestReader_inherit__map" alt="Inheritance graph"/></div>
 <!-- MAP 0 -->
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for HttpRequestReader:</div>
+Collaboration diagram for SocketReader:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHttpRequestReader__coll__graph.png" border="0" usemap="#HttpRequestReader_coll__map" alt="Collaboration graph"/></div>
 <!-- MAP 1 -->
@@ -87,8 +87,8 @@ Collaboration diagram for HttpRequestReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aec034289e16322ab2be9fa82f9680223"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classHttpRequest.html">HttpRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequestReader.html#aec034289e16322ab2be9fa82f9680223">getRequest</a> ()=0</td></tr>
-<tr class="memdesc:aec034289e16322ab2be9fa82f9680223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> to the user.  <a href="#aec034289e16322ab2be9fa82f9680223">More...</a><br /></td></tr>
+<tr class="memitem:aec034289e16322ab2be9fa82f9680223"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classHttpRequest.html">Request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpRequestReader.html#aec034289e16322ab2be9fa82f9680223">getRequest</a> ()=0</td></tr>
+<tr class="memdesc:aec034289e16322ab2be9fa82f9680223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> to the user.  <a href="#aec034289e16322ab2be9fa82f9680223">More...</a><br /></td></tr>
 <tr class="separator:aec034289e16322ab2be9fa82f9680223"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -98,7 +98,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:af5c2aeef37ddd1b4f0655fdca1760a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An interface for a class reading <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> as a string, responsible for sending this string to <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returning a parsed HttpRequset to the user. </p>
+<div class="textblock"><p>An interface for a class reading <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> as a string, responsible for sending this string to <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returning a parsed HttpRequset to the user. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aec034289e16322ab2be9fa82f9680223"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec034289e16322ab2be9fa82f9680223">&#9670;&nbsp;</a></span>getRequest()</h2>
@@ -110,7 +110,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classHttpRequest.html">HttpRequest</a> HttpRequestReader::getRequest </td>
+          <td class="memname">virtual <a class="el" href="classHttpRequest.html">Request</a> SocketReader::getRequest </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -123,7 +123,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> to the user. </p>
+<p>Reads a single whole <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> string, parses it with <a class="el" href="classHttpParser.html" title="Simple and naive parser of http requets, relies on data being separated by single spaces...">HttpParser</a>, and returns <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> to the user. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p>Implemented in <a class="el" href="classBsdSocket__HttpRequestReader.html#a40223a84aa145b186c37cae95a7cdba9">BsdSocket_HttpRequestReader</a>.</p>
@@ -131,7 +131,7 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/http-server/http/<a class="el" href="HttpRequestReader_8h_source.html">HttpRequestReader.h</a></li>
+<li>include/http-server/http/<a class="el" href="HttpRequestReader_8h_source.html">SocketReader.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

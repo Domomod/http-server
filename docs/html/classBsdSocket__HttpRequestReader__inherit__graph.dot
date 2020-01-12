@@ -4,5 +4,5 @@ digraph "BsdSocket_HttpRequestReader"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node0 [label="BsdSocket_HttpRequestReader",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 [label="HttpRequestReader",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpRequestReader.html",tooltip="An interface for a class reading HttpRequest as a string, responsible for sending this string to Http..."];
+  Node1 [label="SocketReader",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpRequestReader.html",tooltip="An interface for a class reading Request as a string, responsible for sending this string to Http..."];
 }

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['no_5fsuch_5fkey',['NO_SUCH_KEY',['../classHttpMessage.html#ae15d854b7cfbabe2fde8101e9d444850',1,'HttpMessage']]],
-  ['notfound',['NotFound',['../classNotFound.html',1,'']]]
+  ['init',['init',['../classHttpServer_1_1ResponseBuilder.html#a281d8fc0afbf28756d37ee56ef7b9042',1,'HttpServer::ResponseBuilder']]]
 ];

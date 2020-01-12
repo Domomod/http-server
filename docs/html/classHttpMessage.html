@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>http_server: HttpMessage Class Reference</title>
+<title>http_server: Message Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,16 +67,16 @@ $(function() {
 <a href="#friends">Friends</a> &#124;
 <a href="classHttpMessage-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">HttpMessage Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Message Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract base class for <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> and <a class="el" href="classHttpResponse.html">HttpResponse</a>.  
+<p>Abstract base class for <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> and <a class="el" href="classHttpResponse.html">HttpResponse</a>.
  <a href="classHttpMessage.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="HttpMessage_8h_source.html">HttpMessage.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="HttpMessage_8h_source.html">Message.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for HttpMessage:</div>
+Inheritance diagram for Message:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHttpMessage__inherit__graph.png" border="0" usemap="#HttpMessage_inherit__map" alt="Inheritance graph"/></div>
 <!-- MAP 0 -->
@@ -146,7 +146,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpResponseBuilder<
 <tr class="separator:af88b8cb2bf7b367d31a8aec3508be307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract base class for <a class="el" href="classHttpRequest.html" title="Http request representation. ">HttpRequest</a> and <a class="el" href="classHttpResponse.html">HttpResponse</a>. </p>
+<div class="textblock"><p>Abstract base class for <a class="el" href="classHttpRequest.html" title="Http request representation. ">Request</a> and <a class="el" href="classHttpResponse.html">HttpResponse</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a58b877f7261992457304b78c6a090b0e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a58b877f7261992457304b78c6a090b0e">&#9670;&nbsp;</a></span>addFieldValue()</h2>
@@ -158,7 +158,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpResponseBuilder<
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void HttpMessage::addFieldValue </td>
+          <td class="memname">void Message::addFieldValue </td>
           <td>(</td>
           <td class="paramtype">const std::string&#160;</td>
           <td class="paramname"><em>field_name</em>, </td>
@@ -200,7 +200,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpResponseBuilder<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string&amp; HttpMessage::getBody </td>
+          <td class="memname">const std::string&amp; Message::getBody </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -220,7 +220,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>HttpResponseBuilder<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::vector&lt;std::string&gt; HttpMessage::getFieldValue </td>
+          <td class="memname">const std::vector&lt;std::string&gt; Message::getFieldValue </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>field_name</em></td><td>)</td>
@@ -248,7 +248,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string&amp; HttpMessage::getHttp_version </td>
+          <td class="memname">const std::string&amp; Message::getHttp_version </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -271,7 +271,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void HttpMessage::print </td>
+          <td class="memname">virtual void Message::print </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>os</em></td><td>)</td>
@@ -293,7 +293,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classHttpRequest.html#a656f91e2fba92f4fc01e20fc9f88153b">HttpRequest</a>, and <a class="el" href="classHttpResponse.html#ab82b3f0dd2b3ecf9f35c41b3925a5e6d">HttpResponse</a>.</p>
+<p>Implemented in <a class="el" href="classHttpRequest.html#a656f91e2fba92f4fc01e20fc9f88153b">Request</a>, and <a class="el" href="classHttpResponse.html#ab82b3f0dd2b3ecf9f35c41b3925a5e6d">HttpResponse</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void HttpMessage::printBody </td>
+          <td class="memname">void Message::printBody </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>os</em> = <code>std::cout</code></td><td>)</td>
@@ -341,7 +341,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void HttpMessage::printHeader </td>
+          <td class="memname">void Message::printHeader </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>os</em> = <code>std::cout</code></td><td>)</td>
@@ -366,7 +366,7 @@ If wrong key was given returns vector containing only NO_SUCH_KEY, which is a st
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/http-server/http/<a class="el" href="HttpMessage_8h_source.html">HttpMessage.h</a></li>
+<li>include/http-server/http/<a class="el" href="HttpMessage_8h_source.html">Message.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

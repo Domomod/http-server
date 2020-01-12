@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['getbody',['getBody',['../classHttpMessage.html#acdda84aeaa4166a6fe277aae056eea09',1,'HttpMessage']]],
-  ['getfieldvalue',['getFieldValue',['../classHttpMessage.html#aed35437ffa842011d637b91fc3114f87',1,'HttpMessage']]],
-  ['gethttp_5fversion',['getHttp_version',['../classHttpMessage.html#a11a6f43a8ce43302ce61c36ef45c17d0',1,'HttpMessage']]],
-  ['getpath',['getPath',['../classHttpRequest.html#ae3d5e46a5f9f7bbb348231cc705146ea',1,'HttpRequest']]],
-  ['getrequest',['getRequest',['../classBsdSocket__HttpRequestReader.html#a40223a84aa145b186c37cae95a7cdba9',1,'BsdSocket_HttpRequestReader::getRequest()'],['../classHttpRequestReader.html#aec034289e16322ab2be9fa82f9680223',1,'HttpRequestReader::getRequest()']]],
-  ['getrequest_5ftype',['getRequest_type',['../classHttpRequest.html#a4ea53b74de3737f6e4d7a1e9f75b11e5',1,'HttpRequest']]],
-  ['getresponse',['getResponse',['../classHttpResponseBuilder.html#a7171be2f0da5bb021f1a1ff02ef63f1a',1,'HttpResponseBuilder']]]
+  ['create_5fequipment_5fjson',['create_equipment_json',['../classBuildingSystem_1_1Component.html#a24e39c28aeb21c9eb582caf731deecbe',1,'BuildingSystem::Component::create_equipment_json()'],['../classBuildingSystem_1_1Composite.html#a8ee66a95cfc8433926e2996c90107907',1,'BuildingSystem::Composite::create_equipment_json()'],['../classBuildingSystem_1_1Room.html#a84a9c43f74bdaed5b7c28f6c7bac91f3',1,'BuildingSystem::Room::create_equipment_json()']]],
+  ['create_5fstructure_5fjson',['create_structure_json',['../classBuildingSystem_1_1Component.html#a99a7212ec509b3ac6f2636d601a68d25',1,'BuildingSystem::Component::create_structure_json()'],['../classBuildingSystem_1_1Composite.html#a96ed10acb30235c28393349b76fc544d',1,'BuildingSystem::Composite::create_structure_json()'],['../classBuildingSystem_1_1Room.html#ad18035ff4926ab5cfb2fa1409f5e4337',1,'BuildingSystem::Room::create_structure_json()']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['notfound',['NotFound',['../classNotFound.html',1,'']]]
+  ['message',['Message',['../classHttpServer_1_1Message.html',1,'HttpServer']]],
+  ['myexception',['MyException',['../classMyException.html',1,'']]]
 ];

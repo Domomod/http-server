@@ -3,7 +3,9 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="HttpRequestReader",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpRequestReader.html",tooltip="An interface for a class reading HttpRequest as a string, responsible for sending this string to Http..."];
+  Node0 [label="HttpServer::Message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpServer_1_1Message.html",tooltip="Abstract base class for Http Requests and Http Responses. "];
   Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 [label="BsdSocket_HttpRequestReader",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBsdSocket__HttpRequestReader.html"];
+  Node1 [label="HttpServer::Request",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpServer_1_1Request.html",tooltip="Http request representation. "];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="HttpServer::Response",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHttpServer_1_1Response.html"];
 }
