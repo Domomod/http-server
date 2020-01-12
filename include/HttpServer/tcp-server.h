@@ -14,7 +14,7 @@
 
 #include "RequestParser.h"
 
-#define QUEUE_SIZE 3
+#define QUEUE_SIZE 50
 
 namespace HttpServer
 {

@@ -10,7 +10,13 @@
 
 int main(int argc, char *argv[])
 {
-    BuildingSystem::ThreadsafeFacade buildingSystem;
-    HttpServer::Threaded_tcp_server threaded_tcp_server(1235, buildingSystem.get_http_adapter());
-    threaded_tcp_server.loop();
+    if(argc > 1)
+    {
+        std::stringstream ss(argv[1]);
+        uint16_t port;
+        ss >> port;
+        BuildingSystem::ThreadsafeFacade buildingSystem;
+        HttpServer::Threaded_tcp_server threaded_tcp_server(port, buildingSystem.get_http_adapter());
+        threaded_tcp_server.loop();
+    }
 }
