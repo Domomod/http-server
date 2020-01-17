@@ -10,13 +10,13 @@
 
 int main(int argc, char *argv[])
 {
+    uint16_t port = 1235;
     if(argc > 1)
     {
         std::stringstream ss(argv[1]);
-        uint16_t port;
         ss >> port;
-        BuildingSystem::ThreadsafeFacade buildingSystem;
-        HttpServer::Threaded_tcp_server threaded_tcp_server(port, buildingSystem.get_http_adapter());
-        threaded_tcp_server.loop();
     }
+    BuildingSystem::ThreadsafeFacade buildingSystem;
+    HttpServer::Threaded_tcp_server threaded_tcp_server(port, buildingSystem.get_http_adapter());
+    threaded_tcp_server.loop();
 }
