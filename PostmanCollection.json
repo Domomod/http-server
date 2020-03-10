@@ -1,0 +1,1230 @@
+{
+	"info": {
+		"_postman_id": "b35b0296-2754-482b-86ea-9b704d1aa8ad",
+		"name": "System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddingNewResources",
+			"item": [
+				{
+					"name": "Add Equipment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index\": 2,\n    \"name\": \"lozeczko\",\n    \"type\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Initial Building",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem8BuildingE\",\n    \"buildingComponents\": [\n        [\n            1,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    0,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    1,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    2,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 1,\n                \"name\": \"Floor\"\n            }\n        ],\n        [\n            2,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    3,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    4,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    5,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 2,\n                \"name\": \"Floor\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Ul. Ulicowa 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Floor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem5FloorE\",\n    \"buildingComponents\": [\n        [\n            1,\n            {\n                \"@class-name\": \"N14BuildingSystem4RoomE\",\n                \"equipment\": [\n                    [\n                        0,\n                        {\n                            \"name\": \"lozeczko\",\n                            \"type\": \"other\"\n                        }\n                    ]\n                ],\n                \"idx\": 1,\n                \"name\": \"Room\"\n            }\n        ],\n        [\n            2,\n            {\n                \"@class-name\": \"N14BuildingSystem4RoomE\",\n                \"equipment\": [\n                    [\n                        1,\n                        {\n                            \"name\": \"lozeczko\",\n                            \"type\": \"other\"\n                        }\n                    ]\n                ],\n                \"idx\": 2,\n                \"name\": \"Room\"\n            }\n        ],\n        [\n            3,\n            {\n                \"@class-name\": \"N14BuildingSystem4RoomE\",\n                \"equipment\": [\n                    [\n                        2,\n                        {\n                            \"name\": \"lozeczko\",\n                            \"type\": \"other\"\n                        }\n                    ]\n                ],\n                \"idx\": 3,\n                \"name\": \"Room\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem4RoomE\",\n    \"equipment\": [\n        [\n            0,\n            {\n                \"name\": \"lozeczko\",\n                \"type\": \"other\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Room\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move equipment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1/equipment/0?destination=/buildings/1/floors/1/rooms/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1",
+								"equipment",
+								"0"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "/buildings/1/floors/1/rooms/2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MovingResources",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GettingEquipment",
+			"item": [
+				{
+					"name": "System",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/2/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"2",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Floor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Building",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GettingStructure",
+			"item": [
+				{
+					"name": "System",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/structure",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"structure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Building",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/structure",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"structure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Floor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/structure",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"structure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1/structure",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1",
+								"structure"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GettingObjectJson",
+			"item": [
+				{
+					"name": "System",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Building",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Floor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MaliciousRequests",
+			"item": [
+				{
+					"name": "Id's not matching with map keys",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem8BuildingE\",\n    \"buildingComponents\": [\n        [\n            10,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [],\n                \"idx\": 1,\n                \"name\": \"Floor\"\n            }\n        ]\n    ],\n    \"idx\": 2,\n    \"name\": \"Ul. Ulicowa 1\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Invalid object",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem5FloorE\",\n    \"buildingComponents\": [\n        [\n            1,\n            {\n                \"@class-name\": \"N14BuildingSystem4RoomE\",\n                \"equipment\": [],\n                \"idx\": 1,\n                \"name\": \"Room\"\n            }\n        ],\n        [\n            2,\n            {\n\t\t\t    \"@class-name\": \"N14BuildingSystem5FloorE\",\n\t\t\t    \"buildingComponents\": [],\n\t\t\t    \"idx\": 2,\n\t\t\t    \"name\": \"Floor\"\n\t\t\t}\n        ]\n    ],\n    \"idx\": 2,\n    \"name\": \"Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors"
+							]
+						},
+						"description": "Tries to add an object which has a room and a floor as a children."
+					},
+					"response": []
+				},
+				{
+					"name": "Send non-json file",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "To z pewnością nie jest Json"
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gibberish URI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:1235/asfweR!@$!@$RWDGVAE51352vdsz/12313///241\\r\\r\\n\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"asfweR!@$!@$RWDGVAE51352vdsz",
+								"12313",
+								"",
+								"",
+								"241\\r\\r\\n\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Building to Room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem8BuildingE\",\n    \"buildingComponents\": [\n        [\n            1,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    0,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    1,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    2,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 1,\n                \"name\": \"Floor\"\n            }\n        ],\n        [\n            2,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    3,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    4,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    5,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 2,\n                \"name\": \"Floor\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Ul. Ulicowa 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1/equipment",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Building to Floor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem8BuildingE\",\n    \"buildingComponents\": [\n        [\n            1,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    0,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    1,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    2,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 1,\n                \"name\": \"Floor\"\n            }\n        ],\n        [\n            2,\n            {\n                \"@class-name\": \"N14BuildingSystem5FloorE\",\n                \"buildingComponents\": [\n                    [\n                        1,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    3,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 1,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        2,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    4,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 2,\n                            \"name\": \"Room\"\n                        }\n                    ],\n                    [\n                        3,\n                        {\n                            \"@class-name\": \"N14BuildingSystem4RoomE\",\n                            \"equipment\": [\n                                [\n                                    5,\n                                    {\n                                        \"name\": \"lozeczko\",\n                                        \"type\": \"other\"\n                                    }\n                                ]\n                            ],\n                            \"idx\": 3,\n                            \"name\": \"Room\"\n                        }\n                    ]\n                ],\n                \"idx\": 2,\n                \"name\": \"Floor\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Ul. Ulicowa 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Equipment to Floor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "127.0.0.1:1235/buildings/1/floors"
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Room to a Building",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"N14BuildingSystem4RoomE\",\n    \"equipment\": [\n        [\n            0,\n            {\n                \"name\": \"lozeczko\",\n                \"type\": \"other\"\n            }\n        ]\n    ],\n    \"idx\": 1,\n    \"name\": \"Room\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "RemoveResource",
+			"item": [
+				{
+					"name": "Reset System",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"BuildingComposite\",\n    \"buildingComponents\": [\n        {\n            \"@class-name\": \"BuildingComposite\",\n            \"buildingComponents\": [\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            1,\n                            {\n                                \"index\": 1,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 1,\n                    \"name\": \"Room\"\n                },\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            2,\n                            {\n                                \"index\": 2,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 2,\n                    \"name\": \"Room\"\n                },\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            3,\n                            {\n                                \"index\": 3,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 3,\n                    \"name\": \"Room\"\n                }\n            ],\n            \"idx\": 1,\n            \"name\": \"Floor\"\n        },\n        {\n            \"@class-name\": \"BuildingComposite\",\n            \"buildingComponents\": [\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            4,\n                            {\n                                \"index\": 4,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 1,\n                    \"name\": \"Room\"\n                },\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            5,\n                            {\n                                \"index\": 5,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 2,\n                    \"name\": \"Room\"\n                },\n                {\n                    \"@class-name\": \"Room\",\n                    \"equipment\": [\n                        [\n                            6,\n                            {\n                                \"index\": 6,\n                                \"name\": \"lozeczko\",\n                                \"type\": 2\n                            }\n                        ]\n                    ],\n                    \"idx\": 3,\n                    \"name\": \"Room\"\n                }\n            ],\n            \"idx\": 2,\n            \"name\": \"Floor\"\n        }\n    ],\n    \"idx\": 1,\n    \"name\": \"Ul. Ulicowa 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Building",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"BuildingComposite\",\n    \"buildingComponents\": [\n        {\n            \"@class-name\": \"Room\",\n            \"equipment\": [\n                [\n                    1,\n                    {\n                        \"index\": 1,\n                        \"name\": \"lozeczko\",\n                        \"type\": 2\n                    }\n                ]\n            ],\n            \"idx\": 1,\n            \"name\": \"Room\"\n        },\n        {\n            \"@class-name\": \"Room\",\n            \"equipment\": [\n                [\n                    2,\n                    {\n                        \"index\": 2,\n                        \"name\": \"lozeczko\",\n                        \"type\": 2\n                    }\n                ]\n            ],\n            \"idx\": 2,\n            \"name\": \"Room\"\n        },\n        {\n            \"@class-name\": \"Room\",\n            \"equipment\": [\n                [\n                    3,\n                    {\n                        \"index\": 3,\n                        \"name\": \"lozeczko\",\n                        \"type\": 2\n                    }\n                ]\n            ],\n            \"idx\": 3,\n            \"name\": \"Room\"\n        }\n    ],\n    \"idx\": 1,\n    \"name\": \"Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Floor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"@class-name\": \"Room\",\n    \"equipment\": [\n        [\n            2,\n            {\n                \"index\": 2,\n                \"name\": \"lozeczko\",\n                \"type\": 2\n            }\n        ]\n    ],\n    \"idx\": 2,\n    \"name\": \"Room\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Room",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index\": 2,\n    \"name\": \"lozeczko\",\n    \"type\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Equipment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index\": 2,\n    \"name\": \"lozeczko\",\n    \"type\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:1235/buildings/1/floors/1/rooms/1/equipment/XXX",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1235",
+							"path": [
+								"buildings",
+								"1",
+								"floors",
+								"1",
+								"rooms",
+								"1",
+								"equipment",
+								"XXX"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
