@@ -34,7 +34,7 @@ If everything went succesfully, the server now waits for http requests. You can 
 requests, we propose to use Postman for it, as it's comes with a very convinient GUI. We prepared a package of 
 examplary requests, ready to import into POSTMAN, the link will be posted in the *appendix*, at the end of this document.
 
-##HTTP server overview
+## HTTP server overview
 ![](./docs/images/HttpServerDiagram.svg)
 Most important part's of our server are:
 - a **TCP server**, which creates a thread for every user conncetion.
