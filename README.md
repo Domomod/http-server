@@ -9,13 +9,13 @@ UML diagrams can be found at:
 https://domomod.github.io/http-server/model/index.html
 
 ## Installation & Running
-####Requirements
+###Requirements
 - Unix operation system (bsd sockets)
 - C++17 supporting compiler
 - boost library
 - "Json for Modern C++"  by *nlohmann* (included)
 
-####Compilation
+###Compilation
 Project is maintained using CMake, this mean you can use IDE like CLion to run the project.
 
 Alternatively you can also perform those operations
@@ -27,7 +27,7 @@ make
 cd apps
 ``` 
 
-#### Running
+### Running
 To run the server type  `./app <port>`, port is optional (default is 1235). This file i located in `/build-dir/apps` folder.
 
 If everything went succesfully, the server now waits for http requests. You can test it by sending it HTTP
@@ -127,7 +127,7 @@ Most important part's of our server are:
     could send you words where you expect numbers and so on. I leave you with the responsibilty
     to check if that's the case.
 #Appendix
-### Quick overview of RESTful service
+## Quick overview of RESTful service
 We prepared a simple system that helps managing building's and their resources.
 We represent a building as a hierarchical structure consisting of floors, and rooms. Each room
 can store any number of resources. User can create multiple buildings.
@@ -158,8 +158,8 @@ Rooms can't store any node but they can store equipment wich is represented by:
 
 `/buildings/1/rooms/1/equipment/0` - first equipment in room's list (indexed from 0, ordered as inserted) 
 
-### Possible operations
-#### Retrieving information
+## Possible operations
+### Retrieving information
 - **Get structure** - get structure, inform's which nodes belong to which parent's
     
     Example:
@@ -280,7 +280,7 @@ resource
   
           
             
-#### Adding data
+### Adding data
 - **Add buidling/floor/room**
     
     This operation is not idempotent. Sending two identical requests will cause an error status code to be send as a response.
@@ -325,7 +325,7 @@ resource
     }
     ```
     
-####Deleting resources   
+###Deleting resources   
 -   **Remove all data**
 
     Example:
@@ -340,14 +340,14 @@ resource
     DELETE 127.0.0.1:1235/buildings/1/floors/1/rooms/1
     ```
     
-####Other operations
+###Other operations
 -   **Moving equipment between rooms**
 
     Example:
     ```
     PUT 127.0.0.1:1235/buildings/1/floors/1/rooms/1/equipment/0?destination=/buildings/1/floors/1/rooms/2
     ```
-###Status Codes
+##Status Codes
 - Continue,                     
 - Switching_Protocols,          
 - OK,                           
@@ -390,7 +390,7 @@ resource
 - Gateway_Time_out,             
 - HTTP_Version_not_supported   
 
-###Request's for Postman app
+##Request's for Postman app
 You can import our ready to send requests into your Postman app. They are stored in `PostmanCollection.json` file in main directory of this repo. 
 #
 Thank you for reading our README
